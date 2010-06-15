@@ -38,6 +38,7 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+//
 
 #include "qsqlconnectiondialog.h"
 #include "ui_qsqlconnectiondialog.h"
