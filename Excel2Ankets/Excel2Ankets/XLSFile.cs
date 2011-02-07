@@ -23,7 +23,7 @@ namespace Excel2Ankets
         public String fileName;
         public int mfo;
         public int porc;
-        public ProgressBar prBarSheets;
+        //public ProgressBar prBarSheets;
         /// <summary>
         /// ConnectionString для файла excel
         /// </summary>
@@ -180,10 +180,10 @@ namespace Excel2Ankets
                     int indexCurrentTable = 0;
                     //DataTable tmp_bd_org_t;
                     //DataTable tmp_bd_org_t;
-                    prBarSheets.Minimum = 0;
-                    prBarSheets.Maximum = tablesList.Rows.Count;
-                    prBarSheets.Value = 0;
-                    prBarSheets.Step = 1;
+                    //prBarSheets.Minimum = 0;
+                    //prBarSheets.Maximum = tablesList.Rows.Count;
+                    //prBarSheets.Value = 0;
+                    //prBarSheets.Step = 1;
 
                     foreach (DataRow currentRow in tablesList.Rows)
                     {
@@ -614,7 +614,7 @@ namespace Excel2Ankets
                                 throw new ArgumentOutOfRangeException("Лист",
                                                                       currentRow["TABLE_NAME"],
                                                                       "Анкета не найдена");
-                            prBarSheets.PerformStep();
+                            //prBarSheets.PerformStep();
 
                             //tmpMySqlDS.bd_org.Select()
                             //foreach (currentRowOfTable in dataReader)
