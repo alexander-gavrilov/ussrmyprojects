@@ -93,9 +93,11 @@ namespace Excel2Ankets
             {
                 DirectoryInfo backUpPath = Directory.CreateDirectory(inPath + "\\backup");
                 LogFile.Wrile2Log("Создан каталог обработанных файлов " + backUpPath.FullName);
-                
-                DirectoryInfo workPath = Directory.CreateDirectory(inPath + "\\work");
-                LogFile.Wrile2Log("Создан рабочий каталог  " + workPath.FullName);
+                progressBar2.Minimum = 1;
+                progressBar2.Maximum = currentPath.GetDirectories("ant?????").Count();
+                progressBar2.Value = 1;
+                progressBar2.Step = 1;
+
 
                 
                 curConnect=new OleDbConnection();
@@ -105,18 +107,21 @@ namespace Excel2Ankets
                 {
                     if (Int32.TryParse(sourcePath.Name.Substring(3,3),out mfo)&&Int32.TryParse(sourcePath.Name.Substring(5,2),out porc))
                     {
-
+                        label5.Text = progressBar2.Value.ToString() + " из " + progressBar1.Maximum + " " +
+                                              currentPath.Name;
                         progressBar1.Minimum = 1;
                         progressBar1.Maximum = sourcePath.GetFiles("*.xls").Count();
                         progressBar1.Value = 1;
                         progressBar1.Step = 1;
-                        DirectoryInfo bakPath = Directory.CreateDirectory(sourcePath.FullName +mfo.ToString()+"\\"+porc.ToString() + "\\bak")));
+                        DirectoryInfo bakPath = Directory.CreateDirectory(backUpPath.FullName +"\\bak");
                         
                         LogFile.Wrile2Log("Создан каталог успешно обработанных файлов " + bakPath.FullName);
                         DirectoryInfo badPath =
-                            Directory.CreateDirectory(sourcePath.FullName + mfo.ToString() + "\\" + porc.ToString() +
-                                                      "\\bad");
+                            Directory.CreateDirectory(backUpPath.FullName+"\\bad");
                         LogFile.Wrile2Log("Создан каталог ошибочных файлов " + badPath.FullName);
+                        DirectoryInfo workPath = Directory.CreateDirectory(sourcePath.FullName + "\\work");
+                        LogFile.Wrile2Log("Создан рабочий каталог  " + workPath.FullName);
+
 
                         foreach (FileInfo currentFile in sourcePath.GetFiles("*.xls"))
                         {
@@ -139,7 +144,7 @@ namespace Excel2Ankets
 
 
                                 tmpFile.LogFile = LogFile;
-                                tmpFile.prBarSheets = progressBar2;
+                                //tmpFile.prBarSheets = progressBar2;
                                 tmpFile.excelConnection = curConnect;
                                 tmpFile.currentFileName = currentFile.Name;
                                 tmpFile.mfo = mfo;
@@ -162,15 +167,16 @@ namespace Excel2Ankets
                                     curConnect.Dispose();
                                     tmpFile.excelConnection.Close();
                                     tmpFile.excelConnection.Dispose();
-                                    if (!File.Exists(bakPath.FullName + "\\" + currentFile.Name))
+                                    int i=0;
+                                    String movedFileName=currentFile.Name;
+                                    while (File.Exists(bakPath.FullName + "\\" + movedFileName))
                                     {
-
-
-                                        currentFile.MoveTo(bakPath.FullName + "\\" + currentFile.Name);
-                                        LogFile.Wrile2Log("Файл перемещен.\n\n");
+                                        i++;
+                                        movedFileName = currentFile.Name + "_" + i.ToString("D3");
                                     }
-                                    else
-                                        LogFile.Wrile2Log("Такой файл уже существует. Перемещение невозможно.\n\n");
+                                    currentFile.MoveTo(bakPath.FullName + "\\" + currentFile.Name);
+                                    LogFile.Wrile2Log("Файл перемещен.\n\n");
+
                                 }
                                 else
                                 {
@@ -181,15 +187,15 @@ namespace Excel2Ankets
                                     curConnect.Dispose();
                                     tmpFile.excelConnection.Close();
                                     tmpFile.excelConnection.Dispose();
-
-                                    if (!File.Exists(badPath.FullName + "\\" + currentFile.Name))
+                                    int i=0;
+                                    String movedFileName=currentFile.Name;
+                                    while (File.Exists(badPath.FullName + "\\" + movedFileName))
                                     {
-
-                                        currentFile.MoveTo(badPath.FullName + "\\" + currentFile.Name);
-                                        LogFile.Wrile2Log("Файл перемещен.\n\n");
+                                        i++;
+                                        movedFileName = currentFile.Name + "_" + i.ToString("D3");
                                     }
-                                    else
-                                        LogFile.Wrile2Log("Такой файл уже существует. Перемещение невозможно.\n\n");
+                                        currentFile.MoveTo(badPath.FullName + "\\" + movedFileName);
+                                        LogFile.Wrile2Log("Файл перемещен.\n\n");
 
 
                                 }
@@ -216,6 +222,7 @@ namespace Excel2Ankets
                             }
 
 
+
                         }
 
                         GC.Collect();
@@ -224,8 +231,10 @@ namespace Excel2Ankets
 
                         //XlsFile tmpFile = new XlsFile(_inputDirectoryPath + "\\test.xls", LogFile);
                         //tmpFile.Read();
-                        Directory.Delete(workPath.FullName, true);
+                       Directory.Delete(sourcePath.FullName, true);
                     }
+                    progressBar2.PerformStep();
+
 
                 }
             }
@@ -244,7 +253,7 @@ namespace Excel2Ankets
             folderBrowserDialog1.SelectedPath=textBox1.Text;
             if (Directory.Exists(textBox1.Text))
             {
-                if (Directory.GetFiles(textBox1.Text, "*.xls").Count() > 0)
+                if (Directory.GetDirectories(textBox1.Text, "ant?????").Count() > 0)
                 {
                     _inputDirectoryPath = textBox1.Text;
                     button1.Enabled = true;
