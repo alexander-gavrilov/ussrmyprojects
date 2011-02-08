@@ -899,8 +899,8 @@ namespace Excel2Ankets {
                         string login, 
                         string file_name, 
                         string sheet_name, 
-                        decimal mfo, 
-                        decimal pack_number) {
+                        int mfo, 
+                        int pack_number) {
                 bd_ip_tRow rowbd_ip_tRow = ((bd_ip_tRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1121,9 +1121,9 @@ namespace Excel2Ankets {
                 base.Columns.Add(this.columnfile_name);
                 this.columnsheet_name = new global::System.Data.DataColumn("sheet_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsheet_name);
-                this.columnmfo = new global::System.Data.DataColumn("mfo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnmfo = new global::System.Data.DataColumn("mfo", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmfo);
-                this.columnpack_number = new global::System.Data.DataColumn("pack_number", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnpack_number = new global::System.Data.DataColumn("pack_number", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpack_number);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
@@ -1891,8 +1891,8 @@ namespace Excel2Ankets {
                         string login, 
                         string file_name, 
                         string sheet_name, 
-                        decimal mfo, 
-                        decimal pack_number) {
+                        int mfo, 
+                        int pack_number) {
                 bd_org_tRow rowbd_org_tRow = ((bd_org_tRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2101,9 +2101,9 @@ namespace Excel2Ankets {
                 base.Columns.Add(this.columnfile_name);
                 this.columnsheet_name = new global::System.Data.DataColumn("sheet_name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsheet_name);
-                this.columnmfo = new global::System.Data.DataColumn("mfo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnmfo = new global::System.Data.DataColumn("mfo", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmfo);
-                this.columnpack_number = new global::System.Data.DataColumn("pack_number", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnpack_number = new global::System.Data.DataColumn("pack_number", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpack_number);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
@@ -2818,9 +2818,9 @@ namespace Excel2Ankets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal mfo {
+            public int mfo {
                 get {
-                    return ((decimal)(this[this.tablebd_ip_t.mfoColumn]));
+                    return ((int)(this[this.tablebd_ip_t.mfoColumn]));
                 }
                 set {
                     this[this.tablebd_ip_t.mfoColumn] = value;
@@ -2829,9 +2829,9 @@ namespace Excel2Ankets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal pack_number {
+            public int pack_number {
                 get {
-                    return ((decimal)(this[this.tablebd_ip_t.pack_numberColumn]));
+                    return ((int)(this[this.tablebd_ip_t.pack_numberColumn]));
                 }
                 set {
                     this[this.tablebd_ip_t.pack_numberColumn] = value;
@@ -3317,9 +3317,9 @@ namespace Excel2Ankets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal mfo {
+            public int mfo {
                 get {
-                    return ((decimal)(this[this.tablebd_org_t.mfoColumn]));
+                    return ((int)(this[this.tablebd_org_t.mfoColumn]));
                 }
                 set {
                     this[this.tablebd_org_t.mfoColumn] = value;
@@ -3328,9 +3328,9 @@ namespace Excel2Ankets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal pack_number {
+            public int pack_number {
                 get {
-                    return ((decimal)(this[this.tablebd_org_t.pack_numberColumn]));
+                    return ((int)(this[this.tablebd_org_t.pack_numberColumn]));
                 }
                 set {
                     this[this.tablebd_org_t.pack_numberColumn] = value;
@@ -3881,14 +3881,16 @@ namespace Excel2Ankets.testDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -4199,13 +4201,15 @@ namespace Excel2Ankets.testDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             this._adapter.InsertCommand.Parameters.Add(param);
@@ -4546,13 +4550,15 @@ namespace Excel2Ankets.testDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -4854,14 +4860,16 @@ namespace Excel2Ankets.testDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -4983,8 +4991,8 @@ FROM            bd_ip_t";
                     string Original_login, 
                     string Original_file_name, 
                     string Original_sheet_name, 
-                    string Original_mfo, 
-                    string Original_pack_number) {
+                    int Original_mfo, 
+                    int Original_pack_number) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_unp == null)) {
                 throw new global::System.ArgumentNullException("Original_unp");
@@ -5122,18 +5130,8 @@ FROM            bd_ip_t";
             else {
                 this.Adapter.DeleteCommand.Parameters[36].Value = ((string)(Original_sheet_name));
             }
-            if ((Original_mfo == null)) {
-                throw new global::System.ArgumentNullException("Original_mfo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[37].Value = ((string)(Original_mfo));
-            }
-            if ((Original_pack_number == null)) {
-                throw new global::System.ArgumentNullException("Original_pack_number");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[38].Value = ((string)(Original_pack_number));
-            }
+            this.Adapter.DeleteCommand.Parameters[37].Value = ((int)(Original_mfo));
+            this.Adapter.DeleteCommand.Parameters[38].Value = ((int)(Original_pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5199,8 +5197,8 @@ FROM            bd_ip_t";
                     string login, 
                     string file_name, 
                     string sheet_name, 
-                    string mfo, 
-                    string pack_number) {
+                    int mfo, 
+                    int pack_number) {
             if ((unp == null)) {
                 throw new global::System.ArgumentNullException("unp");
             }
@@ -5385,18 +5383,8 @@ FROM            bd_ip_t";
             else {
                 this.Adapter.InsertCommand.Parameters[43].Value = ((string)(sheet_name));
             }
-            if ((mfo == null)) {
-                throw new global::System.ArgumentNullException("mfo");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[44].Value = ((string)(mfo));
-            }
-            if ((pack_number == null)) {
-                throw new global::System.ArgumentNullException("pack_number");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[45].Value = ((string)(pack_number));
-            }
+            this.Adapter.InsertCommand.Parameters[44].Value = ((int)(mfo));
+            this.Adapter.InsertCommand.Parameters[45].Value = ((int)(pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5462,8 +5450,8 @@ FROM            bd_ip_t";
                     string login, 
                     string file_name, 
                     string sheet_name, 
-                    string mfo, 
-                    string pack_number, 
+                    int mfo, 
+                    int pack_number, 
                     int Original_id, 
                     string Original_unp, 
                     int Original_kod_fil, 
@@ -5501,8 +5489,8 @@ FROM            bd_ip_t";
                     string Original_login, 
                     string Original_file_name, 
                     string Original_sheet_name, 
-                    string Original_mfo, 
-                    string Original_pack_number) {
+                    int Original_mfo, 
+                    int Original_pack_number) {
             if ((unp == null)) {
                 throw new global::System.ArgumentNullException("unp");
             }
@@ -5687,18 +5675,8 @@ FROM            bd_ip_t";
             else {
                 this.Adapter.UpdateCommand.Parameters[43].Value = ((string)(sheet_name));
             }
-            if ((mfo == null)) {
-                throw new global::System.ArgumentNullException("mfo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((string)(mfo));
-            }
-            if ((pack_number == null)) {
-                throw new global::System.ArgumentNullException("pack_number");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(pack_number));
-            }
+            this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(mfo));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((int)(pack_number));
             this.Adapter.UpdateCommand.Parameters[46].Value = ((int)(Original_id));
             if ((Original_unp == null)) {
                 throw new global::System.ArgumentNullException("Original_unp");
@@ -5836,18 +5814,8 @@ FROM            bd_ip_t";
             else {
                 this.Adapter.UpdateCommand.Parameters[82].Value = ((string)(Original_sheet_name));
             }
-            if ((Original_mfo == null)) {
-                throw new global::System.ArgumentNullException("Original_mfo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((string)(Original_mfo));
-            }
-            if ((Original_pack_number == null)) {
-                throw new global::System.ArgumentNullException("Original_pack_number");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((string)(Original_pack_number));
-            }
+            this.Adapter.UpdateCommand.Parameters[83].Value = ((int)(Original_mfo));
+            this.Adapter.UpdateCommand.Parameters[84].Value = ((int)(Original_pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6301,14 +6269,16 @@ FROM            bd_ip_t";
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -6597,13 +6567,15 @@ FROM            bd_ip_t";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             this._adapter.InsertCommand.Parameters.Add(param);
@@ -6918,13 +6890,15 @@ FROM            bd_ip_t";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -7194,14 +7168,16 @@ FROM            bd_ip_t";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_mfo";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "mfo";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@Original_pack_number";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.NewDecimal;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "pack_number";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
@@ -7319,8 +7295,8 @@ FROM            bd_org_t";
                     string Original_login, 
                     string Original_file_name, 
                     string Original_sheet_name, 
-                    string Original_mfo, 
-                    string Original_pack_number) {
+                    int Original_mfo, 
+                    int Original_pack_number) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_unp == null)) {
                 throw new global::System.ArgumentNullException("Original_unp");
@@ -7439,18 +7415,8 @@ FROM            bd_org_t";
             else {
                 this.Adapter.DeleteCommand.Parameters[32].Value = ((string)(Original_sheet_name));
             }
-            if ((Original_mfo == null)) {
-                throw new global::System.ArgumentNullException("Original_mfo");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((string)(Original_mfo));
-            }
-            if ((Original_pack_number == null)) {
-                throw new global::System.ArgumentNullException("Original_pack_number");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[34].Value = ((string)(Original_pack_number));
-            }
+            this.Adapter.DeleteCommand.Parameters[33].Value = ((int)(Original_mfo));
+            this.Adapter.DeleteCommand.Parameters[34].Value = ((int)(Original_pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7513,8 +7479,8 @@ FROM            bd_org_t";
                     string login, 
                     string file_name, 
                     string sheet_name, 
-                    string mfo, 
-                    string pack_number) {
+                    int mfo, 
+                    int pack_number) {
             if ((unp == null)) {
                 throw new global::System.ArgumentNullException("unp");
             }
@@ -7686,18 +7652,8 @@ FROM            bd_org_t";
             else {
                 this.Adapter.InsertCommand.Parameters[40].Value = ((string)(sheet_name));
             }
-            if ((mfo == null)) {
-                throw new global::System.ArgumentNullException("mfo");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[41].Value = ((string)(mfo));
-            }
-            if ((pack_number == null)) {
-                throw new global::System.ArgumentNullException("pack_number");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[42].Value = ((string)(pack_number));
-            }
+            this.Adapter.InsertCommand.Parameters[41].Value = ((int)(mfo));
+            this.Adapter.InsertCommand.Parameters[42].Value = ((int)(pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7760,8 +7716,8 @@ FROM            bd_org_t";
                     string login, 
                     string file_name, 
                     string sheet_name, 
-                    string mfo, 
-                    string pack_number, 
+                    int mfo, 
+                    int pack_number, 
                     int Original_id, 
                     string Original_unp, 
                     string Original_name, 
@@ -7795,8 +7751,8 @@ FROM            bd_org_t";
                     string Original_login, 
                     string Original_file_name, 
                     string Original_sheet_name, 
-                    string Original_mfo, 
-                    string Original_pack_number) {
+                    int Original_mfo, 
+                    int Original_pack_number) {
             if ((unp == null)) {
                 throw new global::System.ArgumentNullException("unp");
             }
@@ -7968,18 +7924,8 @@ FROM            bd_org_t";
             else {
                 this.Adapter.UpdateCommand.Parameters[40].Value = ((string)(sheet_name));
             }
-            if ((mfo == null)) {
-                throw new global::System.ArgumentNullException("mfo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(mfo));
-            }
-            if ((pack_number == null)) {
-                throw new global::System.ArgumentNullException("pack_number");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(pack_number));
-            }
+            this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(mfo));
+            this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(pack_number));
             this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(Original_id));
             if ((Original_unp == null)) {
                 throw new global::System.ArgumentNullException("Original_unp");
@@ -8098,18 +8044,8 @@ FROM            bd_org_t";
             else {
                 this.Adapter.UpdateCommand.Parameters[75].Value = ((string)(Original_sheet_name));
             }
-            if ((Original_mfo == null)) {
-                throw new global::System.ArgumentNullException("Original_mfo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((string)(Original_mfo));
-            }
-            if ((Original_pack_number == null)) {
-                throw new global::System.ArgumentNullException("Original_pack_number");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((string)(Original_pack_number));
-            }
+            this.Adapter.UpdateCommand.Parameters[76].Value = ((int)(Original_mfo));
+            this.Adapter.UpdateCommand.Parameters[77].Value = ((int)(Original_pack_number));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

@@ -91,12 +91,18 @@ namespace Excel2Ankets
 
             try
             {
-                DirectoryInfo backUpPath = Directory.CreateDirectory(inPath + "\\backup");
-                LogFile.Wrile2Log("Создан каталог обработанных файлов " + backUpPath.FullName);
-                progressBar2.Minimum = 1;
+                DirectoryInfo backUpPath = new DirectoryInfo(textBox2.Text);
+                LogFile.Wrile2Log("Каталог обработанных файлов " + backUpPath.FullName);
+                progressBar2.Minimum = 0;
                 progressBar2.Maximum = currentPath.GetDirectories("ant?????").Count();
-                progressBar2.Value = 1;
+                progressBar2.Value = 0;
                 progressBar2.Step = 1;
+                DirectoryInfo bakPath = Directory.CreateDirectory(backUpPath.FullName + "\\bak");
+
+                LogFile.Wrile2Log("Создан каталог успешно обработанных файлов " + bakPath.FullName);
+                DirectoryInfo badPath =
+                    Directory.CreateDirectory(backUpPath.FullName + "\\bad");
+                LogFile.Wrile2Log("Создан каталог ошибочных файлов " + badPath.FullName);
 
 
                 
@@ -105,23 +111,18 @@ namespace Excel2Ankets
                 //tmpFile.excelConnection = curConnect;
                 foreach (DirectoryInfo sourcePath in currentPath.GetDirectories("ant?????"))
                 {
-                    if (Int32.TryParse(sourcePath.Name.Substring(3,3),out mfo)&&Int32.TryParse(sourcePath.Name.Substring(5,2),out porc))
+                    if (Int32.TryParse(sourcePath.Name.Substring(3,3),out mfo)&&Int32.TryParse(sourcePath.Name.Substring(6,2),out porc))
                     {
+                        LogFile.Wrile2Log("+++++++++++++++++++++Обработка каталога \t" + sourcePath.Name+"+++++++++++++++++++++++++++");
                         label5.Text = progressBar2.Value.ToString() + " из " + progressBar1.Maximum + " " +
-                                              currentPath.Name;
-                        progressBar1.Minimum = 1;
+                                              sourcePath.Name;
+                        progressBar1.Minimum = 0;
                         progressBar1.Maximum = sourcePath.GetFiles("*.xls").Count();
-                        progressBar1.Value = 1;
+                        progressBar1.Value = 0;
                         progressBar1.Step = 1;
-                        DirectoryInfo bakPath = Directory.CreateDirectory(backUpPath.FullName +"\\bak");
-                        
-                        LogFile.Wrile2Log("Создан каталог успешно обработанных файлов " + bakPath.FullName);
-                        DirectoryInfo badPath =
-                            Directory.CreateDirectory(backUpPath.FullName+"\\bad");
-                        LogFile.Wrile2Log("Создан каталог ошибочных файлов " + badPath.FullName);
                         DirectoryInfo workPath = Directory.CreateDirectory(sourcePath.FullName + "\\work");
                         LogFile.Wrile2Log("Создан рабочий каталог  " + workPath.FullName);
-
+                        countFiles = 0;
 
                         foreach (FileInfo currentFile in sourcePath.GetFiles("*.xls"))
                         {
@@ -133,7 +134,7 @@ namespace Excel2Ankets
                                 currentFile.CopyTo(workPath.FullName + "\\" + currentFile.Name);
 
                                 String workFile = workPath.FullName + "\\" + currentFile.Name;
-                                LogFile.Wrile2Log("Чтение файла " + currentFile.Name);
+                                LogFile.Wrile2Log("********************************Чтение файла " + currentFile.Name+"**************************");
                                 curConnect.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" +
                                                               "Data Source=" + workFile +
                                                               ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\"";
@@ -152,6 +153,7 @@ namespace Excel2Ankets
                                 bool readRes = tmpFile.Read();
                                 countFiles++;
                                 progressBar1.PerformStep();
+                                
                                 curConnect.Close();
                                 curConnect.Dispose();
                                 tmpFile.excelConnection.Close();
@@ -206,8 +208,9 @@ namespace Excel2Ankets
                                 LogFile.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
                                                   ioException.InnerException + "\n\t" + ioException.Message);
                                 curConnect.Close();
+                                curConnect.Dispose();
                                 tmpFile.excelConnection.Close();
-
+                                tmpFile.excelConnection.Dispose();
 
                             }
                             catch (Exception exception)
@@ -215,6 +218,7 @@ namespace Excel2Ankets
                                 curConnect.Close();
                                 curConnect.Dispose();
                                 tmpFile.excelConnection.Close();
+                                tmpFile.excelConnection.Dispose();
                                 LogFile.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
                                                   exception.InnerException + "\n\t" + exception.Message);
 
@@ -251,8 +255,13 @@ namespace Excel2Ankets
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             folderBrowserDialog1.SelectedPath=textBox1.Text;
-            if (Directory.Exists(textBox1.Text))
+            chekDirs();
+        }
+        private void chekDirs()
+        {
+            if (Directory.Exists(textBox1.Text) && Directory.Exists(textBox2.Text))
             {
+
                 if (Directory.GetDirectories(textBox1.Text, "ant?????").Count() > 0)
                 {
                     _inputDirectoryPath = textBox1.Text;
@@ -262,7 +271,26 @@ namespace Excel2Ankets
                 {
                     button1.Enabled = false;
                 }
+
             }
+            else
+                button1.Enabled = false;
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            folderBrowserDialog2.SelectedPath = textBox2.Text;
+            chekDirs();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog2.ShowNewFolderButton = false;
+            folderBrowserDialog2.ShowDialog();
+            textBox2.Text = folderBrowserDialog2.SelectedPath;
+
         }
   
 
