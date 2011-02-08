@@ -21,5 +21,11 @@
     <Setting Name="login" Type="System.String" Scope="User">
       <Value Profile="(Default)">cbd_ankets</Value>
     </Setting>
+    <Setting Name="inputDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\test\</Value>
+    </Setting>
+    <Setting Name="outputDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\backup\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -56,5 +56,29 @@ namespace Excel2Ankets.Properties {
                 this["login"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\test\\")]
+        public string inputDir {
+            get {
+                return ((string)(this["inputDir"]));
+            }
+            set {
+                this["inputDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\backup\\")]
+        public string outputDir {
+            get {
+                return ((string)(this["outputDir"]));
+            }
+            set {
+                this["outputDir"] = value;
+            }
+        }
     }
 }

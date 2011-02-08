@@ -22,7 +22,8 @@ namespace Excel2Ankets
         /// <summary>
         /// Путь к папке с исходными файлами.
         /// </summary>
-        private String _inputDirectoryPath;
+        private String _inputDirectoryPath=global::Excel2Ankets.Properties.Settings.Default.inputDir;
+        private String _outputDirectoryPath=global::Excel2Ankets.Properties.Settings.Default.outputDir;
 
         
 
@@ -31,6 +32,8 @@ namespace Excel2Ankets
             InitializeComponent();
             button1.Enabled = false;
           LogFile=new Protocol(Application.StartupPath);
+          textBox1.Text = _inputDirectoryPath;
+          textBox2.Text = _outputDirectoryPath;
           //LogFile.Wrile2Log("TEST");
 
         }
@@ -47,6 +50,7 @@ namespace Excel2Ankets
             folderBrowserDialog1.ShowNewFolderButton = false;
             folderBrowserDialog1.ShowDialog();
             textBox1.Text = folderBrowserDialog1.SelectedPath;
+            _inputDirectoryPath = textBox1.Text;
 
             //if (==DialogResult.OK)
             //{
@@ -283,6 +287,7 @@ namespace Excel2Ankets
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             folderBrowserDialog2.SelectedPath = textBox2.Text;
+            _outputDirectoryPath = textBox2.Text;
             chekDirs();
 
         }
@@ -292,6 +297,7 @@ namespace Excel2Ankets
             folderBrowserDialog2.ShowNewFolderButton = false;
             folderBrowserDialog2.ShowDialog();
             textBox2.Text = folderBrowserDialog2.SelectedPath;
+            _outputDirectoryPath = textBox2.Text;
 
         }
   
