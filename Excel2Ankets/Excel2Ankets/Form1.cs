@@ -177,7 +177,7 @@ namespace Excel2Ankets
                                         movedFileName = currentFile.Name.Insert(currentFile.Name.Length - 4,
                                                                                 "_" + i.ToString("D3"));
                                     }
-                                    currentFile.MoveTo(bakPath.FullName + "\\" + currentFile.Name);
+                                    currentFile.MoveTo(bakPath.FullName + "\\" + movedFileName);
                                     LogFile.Wrile2Log("Файл перемещен.\n\n");
 
                                 }
