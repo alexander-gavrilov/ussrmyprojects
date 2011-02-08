@@ -174,7 +174,8 @@ namespace Excel2Ankets
                                     while (File.Exists(bakPath.FullName + "\\" + movedFileName))
                                     {
                                         i++;
-                                        movedFileName = currentFile.Name + "_" + i.ToString("D3");
+                                        movedFileName = currentFile.Name.Insert(currentFile.Name.Length - 4,
+                                                                                "_" + i.ToString("D3"));
                                     }
                                     currentFile.MoveTo(bakPath.FullName + "\\" + currentFile.Name);
                                     LogFile.Wrile2Log("Файл перемещен.\n\n");
@@ -194,7 +195,8 @@ namespace Excel2Ankets
                                     while (File.Exists(badPath.FullName + "\\" + movedFileName))
                                     {
                                         i++;
-                                        movedFileName = currentFile.Name + "_" + i.ToString("D3");
+                                        movedFileName = currentFile.Name.Insert(currentFile.Name.Length - 4,
+                                                                                "_" + i.ToString("D3"));
                                     }
                                         currentFile.MoveTo(badPath.FullName + "\\" + movedFileName);
                                         LogFile.Wrile2Log("Файл перемещен.\n\n");
