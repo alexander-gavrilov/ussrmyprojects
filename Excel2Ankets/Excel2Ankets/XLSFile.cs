@@ -237,7 +237,7 @@ namespace Excel2Ankets
                             tmpRowUl["risk_client"] = 0;
                             tmpRowUl["risk_oper"] = 0;
                             tmpRowUl["risk_geo"] = 0;
-                            tmpRowUl["h_risk_exp"] = "Пусто";
+                            tmpRowUl["h_risk_exp"] = " ";
                             tmpRowUl["decision"] = " ";
                             tmpRowUl["results"] = " ";
                             tmpRowUl["category"] = 0;
@@ -284,7 +284,7 @@ namespace Excel2Ankets
                             tmpRowIp["risk_client"] = 0;
                             tmpRowIp["risk_oper"] = 0;
                             tmpRowIp["risk_geo"] = 0;
-                            tmpRowIp["h_risk_exp"] = "Пусто ";
+                            tmpRowIp["h_risk_exp"] = " ";
                             tmpRowIp["decision"] = " ";
                             tmpRowIp["results"] = " ";
                             tmpRowIp["category"] = 0;
@@ -577,11 +577,19 @@ namespace Excel2Ankets
                                 catch(Exception)
                                 {
                                     dataReader.Close();
+                                    dataReader.Dispose();
                                     selectCmd.Cancel();
+                                    selectCmd.Dispose();
                                     throw;
                                 }
 
                             }
+                            dataReader.Close();
+                            dataReader.Dispose();
+
+                            selectCmd.Cancel();
+                            selectCmd.Dispose();
+
                             indexCurrentTable++;
                             if (typeAnkt == 1)
                             {
@@ -601,8 +609,8 @@ namespace Excel2Ankets
                                 tmpRowIp["login"] = "Excel2Ankets";
                                 tmpRowIp["file_name"] = currentFileName;
                                 tmpRowIp["sheet_name"] = currentRow["TABLE_NAME"].ToString();
-                                tmpRowUl["mfo"] = mfo;
-                                tmpRowUl["pack_number"] = porc;
+                                tmpRowIp["mfo"] = mfo;
+                                tmpRowIp["pack_number"] = porc;
                                 tmpTestDataSet.bd_ip_t.Rows.Add(tmpRowIp);
                                 bdIpTTableAdapter.Update(tmpTestDataSet.bd_ip_t);
                                 tmpTestDataSet.AcceptChanges();
@@ -621,9 +629,6 @@ namespace Excel2Ankets
                             //{
 
                             //}
-
-                            dataReader.Close();
-                            dataReader.Dispose();
 
                         }
                             catch(ArgumentOutOfRangeException ofRangeException)

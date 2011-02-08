@@ -34,8 +34,8 @@ namespace Excel2Ankets
         {
             try
             {
-                msgText.Replace((char)13, ' ');
-                logFile.Write(DateTime.Now.ToString()+"\t"+msgText+"\n");
+                
+                logFile.Write(DateTime.Now.ToString()+"\t"+msgText.Replace('\n', ' ').Replace('\r',' ')+"\n");
                 //logFile.Flush();
             }
             catch (Exception)
