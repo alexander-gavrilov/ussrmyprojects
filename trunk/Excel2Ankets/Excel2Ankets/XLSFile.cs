@@ -199,6 +199,7 @@ namespace Excel2Ankets
                             int j = 0;
                             int x = 0;
                             int y = 0;
+                            bool tableFound = false;
                             currentRowXls = 0;
                             currentColumnXls = 0;
                             /// <summary>
@@ -254,7 +255,7 @@ namespace Excel2Ankets
                             tmpRowIp["kod_fil"] = 0;
                             tmpRowIp["rezident"] = 0;
                             tmpRowIp["pn"] = "";
-                            tmpRowIp["lastname"] = "";
+                            //tmpRowIp["lastname"] = "";
                             tmpRowIp["name"] = "";
                             tmpRowIp["otch"] = "";
                             tmpRowIp["prev_lastn"] = "";
@@ -328,7 +329,7 @@ namespace Excel2Ankets
                                     if (typeAnkt == 1)
                                     {
 
-                                        for (int i = 0; (i < dataReader.FieldCount) && (x == 0); i++)
+                                        for (int i = 0; (i < dataReader.FieldCount) && (!tableFound); i++)
                                         {
                                             currentColumnXls = i;
                                             if (!dataReader.IsDBNull(i)) //если не пустая ячейка
@@ -340,10 +341,11 @@ namespace Excel2Ankets
                                                 //}
                                                 String strCell = String.Concat(dataReader.GetValue(i));
 
-                                                if (strCell.ToLower().Replace(" ", "") == "наименование")
+                                                if (_fieldsDictUL.ContainsKey(strCell.ToLower().Replace(" ", "")))
                                                 {
                                                     x = i;
                                                     y = j;
+                                                    tableFound = true;
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета организации");
                                                     //tmpRowUL[_fieldsDictUL[strCell.ToLower().Replace(" ", "")]] = dataReader.GetValue(x+1);
@@ -352,7 +354,7 @@ namespace Excel2Ankets
 
                                             }
                                         }
-                                        if (!dataReader.IsDBNull(x))
+                                        if (!dataReader.IsDBNull(x) && tableFound)
                                         {
                                             if (
                                                 _fieldsDictUL.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower().Replace(
@@ -360,7 +362,7 @@ namespace Excel2Ankets
                                             {
                                                 try
                                                 {
-                                                    if (!dataReader.IsDBNull(x+1))
+                                                    if (dataReader.IsDBNull(x+1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
                                                             _fieldsDictUL[
@@ -456,18 +458,17 @@ namespace Excel2Ankets
                                     //cbd_ankets
                                     if (typeAnkt == 2) //Разбор анкет ИП
                                     {
-                                        for (int i = 0; (i < dataReader.FieldCount) && (x == 0); i++)
+                                        for (int i = 0; (i < dataReader.FieldCount) && (!tableFound); i++)
                                         {
                                             currentColumnXls = i;
                                             if (!dataReader.IsDBNull(i)) //если не пустая ячейка
                                             {
                                                 String strCell = String.Concat(dataReader.GetValue(i));
 
-                                                if (strCell.ToLower().Replace(" ", "") ==
-                                                    "фамилия,собственноеимя,отчество")
+                                                if (_fieldsDictIP.ContainsKey(strCell.ToLower().Replace(" ", "")))
                                                 {
                                                     x = i;
-
+                                                    tableFound = true;
                                                     y = j;
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета индивидуального предпринимателя");
@@ -475,7 +476,7 @@ namespace Excel2Ankets
 
                                             }
                                         }
-                                        if (!dataReader.IsDBNull(x))
+                                        if (!dataReader.IsDBNull(x) && tableFound)
                                         {
 
                                             if (
@@ -484,7 +485,7 @@ namespace Excel2Ankets
                                             {
                                                 try
                                                 {
-                                                    if (!dataReader.IsDBNull(x+1))
+                                                    if (dataReader.IsDBNull(x+1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
                                                             _fieldsDictIP[
@@ -592,7 +593,7 @@ namespace Excel2Ankets
                             selectCmd.Dispose();
 
                             indexCurrentTable++;
-                            if (typeAnkt == 1)
+                            if (typeAnkt == 1 && tableFound && tmpRowUl["name"].ToString().Length>1)
                             {
                                 
                                 tmpRowUl["login"] = global::Excel2Ankets.Properties.Settings.Default.login;
@@ -606,7 +607,7 @@ namespace Excel2Ankets
                                 LogFile.Wrile2Log("Анкета организации УНП " + tmpRowUl["unp"] + " из листа " +
                                                   currentRow["TABLE_NAME"] + " файла " + currentFileName + " загружена");
                             }
-                            if (typeAnkt == 2)
+                            if (typeAnkt == 2 && tableFound && tmpRowIp["lastname"].ToString().Length>1)
                             {
                                 
                                 tmpRowIp["login"] = "Excel2Ankets";
@@ -621,10 +622,23 @@ namespace Excel2Ankets
                                                   " из листа " + currentRow["TABLE_NAME"] + " файла " + currentFileName +
                                                   " загружена");
                             }
-                            if(typeAnkt==0)
-                                throw new ArgumentOutOfRangeException("Лист",
+                            if (typeAnkt == 2 && tableFound && tmpRowIp["lastname"].ToString().Length <= 1)
+                            {
+                                throw new ArgumentOutOfRangeException("Лист ",
                                                                       currentRow["TABLE_NAME"],
-                                                                      "Анкета не найдена");
+                                                                      "В анкете не найдена фамилия индивидуального предпринимателя");
+                            }
+                            if (typeAnkt == 1 && tableFound && tmpRowUl["name"].ToString().Length <= 1)
+                            {
+                                throw new ArgumentOutOfRangeException("Лист ",
+                                                                      currentRow["TABLE_NAME"],
+                                                                      "В анкете не найдено наименование организации");
+                            }
+
+                            if(typeAnkt==0 || !tableFound)
+                                throw new ArgumentOutOfRangeException("Лист ",
+                                                                      currentRow["TABLE_NAME"],
+                                                                      "Анкета не найдена ");
                             //prBarSheets.PerformStep();
 
                             //tmpMySqlDS.bd_org.Select()
@@ -639,6 +653,16 @@ namespace Excel2Ankets
                                 LogFile.Wrile2Log(ofRangeException.Message);
                                 resault = false;
                             }
+                        catch(NoNullAllowedException nullAllowedException)
+                        {
+                                LogFile.Wrile2Log(nullAllowedException.Message);
+                                resault = false;
+
+                        }
+                           
+
+
+
                         catch (Exception ex)
                         {
 
