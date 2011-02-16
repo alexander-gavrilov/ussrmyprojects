@@ -243,7 +243,7 @@ namespace Excel2Ankets
                             tmpRowUl["category"] = 0;
                             tmpRowUl["prochie"] = " ";
                             tmpRowUl["red_user"] = "";
-                            tmpRowUl["dt_set"] = DateTime.FromBinary(0);
+                            tmpRowUl["dt_set"] = DateTime.Now;
 //tmpRowUl init end -----------------------------------------------------------------------------------------------------
 
                             DataRow tmpRowIp = tmpTestDataSet.bd_ip_t.Newbd_ip_tRow();
@@ -290,7 +290,7 @@ namespace Excel2Ankets
                             tmpRowIp["category"] = 0;
                             tmpRowIp["prochie"] = " ";
                             tmpRowIp["red_user"] = "";
-                            tmpRowIp["dt_set"] = DateTime.FromBinary(0);
+                            tmpRowIp["dt_set"] = DateTime.Now;
 //tmpRowIp init-----------------------------------------------------------------------------------------------------------------
                            
                             // Читаем текущий лист
@@ -305,9 +305,10 @@ namespace Excel2Ankets
                                     for (int i = 0; (i < dataReader.FieldCount) && (typeAnkt == 0); i++)
                                     {
                                         currentColumnXls = i;
-                                        if (dataReader.GetValue(i) != System.DBNull.Value) //если не пустая ячейка
+                                        if (!dataReader.IsDBNull(i)) //если не пустая ячейка
                                         {
-                                            String strCell = dataReader.GetString(i);
+                                            //dataReader.
+                                            String strCell = String.Concat(dataReader.GetValue(i));
                                             if (strCell.Length > 0)
                                             {
                                                 if (strCell.ToLower().IndexOf("организации") > 0)
@@ -330,7 +331,7 @@ namespace Excel2Ankets
                                         for (int i = 0; (i < dataReader.FieldCount) && (x == 0); i++)
                                         {
                                             currentColumnXls = i;
-                                            if (dataReader.GetValue(i) != System.DBNull.Value) //если не пустая ячейка
+                                            if (!dataReader.IsDBNull(i)) //если не пустая ячейка
                                             {
                                                 //Object objCell = dataReader.GetValue(i);
                                                 //if (objCell.GetType()!=)
@@ -351,40 +352,40 @@ namespace Excel2Ankets
 
                                             }
                                         }
-                                        if (dataReader.GetValue(x) != System.DBNull.Value)
+                                        if (!dataReader.IsDBNull(x))
                                         {
                                             if (
-                                                _fieldsDictUL.ContainsKey(dataReader.GetString(x).ToLower().Replace(
+                                                _fieldsDictUL.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower().Replace(
                                                     " ", "")))
                                             {
                                                 try
                                                 {
-                                                    if (dataReader.GetValue(x + 1) == System.DBNull.Value)
+                                                    if (!dataReader.IsDBNull(x+1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
                                                             _fieldsDictUL[
-                                                                dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                                String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                                 ], dataReader.GetValue(x + 1), "Недопустимое значение");
                                                     }
 
                                                     tmpRowUl[
-                                                        _fieldsDictUL[dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                        _fieldsDictUL[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                             ]]
                                                         = dataReader.GetValue(x + 1);
                                                     if (
-                                                        _fieldsDictUL[dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                        _fieldsDictUL[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                             ] ==
                                                         "unp")
                                                     {
                                                         LogFile.Wrile2Log("Контроль УНП " +
                                                                           unpCheck(
-                                                                              dataReader.GetString(x + 1).Replace(" ",
+                                                                              String.Concat(dataReader.GetValue(x+1)).Replace(" ",
                                                                                                                   "")));
                                                         cbd_anketsDataSetTableAdapters.QueriesTableAdapter tmpAdp_cdb =
                                                             new cbd_anketsDataSetTableAdapters.QueriesTableAdapter();
                                                         String tmpR =
                                                             tmpAdp_cdb.count_unp_bd_org(
-                                                                dataReader.GetString(x + 1).Replace(" ", ""))
+                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ", ""))
                                                                 .
                                                                 ToString();
                                                         if (tmpR != "0")
@@ -394,8 +395,8 @@ namespace Excel2Ankets
                                                             //                  " уже присутствует.");
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictUL[
-                                                                    dataReader.GetString(x).ToLower().Replace(" ", "")
-                                                                    ], dataReader.GetString(x + 1),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x+1)),
                                                                 "Дублирование УНП в основной БД");
 
                                                         }
@@ -403,7 +404,7 @@ namespace Excel2Ankets
                                                             new testDataSetTableAdapters.QueriesTableAdapter();
                                                         tmpR =
                                                             tmpAdp_test.count_unp_bd_org_t(
-                                                                dataReader.GetString(x + 1).Replace(" ",
+                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ",
                                                                                                     "")).
                                                                 ToString();
                                                         if (tmpR != "0")
@@ -413,8 +414,8 @@ namespace Excel2Ankets
                                                             //                  " уже присутствует.");
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictUL[
-                                                                    dataReader.GetString(x).ToLower().Replace(" ", "")
-                                                                    ], dataReader.GetString(x + 1),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x+1)),
                                                                 "Дублирование УНП в транизитной БД");
 
                                                         }
@@ -458,9 +459,9 @@ namespace Excel2Ankets
                                         for (int i = 0; (i < dataReader.FieldCount) && (x == 0); i++)
                                         {
                                             currentColumnXls = i;
-                                            if (dataReader.GetValue(i) != System.DBNull.Value) //если не пустая ячейка
+                                            if (!dataReader.IsDBNull(i)) //если не пустая ячейка
                                             {
-                                                String strCell = dataReader.GetString(i);
+                                                String strCell = String.Concat(dataReader.GetValue(i));
 
                                                 if (strCell.ToLower().Replace(" ", "") ==
                                                     "фамилия,собственноеимя,отчество")
@@ -474,40 +475,40 @@ namespace Excel2Ankets
 
                                             }
                                         }
-                                        if (dataReader.GetValue(x) != System.DBNull.Value)
+                                        if (!dataReader.IsDBNull(x))
                                         {
 
                                             if (
-                                                _fieldsDictIP.ContainsKey(dataReader.GetString(x).ToLower().Replace(
+                                                _fieldsDictIP.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower().Replace(
                                                     " ", "")))
                                             {
                                                 try
                                                 {
-                                                    if (dataReader.GetValue(x + 1) == System.DBNull.Value)
+                                                    if (!dataReader.IsDBNull(x+1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
                                                             _fieldsDictIP[
-                                                                dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                               String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                                 ], dataReader.GetValue(x + 1), "Недопустимое значение");
                                                     }
                                                     tmpRowIp[
-                                                        _fieldsDictIP[dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                        _fieldsDictIP[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                             ]]
                                                         = dataReader.GetValue(x + 1);
                                                     if (
-                                                        _fieldsDictIP[dataReader.GetString(x).ToLower().Replace(" ", "")
+                                                        _fieldsDictIP[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
                                                             ] ==
                                                         "unp")
                                                     {
                                                         LogFile.Wrile2Log("Контроль УНП " +
                                                                           unpCheck(
-                                                                              dataReader.GetString(x + 1).Replace(" ",
+                                                                              String.Concat(dataReader.GetValue(x+1)).Replace(" ",
                                                                                                                   "")));
                                                         cbd_anketsDataSetTableAdapters.QueriesTableAdapter tmpAdp_cdb =
                                                             new cbd_anketsDataSetTableAdapters.QueriesTableAdapter();
                                                         String tmpR =
                                                             tmpAdp_cdb.count_unp_bd_ip(
-                                                                dataReader.GetString(x + 1).Replace(" ", ""))
+                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ", ""))
                                                                 .
                                                                 ToString();
                                                         if (tmpR != "0")
@@ -517,8 +518,8 @@ namespace Excel2Ankets
                                                             //                  " уже присутствует.");
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictIP[
-                                                                    dataReader.GetString(x).ToLower().Replace(" ", "")
-                                                                    ], dataReader.GetString(x + 1),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x+1)),
                                                                 "Дублирование УНП в основной БД");
                                                         }
                                                         testDataSetTableAdapters.QueriesTableAdapter tmpAdp_test =
@@ -526,7 +527,7 @@ namespace Excel2Ankets
 
                                                         tmpR =
                                                             tmpAdp_test.count_unp_bd_ip_t(
-                                                                dataReader.GetString(x + 1).Replace(" ",
+                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ",
                                                                                                     "")).
                                                                 ToString();
                                                         if (tmpR != "0")
@@ -536,8 +537,8 @@ namespace Excel2Ankets
                                                             //                  " уже присутствует.");
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictIP[
-                                                                    dataReader.GetString(x).ToLower().Replace(" ", "")
-                                                                    ], dataReader.GetString(x + 1),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x+1)),
                                                                 "Дублирование УНП в транизитной БД");
 
 
@@ -593,6 +594,7 @@ namespace Excel2Ankets
                             indexCurrentTable++;
                             if (typeAnkt == 1)
                             {
+                                
                                 tmpRowUl["login"] = global::Excel2Ankets.Properties.Settings.Default.login;
                                 tmpRowUl["file_name"] = currentFileName;
                                 tmpRowUl["sheet_name"] = currentRow["TABLE_NAME"].ToString();
@@ -606,6 +608,7 @@ namespace Excel2Ankets
                             }
                             if (typeAnkt == 2)
                             {
+                                
                                 tmpRowIp["login"] = "Excel2Ankets";
                                 tmpRowIp["file_name"] = currentFileName;
                                 tmpRowIp["sheet_name"] = currentRow["TABLE_NAME"].ToString();

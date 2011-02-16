@@ -118,7 +118,7 @@ namespace Excel2Ankets
                     if (Int32.TryParse(sourcePath.Name.Substring(3,3),out mfo)&&Int32.TryParse(sourcePath.Name.Substring(6,2),out porc))
                     {
                         LogFile.Wrile2Log("+++++++++++++++++++++Обработка каталога \t" + sourcePath.Name+"+++++++++++++++++++++++++++");
-                        label5.Text = progressBar2.Value.ToString() + " из " + progressBar1.Maximum + " " +
+                        label5.Text = (progressBar2.Value+1).ToString() + " из " + progressBar1.Maximum + " " +
                                               sourcePath.Name;
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = sourcePath.GetFiles("*.xls").Count();
@@ -133,7 +133,7 @@ namespace Excel2Ankets
                             tmpFile = new XlsFile();
                             try
                             {
-                                label3.Text = progressBar1.Value.ToString() + " из " + progressBar1.Maximum + " " +
+                                label3.Text = (progressBar1.Value+1).ToString() + " из " + progressBar1.Maximum + " " +
                                               currentFile.Name;
                                 currentFile.CopyTo(workPath.FullName + "\\" + currentFile.Name);
 
