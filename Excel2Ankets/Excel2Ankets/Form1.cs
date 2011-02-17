@@ -268,6 +268,8 @@ namespace Excel2Ankets
                         {
                             resStr = "ok";
                         }
+                        if (File.Exists(backUpPath.FullName + "\\" + sourcePath.Name + "." + resStr))
+                            File.Delete(backUpPath.FullName + "\\" + sourcePath.Name + "." + resStr);
                         File.Move(backUpPath.FullName + "\\" + sourcePath.Name + ".ans", backUpPath.FullName + "\\" + sourcePath.Name + "."+resStr);
                     }
                     progressBar2.PerformStep();
