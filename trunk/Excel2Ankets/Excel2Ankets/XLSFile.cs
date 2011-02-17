@@ -19,6 +19,7 @@ namespace Excel2Ankets
     class XlsFile
     {
         public Protocol LogFile;
+        public Receipt LogFile2;
         public String currentFileName;
         public String fileName;
         public int mfo;
@@ -198,6 +199,8 @@ namespace Excel2Ankets
                             dataReader = selectCmd.ExecuteReader();
                             
                             LogFile.Wrile2Log("Разбор листа " + currentRow["TABLE_NAME"]);
+                            LogFile2.Wrile2Log("Разбор листа " + currentRow["TABLE_NAME"]);
+
                             int typeAnkt = 0; //Тип анкеты
                             int j = 0;
                             int x = 0;
@@ -350,6 +353,8 @@ namespace Excel2Ankets
                                                     tableFound = true; //Если нашли ячейку с наименованием то считаем, что таблица анкеты найдена 
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета организации");
+                                                    LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
+                                                                      " обнаружена анкета организации");
                                                     
                                                 }
 
@@ -391,6 +396,11 @@ namespace Excel2Ankets
                                                         "unp")
                                                     {
                                                         LogFile.Wrile2Log("Контроль УНП " +
+                                                                          unpCheck(
+                                                                              String.Concat(dataReader.GetValue(x + 1)).
+                                                                                  Replace(" ",
+                                                                                          "")));
+                                                        LogFile2.Wrile2Log("Контроль УНП " +
                                                                           unpCheck(
                                                                               String.Concat(dataReader.GetValue(x + 1)).
                                                                                   Replace(" ",
@@ -443,6 +453,7 @@ namespace Excel2Ankets
                                                 catch (ArgumentOutOfRangeException outOfRangeException)
                                                 {
                                                     LogFile.Wrile2Log(outOfRangeException.Message);
+                                                    LogFile2.Wrile2Log(outOfRangeException.Message);
                                                     if (outOfRangeException.ParamName == "unp" ||
                                                         outOfRangeException.ParamName == "name")
                                                         throw new ArgumentOutOfRangeException("Лист",
@@ -453,11 +464,15 @@ namespace Excel2Ankets
                                                 catch (ArgumentException argumentException)
                                                 {
                                                     LogFile.Wrile2Log(argumentException.Message);
+                                                    LogFile2.Wrile2Log(argumentException.Message);
                                                 }
                                                 catch (Exception exp)
                                                 {
                                                     LogFile.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
                                                                       "\t Столбец - " + currentColumnXls);
+                                                    LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
+                                                                      "\t Столбец - " + currentColumnXls);
+
                                                     throw;
                                                 }
 
@@ -487,6 +502,9 @@ namespace Excel2Ankets
                                                     y = j;
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета индивидуального предпринимателя");
+                                                    LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
+                                                                       " обнаружена анкета индивидуального предпринимателя");
+
                                                 }
 
                                             }
@@ -520,6 +538,12 @@ namespace Excel2Ankets
                                                                           unpCheck(
                                                                               String.Concat(dataReader.GetValue(x+1)).Replace(" ",
                                                                                                                   "")));
+                                                        LogFile2.Wrile2Log("Контроль УНП " +
+                                                                           unpCheck(
+                                                                               String.Concat(dataReader.GetValue(x + 1)).
+                                                                                   Replace(" ",
+                                                                                           "")));
+
                                                         cbd_anketsDataSetTableAdapters.QueriesTableAdapter tmpAdp_cdb =
                                                             new cbd_anketsDataSetTableAdapters.QueriesTableAdapter();
                                                         String tmpR =
@@ -564,6 +588,7 @@ namespace Excel2Ankets
                                                 catch (ArgumentOutOfRangeException outOfRangeException)
                                                 {
                                                     LogFile.Wrile2Log(outOfRangeException.Message);
+                                                    LogFile2.Wrile2Log(outOfRangeException.Message);
                                                     if (outOfRangeException.ParamName == "unp")
                                                         throw new ArgumentOutOfRangeException("Лист",
                                                                                               currentRow["TABLE_NAME"],
@@ -572,11 +597,15 @@ namespace Excel2Ankets
                                                 catch (ArgumentException argumentException)
                                                 {
                                                     LogFile.Wrile2Log(argumentException.Message);
+                                                    LogFile2.Wrile2Log(argumentException.Message);
                                                 }
                                                 catch (Exception exp)
                                                 {
                                                     LogFile.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
                                                                       "\t Столбец - " + currentColumnXls);
+                                                    LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
+                                                                      "\t Столбец - " + currentColumnXls);
+
                                                     throw;
                                                 }
 
@@ -621,6 +650,9 @@ namespace Excel2Ankets
                                 tmpTestDataSet.AcceptChanges();
                                 LogFile.Wrile2Log("Анкета организации УНП " + tmpRowUl["unp"] + " из листа " +
                                                   currentRow["TABLE_NAME"] + " файла " + currentFileName + " загружена");
+                                LogFile2.Wrile2Log("Анкета организации УНП " + tmpRowUl["unp"] + " из листа " +
+                                                  currentRow["TABLE_NAME"] + " файла " + currentFileName + " загружена");
+
                             }
                             if (typeAnkt == 2 && tableFound && tmpRowIp["lastname"].ToString().Length>1)
                             {
@@ -636,6 +668,10 @@ namespace Excel2Ankets
                                 LogFile.Wrile2Log("Анкета индивидуального предпринимателя УНП " + tmpRowIp["unp"] +
                                                   " из листа " + currentRow["TABLE_NAME"] + " файла " + currentFileName +
                                                   " загружена");
+                                LogFile2.Wrile2Log("Анкета индивидуального предпринимателя УНП " + tmpRowIp["unp"] +
+                                                  " из листа " + currentRow["TABLE_NAME"] + " файла " + currentFileName +
+                                                  " загружена");
+
                             }
                             if (typeAnkt == 2 && tableFound && tmpRowIp["lastname"].ToString().Length <= 1)
                             {
@@ -666,11 +702,14 @@ namespace Excel2Ankets
                             catch(ArgumentOutOfRangeException ofRangeException)
                             {
                                 LogFile.Wrile2Log(ofRangeException.Message);
+                                LogFile2.Wrile2Log(ofRangeException.Message);
+
                                 resault = false;
                             }
                         catch(NoNullAllowedException nullAllowedException)
                         {
                                 LogFile.Wrile2Log(nullAllowedException.Message);
+                                LogFile2.Wrile2Log(nullAllowedException.Message);
                                 resault = false;
 
                         }
@@ -684,6 +723,9 @@ namespace Excel2Ankets
 
                             LogFile.Wrile2Log(ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
                                               currentColumnXls);
+                            LogFile2.Wrile2Log(ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
+                                               currentColumnXls);
+
                             throw;
                         }
 
@@ -694,6 +736,7 @@ namespace Excel2Ankets
                     Console.WriteLine(ex.Message);
                     Console.WriteLine(currentFileName);
                     LogFile.Wrile2Log(ex.Message);
+                    LogFile2.Wrile2Log(ex.Message);
                     resault = false;
                 }
           
