@@ -19,6 +19,7 @@ namespace Excel2Ankets
     public partial class Form1 : Form
     {
         public Protocol LogFile;
+        public Receipt Receipt1;
         /// <summary>
         /// Путь к папке с исходными файлами.
         /// </summary>
@@ -92,6 +93,7 @@ namespace Excel2Ankets
             XlsFile tmpFile;
             int mfo;
             int porc;
+            bool haveErr;
 
             try
             {
@@ -117,7 +119,11 @@ namespace Excel2Ankets
                 {
                     if (Int32.TryParse(sourcePath.Name.Substring(3,3),out mfo)&&Int32.TryParse(sourcePath.Name.Substring(6,2),out porc))
                     {
+                        Receipt1=new Receipt(backUpPath.FullName+"\\"+sourcePath.Name+".ans");
+                        haveErr = true;
                         LogFile.Wrile2Log("+++++++++++++++++++++Обработка каталога \t" + sourcePath.Name+"+++++++++++++++++++++++++++");
+                        Receipt1.Wrile2Log("+++++++++++++++++++++Обработка каталога \t" + sourcePath.Name + "+++++++++++++++++++++++++++");
+
                         label5.Text = (progressBar2.Value+1).ToString() + " из " + progressBar1.Maximum + " " +
                                               sourcePath.Name;
                         progressBar1.Minimum = 0;
@@ -126,6 +132,7 @@ namespace Excel2Ankets
                         progressBar1.Step = 1;
                         DirectoryInfo workPath = Directory.CreateDirectory(sourcePath.FullName + "\\work");
                         LogFile.Wrile2Log("Создан рабочий каталог  " + workPath.FullName);
+
                         countFiles = 0;
 
                         foreach (FileInfo currentFile in sourcePath.GetFiles("*.xls"))
@@ -136,9 +143,11 @@ namespace Excel2Ankets
                                 label3.Text = (progressBar1.Value+1).ToString() + " из " + progressBar1.Maximum + " " +
                                               currentFile.Name;
                                 currentFile.CopyTo(workPath.FullName + "\\" + currentFile.Name);
-
+                                
                                 String workFile = workPath.FullName + "\\" + currentFile.Name;
                                 LogFile.Wrile2Log("********************************Чтение файла " + currentFile.Name+"**************************");
+                                Receipt1.Wrile2Log("********************************Чтение файла " + currentFile.Name + "**************************");
+
                                 curConnect.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" +
                                                               "Data Source=" + workFile +
                                                               ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\"";
@@ -149,6 +158,7 @@ namespace Excel2Ankets
 
 
                                 tmpFile.LogFile = LogFile;
+                                tmpFile.LogFile2 = Receipt1;
                                 //tmpFile.prBarSheets = progressBar2;
                                 tmpFile.excelConnection = curConnect;
                                 tmpFile.currentFileName = currentFile.Name;
@@ -169,6 +179,8 @@ namespace Excel2Ankets
                                     LogFile.Wrile2Log("По файлу " + currentFile.Name +
                                                       " ошибок не обнаружено. Файл будет перемещен в " +
                                                       bakPath.Name);
+                                    Receipt1.Wrile2Log("По файлу " + currentFile.Name +
+                                                      " ошибок не обнаружено.");
                                     curConnect.Close();
                                     curConnect.Dispose();
                                     tmpFile.excelConnection.Close();
@@ -190,6 +202,10 @@ namespace Excel2Ankets
                                     LogFile.Wrile2Log("По файлу " + currentFile.Name +
                                                       " обнаружены ошибки. Файл будет перемещен в " +
                                                       badPath.Name);
+                                    Receipt1.Wrile2Log("По файлу " + currentFile.Name +
+                                                      " обнаружены ошибки.");
+                                    haveErr = false;
+
                                     curConnect.Close();
                                     curConnect.Dispose();
                                     tmpFile.excelConnection.Close();
@@ -213,6 +229,9 @@ namespace Excel2Ankets
                             {
                                 LogFile.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
                                                   ioException.InnerException + "\n\t" + ioException.Message);
+                                Receipt1.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
+                                                  ioException.InnerException + "\n\t" + ioException.Message);
+
                                 curConnect.Close();
                                 curConnect.Dispose();
                                 tmpFile.excelConnection.Close();
@@ -237,11 +256,19 @@ namespace Excel2Ankets
 
                         GC.Collect();
                         LogFile.Wrile2Log("Обработано файлов " + countFiles + " из " + progressBar1.Maximum);
+                        Receipt1.Wrile2Log("Обработано файлов " + countFiles + " из " + progressBar1.Maximum);
                         //sourcePath.Refresh();
 
                         //XlsFile tmpFile = new XlsFile(_inputDirectoryPath + "\\test.xls", LogFile);
                         //tmpFile.Read();
                        Directory.Delete(sourcePath.FullName, true);
+                        Receipt1.Close();
+                        String resStr="err";
+                        if (haveErr)
+                        {
+                            resStr = "ok";
+                        }
+                        File.Move(backUpPath.FullName + "\\" + sourcePath.Name + ".ans", backUpPath.FullName + "\\" + sourcePath.Name + "."+resStr);
                     }
                     progressBar2.PerformStep();
 
@@ -251,7 +278,7 @@ namespace Excel2Ankets
             catch (Exception exception)
             {
 
-
+                Receipt1.Close();
                 LogFile.Wrile2Log(exception.InnerException + "\n\t" + exception.Message);
                 throw;
             }
