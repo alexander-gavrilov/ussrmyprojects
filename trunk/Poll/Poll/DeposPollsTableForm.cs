@@ -6,17 +6,20 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using admin;
+
 //using Poll.PollsDataSetTableAdapters;
 
 namespace Poll
 {
     //public string login;
+     
     public partial class DeposPollsTableForm : PollsTable
     {
-        
-        public DeposPollsTableForm()
+        //private User _user;
+        public DeposPollsTableForm(User user)
         {
-
+            _user = user;
             //Pol
             //InitializeComponent();
             //pollsDataSet=
@@ -31,12 +34,41 @@ namespace Poll
             //pollsBindingSource.ResetBindings(true);
             //PollsDataGridView.
             PollsDataGridView.DataSource = pollsBindingSource;
+            //showFormAdd();
             foreach (DataGridViewColumn tmpColumn in PollsDataGridView.Columns)
             {
                 tmpColumn.HeaderText = pollsDataSet1.POLL_DEPOS.Columns[tmpColumn.Name].Caption;
                 
             }
             //PollsDataGridView.Columns[]
+        }
+
+        private void InitializeComponent()
+        {
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            // 
+            // DeposPollsTableForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "DeposPollsTableForm";
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+        public override void showFormAdd() 
+        {
+            DeposAnketAddForm tmpF = new DeposAnketAddForm(_user);
+            tmpF.ShowDialog();
         }
 
         

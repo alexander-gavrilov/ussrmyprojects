@@ -27,8 +27,12 @@ namespace Poll
             _anketsUser.CodMfo = 964;
             _anketsUser.CodObl = 8;
             _anketsUser.CodRKC = 0;
-
-            _deposPollsTable = new DeposPollsTableForm();
+            _anketsUser.PrivilegesCodMfo = 0;
+            _anketsUser.PrivilegesCodObl = 6;
+            _anketsUser.PrivilegesCodRKC = 0;
+            //_anketsUser.
+            
+            _deposPollsTable = new DeposPollsTableForm(_anketsUser);
             splitContainer1.Panel2.Controls.Add(_deposPollsTable);
             _deposPollsTable.Dock = DockStyle.Fill;
             settings = global::Poll.Properties.Settings.Default;

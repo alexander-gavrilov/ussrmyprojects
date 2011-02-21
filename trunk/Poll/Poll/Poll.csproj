@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeposAnketAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeposAnketAddForm.Designer.cs">
+      <DependentUpon>DeposAnketAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeposPollsTableForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -52,7 +58,16 @@
       <DependentUpon>PollsDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="QuestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestControl.Designer.cs">
+      <DependentUpon>QuestControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="QuestControl.resx">
+      <DependentUpon>QuestControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DeposPollsTableForm.Designer.cs">
       <DependentUpon>DeposPollsTableForm.cs</DependentUpon>
     </None>
@@ -75,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DeposAnketAddForm.resx">
+      <DependentUpon>DeposAnketAddForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeposPollsTableForm.resx">
       <DependentUpon>DeposPollsTableForm.cs</DependentUpon>
     </EmbeddedResource>
