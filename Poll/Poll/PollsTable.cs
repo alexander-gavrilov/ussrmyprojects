@@ -6,11 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using admin;
 
 namespace Poll
 {
     public partial class PollsTable : UserControl
     {
+        public User _user;
         public PollsTable()
         {
             
@@ -24,8 +26,13 @@ namespace Poll
 
         public void buttonAddPoll_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("all bad");
+            //MessageBox.Show("all bad");
+            showFormAdd();
 
+        }
+        public virtual void showFormAdd()
+        {
+            
         }
     }
 }

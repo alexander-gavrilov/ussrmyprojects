@@ -10,6 +10,11 @@ namespace admin
         private Int32 codObl;
         private Int32 codMfo;
         private Int32 codRKC;
+        private Int32 privilegesCodObl;
+        private Int32 privilegesCodMfo;
+        private Int32 privilegesCodRKC;
+
+
         private Int32 id_depart;
         private String name_depart;
         private String surname;
@@ -191,5 +196,10 @@ namespace admin
             get { return id_cmanager;}
             set { id_cmanager = value; }
         }
+
+        public Int32 PrivilegesCodObl { get; set; }
+        public Int32 PrivilegesCodMfo { get; set; }
+        public Int32 PrivilegesCodRKC { get; set; }
+
     }
 }
