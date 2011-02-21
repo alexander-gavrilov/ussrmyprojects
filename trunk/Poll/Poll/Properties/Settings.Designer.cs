@@ -26,7 +26,8 @@ namespace Poll.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=XE;Persist Security Info=True;User ID=poll;Unicode=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=XE;Persist Security Info=True;User ID=poll;password=poll;Unicode=True" +
+            "")]
         public string PollConnectionString {
             get {
                 return ((string)(this["PollConnectionString"]));

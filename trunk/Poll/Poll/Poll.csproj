@@ -48,6 +48,10 @@
     <Compile Include="DeposPollsTableForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="PollsDataSet.cs">
+      <DependentUpon>PollsDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Settings.cs" />
     <None Include="DeposPollsTableForm.Designer.cs">
       <DependentUpon>DeposPollsTableForm.cs</DependentUpon>
@@ -110,6 +114,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Components.csproj">
+      <Project>{29B05B2C-5839-4F15-A1D7-AA1B2425D23C}</Project>
+      <Name>Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{749C6EAF-A321-43A6-B7DE-8DF9FA058E23}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -279,8 +279,6 @@ namespace Poll {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class POLL_DEPOSDataTable : global::System.Data.TypedTableBase<POLL_DEPOSRow> {
             
-            private global::System.Data.DataColumn columnID_POLL_DEPOS;
-            
             private global::System.Data.DataColumn columnDATE_POLL_DEPOS;
             
             private global::System.Data.DataColumn columnSEX;
@@ -354,14 +352,6 @@ namespace Poll {
             protected POLL_DEPOSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ID_POLL_DEPOSColumn {
-                get {
-                    return this.columnID_POLL_DEPOS;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -570,7 +560,6 @@ namespace Poll {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public POLL_DEPOSRow AddPOLL_DEPOSRow(
-                        decimal ID_POLL_DEPOS, 
                         System.DateTime DATE_POLL_DEPOS, 
                         string SEX, 
                         decimal AGE, 
@@ -594,7 +583,6 @@ namespace Poll {
                         decimal I_ADD_SERVICE) {
                 POLL_DEPOSRow rowPOLL_DEPOSRow = ((POLL_DEPOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID_POLL_DEPOS,
                         DATE_POLL_DEPOS,
                         SEX,
                         AGE,
@@ -638,7 +626,6 @@ namespace Poll {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnID_POLL_DEPOS = base.Columns["ID_POLL_DEPOS"];
                 this.columnDATE_POLL_DEPOS = base.Columns["DATE_POLL_DEPOS"];
                 this.columnSEX = base.Columns["SEX"];
                 this.columnAGE = base.Columns["AGE"];
@@ -665,8 +652,6 @@ namespace Poll {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnID_POLL_DEPOS = new global::System.Data.DataColumn("ID_POLL_DEPOS", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID_POLL_DEPOS);
                 this.columnDATE_POLL_DEPOS = new global::System.Data.DataColumn("DATE_POLL_DEPOS", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDATE_POLL_DEPOS);
                 this.columnSEX = new global::System.Data.DataColumn("SEX", typeof(string), null, global::System.Data.MappingType.Element);
@@ -709,12 +694,15 @@ namespace Poll {
                 base.Columns.Add(this.columnI_DEPOS_CHOICE);
                 this.columnI_ADD_SERVICE = new global::System.Data.DataColumn("I_ADD_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnI_ADD_SERVICE);
-                this.columnID_POLL_DEPOS.AllowDBNull = false;
                 this.columnDATE_POLL_DEPOS.AllowDBNull = false;
+                this.columnDATE_POLL_DEPOS.Caption = "Дата заполения анкеты";
                 this.columnSEX.AllowDBNull = false;
+                this.columnSEX.Caption = "Пол респондента";
                 this.columnSEX.MaxLength = 1;
                 this.columnAGE.AllowDBNull = false;
+                this.columnAGE.Caption = "Возраст";
                 this.columnNUMBER_POLL_DEPOS.AllowDBNull = false;
+                this.columnNUMBER_POLL_DEPOS.Caption = "Номер анкеты";
                 this.columnREF_OTD.AllowDBNull = false;
                 this.columnREF_OBL.AllowDBNull = false;
                 this.columnS_DEPOS_PERIOD.AllowDBNull = false;
@@ -869,17 +857,6 @@ namespace Poll {
             internal POLL_DEPOSRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tablePOLL_DEPOS = ((POLL_DEPOSDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal ID_POLL_DEPOS {
-                get {
-                    return ((decimal)(this[this.tablePOLL_DEPOS.ID_POLL_DEPOSColumn]));
-                }
-                set {
-                    this[this.tablePOLL_DEPOS.ID_POLL_DEPOSColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1290,7 +1267,6 @@ namespace Poll.PollsDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "POLL_DEPOS";
-            tableMapping.ColumnMappings.Add("ID_POLL_DEPOS", "ID_POLL_DEPOS");
             tableMapping.ColumnMappings.Add("DATE_POLL_DEPOS", "DATE_POLL_DEPOS");
             tableMapping.ColumnMappings.Add("SEX", "SEX");
             tableMapping.ColumnMappings.Add("AGE", "AGE");
@@ -1351,11 +1327,32 @@ namespace Poll.PollsDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[3];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ID_POLL_DEPOS, DATE_POLL_DEPOS, SEX, AGE, NUMBER_POLL_DEPOS, REF_RKC, REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE FROM POLL.POLL_DEPOS";
+            this._commandCollection[0].CommandText = @"SELECT DATE_POLL_DEPOS, SEX, AGE, NUMBER_POLL_DEPOS, REF_RKC, REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE FROM POLL_DEPOS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        NUMBER_POLL_DEPOS, DATE_POLL_DEPOS, SEX, AGE, REF_OTD, REF_RKC, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, 
+                         S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, 
+                         I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE
+FROM            POLL_DEPOS
+WHERE        (REF_RKC = :RKC) AND (REF_OTD = :OTD)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RKC", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("OTD", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT        POLL_DEPOS.DATE_POLL_DEPOS, POLL_DEPOS.SEX, POLL_DEPOS.AGE, POLL_DEPOS.NUMBER_POLL_DEPOS, POLL_DEPOS.REF_RKC, 
+                         POLL_DEPOS.REF_OTD, POLL_DEPOS.REF_OBL, POLL_DEPOS.S_DEPOS_PERIOD, POLL_DEPOS.S_INTEREST_RATE, POLL_DEPOS.S_SELECT_CURR, 
+                         POLL_DEPOS.S_REGISTR_SPEED, POLL_DEPOS.S_CONT_INTELLI, POLL_DEPOS.S_DEPOS_CHOICE, POLL_DEPOS.S_ADD_SERVICE, 
+                         POLL_DEPOS.I_DEPOS_PERIOD, POLL_DEPOS.I_INTEREST_RATE, POLL_DEPOS.I_SELECT_CURR, POLL_DEPOS.I_REGISTR_SPEED, 
+                         POLL_DEPOS.I_CONT_INTELLI, POLL_DEPOS.I_DEPOS_CHOICE, POLL_DEPOS.I_ADD_SERVICE
+FROM            POLL_DEPOS, BROKER_BAPB.USERS
+WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USERS.LOGIN = :login)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("login", global::System.Data.OracleClient.OracleType.NVarChar, 256, global::System.Data.ParameterDirection.Input, "LOGIN", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1377,6 +1374,80 @@ namespace Poll.PollsDataSetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual PollsDataSet.POLL_DEPOSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            PollsDataSet.POLL_DEPOSDataTable dataTable = new PollsDataSet.POLL_DEPOSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(PollsDataSet.POLL_DEPOSDataTable dataTable, global::System.Nullable<decimal> RKC, decimal OTD) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((RKC.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(RKC.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(OTD));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.POLL_DEPOSDataTable GetDataBy(global::System.Nullable<decimal> RKC, decimal OTD) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((RKC.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(RKC.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((decimal)(OTD));
+            PollsDataSet.POLL_DEPOSDataTable dataTable = new PollsDataSet.POLL_DEPOSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByLogin(PollsDataSet.POLL_DEPOSDataTable dataTable, string login) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((login == null)) {
+                throw new global::System.ArgumentNullException("login");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.POLL_DEPOSDataTable GetDataByLogin(string login) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((login == null)) {
+                throw new global::System.ArgumentNullException("login");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
+            }
             PollsDataSet.POLL_DEPOSDataTable dataTable = new PollsDataSet.POLL_DEPOSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.PollsDataGridView = new System.Windows.Forms.DataGridView();
+            this.PollsDataGridView = new Components.ComponentsDataGridView();
             this.buttonChangePoll = new System.Windows.Forms.Button();
             this.buttonDeletePoll = new System.Windows.Forms.Button();
             this.buttonAddPoll = new System.Windows.Forms.Button();
             this.pollsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pollsDataSet1 = new Poll.PollsDataSet();
+            this.polL_DEPOSTableAdapter1 = new Poll.PollsDataSetTableAdapters.POLL_DEPOSTableAdapter();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -107,6 +108,10 @@
             this.pollsDataSet1.DataSetName = "PollsDataSet";
             this.pollsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // polL_DEPOSTableAdapter1
+            // 
+            this.polL_DEPOSTableAdapter1.ClearBeforeFill = true;
+            // 
             // PollsTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,12 +132,13 @@
         #endregion
 
         public System.Windows.Forms.SplitContainer splitContainer1;
-        public System.Windows.Forms.DataGridView PollsDataGridView;
         public System.Windows.Forms.Button buttonChangePoll;
         public System.Windows.Forms.Button buttonDeletePoll;
         public System.Windows.Forms.Button buttonAddPoll;
         public System.Windows.Forms.BindingSource pollsBindingSource;
         public PollsDataSet pollsDataSet1;
+        public Components.ComponentsDataGridView PollsDataGridView;
+        public PollsDataSetTableAdapters.POLL_DEPOSTableAdapter polL_DEPOSTableAdapter1;
 
     }
 }
