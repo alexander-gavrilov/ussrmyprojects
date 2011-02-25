@@ -41,7 +41,7 @@ namespace Poll
             //Console.WriteLine(settings.Test);
             MessageBox.Show(settings.Test);
             OrderedDictionary ttt = new OrderedDictionary();
-            foreach (DataColumn t in _deposPollsTable.pollsDataSet1.POLL_DEPOS.Columns)
+            foreach (DataColumn t in _deposPollsTable.pollsDataSet.POLL_DEPOS.Columns)
             {
                 ttt.Add(t.ColumnName, "");
                 //settings.DeposTableColumnsText.Add(t.ColumnName,"");
@@ -52,6 +52,14 @@ namespace Poll
             //_deposPollsTable.buttonAddPoll.
             //Refresh();
             Update();
+
+        }
+
+        private void PollsMainForm_Activated(object sender, EventArgs e)
+        {
+            //_deposPollsTable.pollsDataSet.POLL_DEPOS.
+            //_deposPollsTable.pollsBindingSource.Insert();
+            _deposPollsTable.pollsBindingSource.ResetItem(0);
 
         }
     }

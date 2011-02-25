@@ -39,33 +39,37 @@
             this.otdLable = new System.Windows.Forms.Label();
             this.rkcComboBox = new System.Windows.Forms.ComboBox();
             this.rKCBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pollsDataSet1 = new Poll.PollsDataSet();
             this.otdComboBox = new System.Windows.Forms.ComboBox();
             this.sTRUCTUNITBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sTRUCT_UNITTableAdapter = new Poll.PollsDataSetTableAdapters.STRUCT_UNITTableAdapter();
             this.rKCTableAdapter = new Poll.PollsDataSetTableAdapters.RKCTableAdapter();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.ageUpDown = new System.Windows.Forms.NumericUpDown();
             this.ageLabel = new System.Windows.Forms.Label();
             this.sexСomboBox = new System.Windows.Forms.ComboBox();
             this.sexBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sexLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pollsTabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numberTextBox = new System.Windows.Forms.TextBox();
             this.numberLabel = new System.Windows.Forms.Label();
             this.questionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.questControl1 = new Poll.QuestControl();
+            this.addPollButton = new System.Windows.Forms.Button();
+            this.pollsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fILIALBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rKCBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTRUCTUNITBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ageUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sexBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.pollsTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.questionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // filialСomboBox
@@ -154,12 +158,7 @@
             // rKCBindingSource
             // 
             this.rKCBindingSource.DataMember = "RKC";
-            this.rKCBindingSource.DataSource = this.pollsDataSet1;
-            // 
-            // pollsDataSet1
-            // 
-            this.pollsDataSet1.DataSetName = "PollsDataSet";
-            this.pollsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.rKCBindingSource.DataSource = this.pollsDataSet;
             // 
             // otdComboBox
             // 
@@ -190,7 +189,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.ageUpDown);
             this.groupBox2.Controls.Add(this.ageLabel);
             this.groupBox2.Controls.Add(this.sexСomboBox);
             this.groupBox2.Controls.Add(this.sexLabel);
@@ -201,23 +200,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Данные респондента:";
             // 
-            // numericUpDown1
+            // ageUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(76, 48);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.ageUpDown.Location = new System.Drawing.Point(76, 48);
+            this.ageUpDown.Maximum = new decimal(new int[] {
             130,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.ageUpDown.Minimum = new decimal(new int[] {
             18,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(39, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.ageUpDown.Name = "ageUpDown";
+            this.ageUpDown.Size = new System.Drawing.Size(39, 20);
+            this.ageUpDown.TabIndex = 3;
+            this.ageUpDown.Value = new decimal(new int[] {
             18,
             0,
             0,
@@ -260,22 +259,54 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.questControl1);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.pollsTabControl);
+            this.groupBox3.Controls.Add(this.numberTextBox);
             this.groupBox3.Controls.Add(this.numberLabel);
-            this.groupBox3.Location = new System.Drawing.Point(13, 126);
+            this.groupBox3.Location = new System.Drawing.Point(12, 126);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(530, 295);
+            this.groupBox3.Size = new System.Drawing.Size(534, 377);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Анкета по вкладам:";
             // 
-            // textBox1
+            // pollsTabControl
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.pollsTabControl.Controls.Add(this.tabPage1);
+            this.pollsTabControl.Controls.Add(this.tabPage2);
+            this.pollsTabControl.Location = new System.Drawing.Point(10, 42);
+            this.pollsTabControl.Name = "pollsTabControl";
+            this.pollsTabControl.SelectedIndex = 0;
+            this.pollsTabControl.Size = new System.Drawing.Size(513, 329);
+            this.pollsTabControl.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(505, 303);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(505, 303);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numberTextBox
+            // 
+            this.numberTextBox.Location = new System.Drawing.Point(97, 16);
+            this.numberTextBox.Name = "numberTextBox";
+            this.numberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.numberTextBox.TabIndex = 1;
+            this.numberTextBox.TextChanged += new System.EventHandler(this.numberTextBox_TextChanged);
+            this.numberTextBox.Validated += new System.EventHandler(this.numberTextBox_Validated);
             // 
             // numberLabel
             // 
@@ -291,41 +322,43 @@
             this.questionBindingSource.DataMember = "Question";
             this.questionBindingSource.DataSource = this.pollsDataSet;
             // 
-            // questControl1
+            // addPollButton
             // 
-            this.questControl1.Importance = 1;
-            this.questControl1.Location = new System.Drawing.Point(10, 47);
-            this.questControl1.Name = "questControl1";
-            this.questControl1.NameQuest = null;
-            this.questControl1.Satisfaction = 1;
-            this.questControl1.Size = new System.Drawing.Size(478, 43);
-            this.questControl1.TabIndex = 2;
-            this.questControl1.TextQuset = "Удовлетворенность:";
+            this.addPollButton.Location = new System.Drawing.Point(471, 509);
+            this.addPollButton.Name = "addPollButton";
+            this.addPollButton.Size = new System.Drawing.Size(75, 23);
+            this.addPollButton.TabIndex = 5;
+            this.addPollButton.Text = "Добавить";
+            this.addPollButton.UseVisualStyleBackColor = true;
+            this.addPollButton.Click += new System.EventHandler(this.addPollButton_Click);
             // 
             // DeposAnketAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 448);
+            this.ClientSize = new System.Drawing.Size(555, 537);
+            this.Controls.Add(this.addPollButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "DeposAnketAddForm";
             this.Text = "Новая анкета";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeposAnketAddForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.fILIALBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rKCBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sTRUCTUNITBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ageUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sexBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.pollsTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.questionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -343,7 +376,6 @@
         private PollsDataSetTableAdapters.STRUCT_UNITTableAdapter sTRUCT_UNITTableAdapter;
         private System.Windows.Forms.ComboBox rkcComboBox;
         private System.Windows.Forms.BindingSource rKCBindingSource;
-        private PollsDataSet pollsDataSet1;
         private PollsDataSetTableAdapters.RKCTableAdapter rKCTableAdapter;
         private System.Windows.Forms.Label rkcLabel;
         private System.Windows.Forms.Label otdLable;
@@ -351,12 +383,16 @@
         private System.Windows.Forms.ComboBox sexСomboBox;
         private System.Windows.Forms.Label sexLabel;
         private System.Windows.Forms.BindingSource sexBindingSource;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown ageUpDown;
         private System.Windows.Forms.Label ageLabel;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox numberTextBox;
         private System.Windows.Forms.Label numberLabel;
         private System.Windows.Forms.BindingSource questionBindingSource;
-        private QuestControl questControl1;
+        private System.Windows.Forms.TabControl pollsTabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button addPollButton;
+        private System.Windows.Forms.BindingSource pollsBindingSource;
     }
 }

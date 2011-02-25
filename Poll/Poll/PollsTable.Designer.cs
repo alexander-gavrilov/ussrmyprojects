@@ -35,14 +35,14 @@
             this.buttonDeletePoll = new System.Windows.Forms.Button();
             this.buttonAddPoll = new System.Windows.Forms.Button();
             this.pollsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pollsDataSet1 = new Poll.PollsDataSet();
-            this.polL_DEPOSTableAdapter1 = new Poll.PollsDataSetTableAdapters.POLL_DEPOSTableAdapter();
+            this.pollsDataSet = new Poll.PollsDataSet();
+            this.polL_DEPOSTableAdapter = new Poll.PollsDataSetTableAdapters.POLL_DEPOSTableAdapter();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PollsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -103,14 +103,14 @@
             this.buttonAddPoll.UseVisualStyleBackColor = true;
             this.buttonAddPoll.Click += new System.EventHandler(this.buttonAddPoll_Click);
             // 
-            // pollsDataSet1
+            // pollsDataSet
             // 
-            this.pollsDataSet1.DataSetName = "PollsDataSet";
-            this.pollsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.pollsDataSet.DataSetName = "PollsDataSet";
+            this.pollsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // polL_DEPOSTableAdapter1
+            // polL_DEPOSTableAdapter
             // 
-            this.polL_DEPOSTableAdapter1.ClearBeforeFill = true;
+            this.polL_DEPOSTableAdapter.ClearBeforeFill = true;
             // 
             // PollsTable
             // 
@@ -124,7 +124,7 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PollsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -136,9 +136,9 @@
         public System.Windows.Forms.Button buttonDeletePoll;
         public System.Windows.Forms.Button buttonAddPoll;
         public System.Windows.Forms.BindingSource pollsBindingSource;
-        public PollsDataSet pollsDataSet1;
+        public PollsDataSet pollsDataSet;
         public Components.ComponentsDataGridView PollsDataGridView;
-        public PollsDataSetTableAdapters.POLL_DEPOSTableAdapter polL_DEPOSTableAdapter1;
+        public PollsDataSetTableAdapters.POLL_DEPOSTableAdapter polL_DEPOSTableAdapter;
 
     }
 }

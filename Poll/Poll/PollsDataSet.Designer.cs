@@ -496,6 +496,10 @@ namespace Poll {
             
             private global::System.Data.DataColumn columnI_ADD_SERVICE;
             
+            private global::System.Data.DataColumn columnREF_USER;
+            
+            private global::System.Data.DataColumn columnDT_LAST_ACSESS;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public POLL_DEPOSDataTable() {
@@ -699,6 +703,22 @@ namespace Poll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_USERColumn {
+                get {
+                    return this.columnREF_USER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DT_LAST_ACSESSColumn {
+                get {
+                    return this.columnDT_LAST_ACSESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -755,7 +775,9 @@ namespace Poll {
                         decimal I_REGISTR_SPEED, 
                         decimal I_CONT_INTELLI, 
                         decimal I_DEPOS_CHOICE, 
-                        decimal I_ADD_SERVICE) {
+                        decimal I_ADD_SERVICE, 
+                        decimal REF_USER, 
+                        System.DateTime DT_LAST_ACSESS) {
                 POLL_DEPOSRow rowPOLL_DEPOSRow = ((POLL_DEPOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DATE_POLL_DEPOS,
@@ -778,10 +800,21 @@ namespace Poll {
                         I_REGISTR_SPEED,
                         I_CONT_INTELLI,
                         I_DEPOS_CHOICE,
-                        I_ADD_SERVICE};
+                        I_ADD_SERVICE,
+                        REF_USER,
+                        DT_LAST_ACSESS};
                 rowPOLL_DEPOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPOLL_DEPOSRow);
                 return rowPOLL_DEPOSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_DEPOSRow FindByDATE_POLL_DEPOSNUMBER_POLL_DEPOSREF_OTD(System.DateTime DATE_POLL_DEPOS, decimal NUMBER_POLL_DEPOS, decimal REF_OTD) {
+                return ((POLL_DEPOSRow)(this.Rows.Find(new object[] {
+                            DATE_POLL_DEPOS,
+                            NUMBER_POLL_DEPOS,
+                            REF_OTD})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -822,6 +855,8 @@ namespace Poll {
                 this.columnI_CONT_INTELLI = base.Columns["I_CONT_INTELLI"];
                 this.columnI_DEPOS_CHOICE = base.Columns["I_DEPOS_CHOICE"];
                 this.columnI_ADD_SERVICE = base.Columns["I_ADD_SERVICE"];
+                this.columnREF_USER = base.Columns["REF_USER"];
+                this.columnDT_LAST_ACSESS = base.Columns["DT_LAST_ACSESS"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -869,6 +904,14 @@ namespace Poll {
                 base.Columns.Add(this.columnI_DEPOS_CHOICE);
                 this.columnI_ADD_SERVICE = new global::System.Data.DataColumn("I_ADD_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnI_ADD_SERVICE);
+                this.columnREF_USER = new global::System.Data.DataColumn("REF_USER", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_USER);
+                this.columnDT_LAST_ACSESS = new global::System.Data.DataColumn("DT_LAST_ACSESS", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDT_LAST_ACSESS);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnDATE_POLL_DEPOS,
+                                this.columnNUMBER_POLL_DEPOS,
+                                this.columnREF_OTD}, true));
                 this.columnDATE_POLL_DEPOS.AllowDBNull = false;
                 this.columnDATE_POLL_DEPOS.Caption = "Дата заполения анкеты";
                 this.columnSEX.AllowDBNull = false;
@@ -894,6 +937,8 @@ namespace Poll {
                 this.columnI_CONT_INTELLI.AllowDBNull = false;
                 this.columnI_DEPOS_CHOICE.AllowDBNull = false;
                 this.columnI_ADD_SERVICE.AllowDBNull = false;
+                this.columnREF_USER.AllowDBNull = false;
+                this.columnDT_LAST_ACSESS.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2603,6 +2648,28 @@ namespace Poll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_USER {
+                get {
+                    return ((decimal)(this[this.tablePOLL_DEPOS.REF_USERColumn]));
+                }
+                set {
+                    this[this.tablePOLL_DEPOS.REF_USERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DT_LAST_ACSESS {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePOLL_DEPOS.DT_LAST_ACSESSColumn]));
+                }
+                set {
+                    this[this.tablePOLL_DEPOS.DT_LAST_ACSESSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsREF_RKCNull() {
                 return this.IsNull(this.tablePOLL_DEPOS.REF_RKCColumn);
             }
@@ -3245,12 +3312,41 @@ namespace Poll.PollsDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("I_CONT_INTELLI", "I_CONT_INTELLI");
             tableMapping.ColumnMappings.Add("I_DEPOS_CHOICE", "I_DEPOS_CHOICE");
             tableMapping.ColumnMappings.Add("I_ADD_SERVICE", "I_ADD_SERVICE");
+            tableMapping.ColumnMappings.Add("REF_USER", "REF_USER");
+            tableMapping.ColumnMappings.Add("DT_LAST_ACSESS", "DT_LAST_ACSESS");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""POLL_DEPOS"" WHERE ((""DATE_POLL_DEPOS"" = :Original_DATE_POLL_DEPOS) AND (""SEX"" = :Original_SEX) AND (""AGE"" = :Original_AGE) AND (""NUMBER_POLL_DEPOS"" = :Original_NUMBER_POLL_DEPOS) AND ((:IsNull_REF_RKC = 1 AND ""REF_RKC"" IS NULL) OR (""REF_RKC"" = :Original_REF_RKC)) AND (""REF_OTD"" = :Original_REF_OTD) AND (""REF_OBL"" = :Original_REF_OBL) AND (""S_DEPOS_PERIOD"" = :Original_S_DEPOS_PERIOD) AND (""S_INTEREST_RATE"" = :Original_S_INTEREST_RATE) AND (""S_SELECT_CURR"" = :Original_S_SELECT_CURR) AND (""S_REGISTR_SPEED"" = :Original_S_REGISTR_SPEED) AND (""S_CONT_INTELLI"" = :Original_S_CONT_INTELLI) AND (""S_DEPOS_CHOICE"" = :Original_S_DEPOS_CHOICE) AND (""S_ADD_SERVICE"" = :Original_S_ADD_SERVICE) AND (""I_DEPOS_PERIOD"" = :Original_I_DEPOS_PERIOD) AND (""I_INTEREST_RATE"" = :Original_I_INTEREST_RATE) AND (""I_SELECT_CURR"" = :Original_I_SELECT_CURR) AND (""I_REGISTR_SPEED"" = :Original_I_REGISTR_SPEED) AND (""I_CONT_INTELLI"" = :Original_I_CONT_INTELLI) AND (""I_DEPOS_CHOICE"" = :Original_I_DEPOS_CHOICE) AND (""I_ADD_SERVICE"" = :Original_I_ADD_SERVICE) AND (""REF_USER"" = :Original_REF_USER) AND (""DT_LAST_ACSESS"" = :Original_DT_LAST_ACSESS))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DATE_POLL_DEPOS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_DEPOS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUMBER_POLL_DEPOS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_DEPOS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IsNull_REF_RKC", global::System.Data.OracleClient.OracleType.Int32, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_PERIOD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_INTEREST_RATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SELECT_CURR", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_REGISTR_SPEED", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_CONT_INTELLI", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_PERIOD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_INTEREST_RATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SELECT_CURR", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_REGISTR_SPEED", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_CONT_INTELLI", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""POLL"".""POLL_DEPOS"" (""ID_POLL_DEPOS"", ""DATE_POLL_DEPOS"", ""SEX"", ""AGE"", ""NUMBER_POLL_DEPOS"", ""REF_RKC"", ""REF_OTD"", ""REF_OBL"", ""S_DEPOS_PERIOD"", ""S_INTEREST_RATE"", ""S_SELECT_CURR"", ""S_REGISTR_SPEED"", ""S_CONT_INTELLI"", ""S_DEPOS_CHOICE"", ""S_ADD_SERVICE"", ""I_DEPOS_PERIOD"", ""I_INTEREST_RATE"", ""I_SELECT_CURR"", ""I_REGISTR_SPEED"", ""I_CONT_INTELLI"", ""I_DEPOS_CHOICE"", ""I_ADD_SERVICE"") VALUES (:ID_POLL_DEPOS, :DATE_POLL_DEPOS, :SEX, :AGE, :NUMBER_POLL_DEPOS, :REF_RKC, :REF_OTD, :REF_OBL, :S_DEPOS_PERIOD, :S_INTEREST_RATE, :S_SELECT_CURR, :S_REGISTR_SPEED, :S_CONT_INTELLI, :S_DEPOS_CHOICE, :S_ADD_SERVICE, :I_DEPOS_PERIOD, :I_INTEREST_RATE, :I_SELECT_CURR, :I_REGISTR_SPEED, :I_CONT_INTELLI, :I_DEPOS_CHOICE, :I_ADD_SERVICE)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""POLL_DEPOS"" (""DATE_POLL_DEPOS"", ""SEX"", ""AGE"", ""NUMBER_POLL_DEPOS"", ""REF_RKC"", ""REF_OTD"", ""REF_OBL"", ""S_DEPOS_PERIOD"", ""S_INTEREST_RATE"", ""S_SELECT_CURR"", ""S_REGISTR_SPEED"", ""S_CONT_INTELLI"", ""S_DEPOS_CHOICE"", ""S_ADD_SERVICE"", ""I_DEPOS_PERIOD"", ""I_INTEREST_RATE"", ""I_SELECT_CURR"", ""I_REGISTR_SPEED"", ""I_CONT_INTELLI"", ""I_DEPOS_CHOICE"", ""I_ADD_SERVICE"", ""REF_USER"", ""DT_LAST_ACSESS"") VALUES (:DATE_POLL_DEPOS, :SEX, :AGE, :NUMBER_POLL_DEPOS, :REF_RKC, :REF_OTD, :REF_OBL, :S_DEPOS_PERIOD, :S_INTEREST_RATE, :S_SELECT_CURR, :S_REGISTR_SPEED, :S_CONT_INTELLI, :S_DEPOS_CHOICE, :S_ADD_SERVICE, :I_DEPOS_PERIOD, :I_INTEREST_RATE, :I_SELECT_CURR, :I_REGISTR_SPEED, :I_CONT_INTELLI, :I_DEPOS_CHOICE, :I_ADD_SERVICE, :REF_USER, :DT_LAST_ACSESS)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("ID_POLL_DEPOS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "ID_POLL_DEPOS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATE_POLL_DEPOS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_DEPOS", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Current, false, null));
@@ -3272,6 +3368,82 @@ namespace Poll.PollsDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_CONT_INTELLI", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"POLL_DEPOS\" SET \"DATE_POLL_DEPOS\" = :DATE_POLL_DEPOS, \"SEX\" = :SEX, \"AGE\"" +
+                " = :AGE, \"NUMBER_POLL_DEPOS\" = :NUMBER_POLL_DEPOS, \"REF_RKC\" = :REF_RKC, \"REF_OT" +
+                "D\" = :REF_OTD, \"REF_OBL\" = :REF_OBL, \"S_DEPOS_PERIOD\" = :S_DEPOS_PERIOD, \"S_INTE" +
+                "REST_RATE\" = :S_INTEREST_RATE, \"S_SELECT_CURR\" = :S_SELECT_CURR, \"S_REGISTR_SPEE" +
+                "D\" = :S_REGISTR_SPEED, \"S_CONT_INTELLI\" = :S_CONT_INTELLI, \"S_DEPOS_CHOICE\" = :S" +
+                "_DEPOS_CHOICE, \"S_ADD_SERVICE\" = :S_ADD_SERVICE, \"I_DEPOS_PERIOD\" = :I_DEPOS_PER" +
+                "IOD, \"I_INTEREST_RATE\" = :I_INTEREST_RATE, \"I_SELECT_CURR\" = :I_SELECT_CURR, \"I_" +
+                "REGISTR_SPEED\" = :I_REGISTR_SPEED, \"I_CONT_INTELLI\" = :I_CONT_INTELLI, \"I_DEPOS_" +
+                "CHOICE\" = :I_DEPOS_CHOICE, \"I_ADD_SERVICE\" = :I_ADD_SERVICE, \"REF_USER\" = :REF_U" +
+                "SER, \"DT_LAST_ACSESS\" = :DT_LAST_ACSESS WHERE ((\"DATE_POLL_DEPOS\" = :Original_DA" +
+                "TE_POLL_DEPOS) AND (\"SEX\" = :Original_SEX) AND (\"AGE\" = :Original_AGE) AND (\"NUM" +
+                "BER_POLL_DEPOS\" = :Original_NUMBER_POLL_DEPOS) AND ((:IsNull_REF_RKC = 1 AND \"RE" +
+                "F_RKC\" IS NULL) OR (\"REF_RKC\" = :Original_REF_RKC)) AND (\"REF_OTD\" = :Original_R" +
+                "EF_OTD) AND (\"REF_OBL\" = :Original_REF_OBL) AND (\"S_DEPOS_PERIOD\" = :Original_S_" +
+                "DEPOS_PERIOD) AND (\"S_INTEREST_RATE\" = :Original_S_INTEREST_RATE) AND (\"S_SELECT" +
+                "_CURR\" = :Original_S_SELECT_CURR) AND (\"S_REGISTR_SPEED\" = :Original_S_REGISTR_S" +
+                "PEED) AND (\"S_CONT_INTELLI\" = :Original_S_CONT_INTELLI) AND (\"S_DEPOS_CHOICE\" = " +
+                ":Original_S_DEPOS_CHOICE) AND (\"S_ADD_SERVICE\" = :Original_S_ADD_SERVICE) AND (\"" +
+                "I_DEPOS_PERIOD\" = :Original_I_DEPOS_PERIOD) AND (\"I_INTEREST_RATE\" = :Original_I" +
+                "_INTEREST_RATE) AND (\"I_SELECT_CURR\" = :Original_I_SELECT_CURR) AND (\"I_REGISTR_" +
+                "SPEED\" = :Original_I_REGISTR_SPEED) AND (\"I_CONT_INTELLI\" = :Original_I_CONT_INT" +
+                "ELLI) AND (\"I_DEPOS_CHOICE\" = :Original_I_DEPOS_CHOICE) AND (\"I_ADD_SERVICE\" = :" +
+                "Original_I_ADD_SERVICE) AND (\"REF_USER\" = :Original_REF_USER) AND (\"DT_LAST_ACSE" +
+                "SS\" = :Original_DT_LAST_ACSESS))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATE_POLL_DEPOS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_DEPOS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("NUMBER_POLL_DEPOS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_DEPOS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_PERIOD", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_INTEREST_RATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SELECT_CURR", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_REGISTR_SPEED", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_CONT_INTELLI", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_PERIOD", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_INTEREST_RATE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SELECT_CURR", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_REGISTR_SPEED", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_CONT_INTELLI", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DATE_POLL_DEPOS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_DEPOS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUMBER_POLL_DEPOS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_DEPOS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IsNull_REF_RKC", global::System.Data.OracleClient.OracleType.Int32, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_PERIOD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_INTEREST_RATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SELECT_CURR", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_REGISTR_SPEED", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_CONT_INTELLI", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_DEPOS_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_DEPOS_PERIOD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_PERIOD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_INTEREST_RATE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_INTEREST_RATE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SELECT_CURR", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SELECT_CURR", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_REGISTR_SPEED", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_REGISTR_SPEED", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_CONT_INTELLI", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_CONT_INTELLI", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_DEPOS_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_DEPOS_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3284,32 +3456,34 @@ namespace Poll.PollsDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[3];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[4];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT DATE_POLL_DEPOS, SEX, AGE, NUMBER_POLL_DEPOS, REF_RKC, REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE FROM POLL_DEPOS";
+            this._commandCollection[0].CommandText = @"SELECT        DATE_POLL_DEPOS, SEX, AGE, NUMBER_POLL_DEPOS, REF_RKC, REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, 
+                         S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, 
+                         I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS
+FROM            POLL_DEPOS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        NUMBER_POLL_DEPOS, DATE_POLL_DEPOS, SEX, AGE, REF_OTD, REF_RKC, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, 
-                         S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, 
-                         I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE
-FROM            POLL_DEPOS
-WHERE        (REF_RKC = :RKC) AND (REF_OTD = :OTD)";
+            this._commandCollection[1].CommandText = @"SELECT AGE, DATE_POLL_DEPOS, DT_LAST_ACSESS, I_ADD_SERVICE, I_CONT_INTELLI, I_DEPOS_CHOICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_REGISTR_SPEED, I_SELECT_CURR, NUMBER_POLL_DEPOS, REF_OBL, REF_OTD, REF_RKC, REF_USER, SEX, S_ADD_SERVICE, S_CONT_INTELLI, S_DEPOS_CHOICE, S_DEPOS_PERIOD, S_INTEREST_RATE, S_REGISTR_SPEED, S_SELECT_CURR FROM POLL_DEPOS WHERE (REF_RKC = :RKC) AND (REF_OTD = :OTD)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RKC", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("OTD", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        POLL_DEPOS.DATE_POLL_DEPOS, POLL_DEPOS.SEX, POLL_DEPOS.AGE, POLL_DEPOS.NUMBER_POLL_DEPOS, POLL_DEPOS.REF_RKC, 
-                         POLL_DEPOS.REF_OTD, POLL_DEPOS.REF_OBL, POLL_DEPOS.S_DEPOS_PERIOD, POLL_DEPOS.S_INTEREST_RATE, POLL_DEPOS.S_SELECT_CURR, 
-                         POLL_DEPOS.S_REGISTR_SPEED, POLL_DEPOS.S_CONT_INTELLI, POLL_DEPOS.S_DEPOS_CHOICE, POLL_DEPOS.S_ADD_SERVICE, 
-                         POLL_DEPOS.I_DEPOS_PERIOD, POLL_DEPOS.I_INTEREST_RATE, POLL_DEPOS.I_SELECT_CURR, POLL_DEPOS.I_REGISTR_SPEED, 
-                         POLL_DEPOS.I_CONT_INTELLI, POLL_DEPOS.I_DEPOS_CHOICE, POLL_DEPOS.I_ADD_SERVICE
-FROM            POLL_DEPOS, BROKER_BAPB.USERS
-WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USERS.LOGIN = :login)";
+            this._commandCollection[2].CommandText = @"SELECT        DATE_POLL_DEPOS, SEX, AGE, NUMBER_POLL_DEPOS, REF_RKC, REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, 
+                         S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, 
+                         I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS
+FROM            POLL_DEPOS
+WHERE        (REF_OBL = :filial)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("login", global::System.Data.OracleClient.OracleType.NVarChar, 256, global::System.Data.ParameterDirection.Input, "LOGIN", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT POLL_DEPOS.AGE, POLL_DEPOS.DATE_POLL_DEPOS, POLL_DEPOS.DT_LAST_ACSESS, POLL_DEPOS.I_ADD_SERVICE, POLL_DEPOS.I_CONT_INTELLI, POLL_DEPOS.I_DEPOS_CHOICE, POLL_DEPOS.I_DEPOS_PERIOD, POLL_DEPOS.I_INTEREST_RATE, POLL_DEPOS.I_REGISTR_SPEED, POLL_DEPOS.I_SELECT_CURR, POLL_DEPOS.NUMBER_POLL_DEPOS, POLL_DEPOS.REF_OBL, POLL_DEPOS.REF_OTD, POLL_DEPOS.REF_RKC, POLL_DEPOS.REF_USER, POLL_DEPOS.SEX, POLL_DEPOS.S_ADD_SERVICE, POLL_DEPOS.S_CONT_INTELLI, POLL_DEPOS.S_DEPOS_CHOICE, POLL_DEPOS.S_DEPOS_PERIOD, POLL_DEPOS.S_INTEREST_RATE, POLL_DEPOS.S_REGISTR_SPEED, POLL_DEPOS.S_SELECT_CURR FROM POLL_DEPOS, BROKER_BAPB.USERS WHERE POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USERS.LOGIN = :login)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("login", global::System.Data.OracleClient.OracleType.NVarChar, 256, global::System.Data.ParameterDirection.Input, "LOGIN", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3378,8 +3552,34 @@ WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByLogin(PollsDataSet.POLL_DEPOSDataTable dataTable, string login) {
+        public virtual int FillByFil(PollsDataSet.POLL_DEPOSDataTable dataTable, decimal filial) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(filial));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.POLL_DEPOSDataTable GetDataByFil(decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(filial));
+            PollsDataSet.POLL_DEPOSDataTable dataTable = new PollsDataSet.POLL_DEPOSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByLogin(PollsDataSet.POLL_DEPOSDataTable dataTable, string login) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((login == null)) {
                 throw new global::System.ArgumentNullException("login");
             }
@@ -3398,7 +3598,7 @@ WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PollsDataSet.POLL_DEPOSDataTable GetDataByLogin(string login) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((login == null)) {
                 throw new global::System.ArgumentNullException("login");
             }
@@ -3442,9 +3642,87 @@ WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    System.DateTime Original_DATE_POLL_DEPOS, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_DEPOS, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_DEPOS_PERIOD, 
+                    decimal Original_S_INTEREST_RATE, 
+                    decimal Original_S_SELECT_CURR, 
+                    decimal Original_S_REGISTR_SPEED, 
+                    decimal Original_S_CONT_INTELLI, 
+                    decimal Original_S_DEPOS_CHOICE, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_DEPOS_PERIOD, 
+                    decimal Original_I_INTEREST_RATE, 
+                    decimal Original_I_SELECT_CURR, 
+                    decimal Original_I_REGISTR_SPEED, 
+                    decimal Original_I_CONT_INTELLI, 
+                    decimal Original_I_DEPOS_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_DATE_POLL_DEPOS));
+            if ((Original_SEX == null)) {
+                throw new global::System.ArgumentNullException("Original_SEX");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_SEX));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_AGE));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_NUMBER_POLL_DEPOS));
+            if ((Original_REF_RKC.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_REF_RKC.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((decimal)(Original_REF_OTD));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_REF_OBL));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((decimal)(Original_S_DEPOS_PERIOD));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((decimal)(Original_S_INTEREST_RATE));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((decimal)(Original_S_SELECT_CURR));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((decimal)(Original_S_REGISTR_SPEED));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((decimal)(Original_S_CONT_INTELLI));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_S_DEPOS_CHOICE));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((decimal)(Original_S_ADD_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((decimal)(Original_I_DEPOS_PERIOD));
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((decimal)(Original_I_INTEREST_RATE));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((decimal)(Original_I_SELECT_CURR));
+            this.Adapter.DeleteCommand.Parameters[18].Value = ((decimal)(Original_I_REGISTR_SPEED));
+            this.Adapter.DeleteCommand.Parameters[19].Value = ((decimal)(Original_I_CONT_INTELLI));
+            this.Adapter.DeleteCommand.Parameters[20].Value = ((decimal)(Original_I_DEPOS_CHOICE));
+            this.Adapter.DeleteCommand.Parameters[21].Value = ((decimal)(Original_I_ADD_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[22].Value = ((decimal)(Original_REF_USER));
+            this.Adapter.DeleteCommand.Parameters[23].Value = ((System.DateTime)(Original_DT_LAST_ACSESS));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
-                    decimal ID_POLL_DEPOS, 
                     System.DateTime DATE_POLL_DEPOS, 
                     string SEX, 
                     decimal AGE, 
@@ -3465,39 +3743,42 @@ WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USE
                     decimal I_REGISTR_SPEED, 
                     decimal I_CONT_INTELLI, 
                     decimal I_DEPOS_CHOICE, 
-                    decimal I_ADD_SERVICE) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(ID_POLL_DEPOS));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(DATE_POLL_DEPOS));
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(DATE_POLL_DEPOS));
             if ((SEX == null)) {
                 throw new global::System.ArgumentNullException("SEX");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(SEX));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SEX));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(AGE));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(NUMBER_POLL_DEPOS));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(AGE));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(NUMBER_POLL_DEPOS));
             if ((REF_RKC.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(REF_RKC.Value));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(REF_RKC.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(REF_OTD));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(REF_OBL));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(S_DEPOS_PERIOD));
-            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(S_INTEREST_RATE));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(S_SELECT_CURR));
-            this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(S_REGISTR_SPEED));
-            this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(S_CONT_INTELLI));
-            this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(S_DEPOS_CHOICE));
-            this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(S_ADD_SERVICE));
-            this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(I_DEPOS_PERIOD));
-            this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(I_INTEREST_RATE));
-            this.Adapter.InsertCommand.Parameters[17].Value = ((decimal)(I_SELECT_CURR));
-            this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(I_REGISTR_SPEED));
-            this.Adapter.InsertCommand.Parameters[19].Value = ((decimal)(I_CONT_INTELLI));
-            this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(I_DEPOS_CHOICE));
-            this.Adapter.InsertCommand.Parameters[21].Value = ((decimal)(I_ADD_SERVICE));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(REF_OTD));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(REF_OBL));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(S_DEPOS_PERIOD));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(S_INTEREST_RATE));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(S_SELECT_CURR));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(S_REGISTR_SPEED));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(S_CONT_INTELLI));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(S_DEPOS_CHOICE));
+            this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(S_ADD_SERVICE));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(I_DEPOS_PERIOD));
+            this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(I_INTEREST_RATE));
+            this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(I_SELECT_CURR));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((decimal)(I_REGISTR_SPEED));
+            this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(I_CONT_INTELLI));
+            this.Adapter.InsertCommand.Parameters[19].Value = ((decimal)(I_DEPOS_CHOICE));
+            this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(I_ADD_SERVICE));
+            this.Adapter.InsertCommand.Parameters[21].Value = ((decimal)(REF_USER));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((System.DateTime)(DT_LAST_ACSESS));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3512,6 +3793,192 @@ WHERE        POLL_DEPOS.REF_OBL = BROKER_BAPB.USERS.REF_REG AND (BROKER_BAPB.USE
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    System.DateTime DATE_POLL_DEPOS, 
+                    string SEX, 
+                    decimal AGE, 
+                    decimal NUMBER_POLL_DEPOS, 
+                    global::System.Nullable<decimal> REF_RKC, 
+                    decimal REF_OTD, 
+                    decimal REF_OBL, 
+                    decimal S_DEPOS_PERIOD, 
+                    decimal S_INTEREST_RATE, 
+                    decimal S_SELECT_CURR, 
+                    decimal S_REGISTR_SPEED, 
+                    decimal S_CONT_INTELLI, 
+                    decimal S_DEPOS_CHOICE, 
+                    decimal S_ADD_SERVICE, 
+                    decimal I_DEPOS_PERIOD, 
+                    decimal I_INTEREST_RATE, 
+                    decimal I_SELECT_CURR, 
+                    decimal I_REGISTR_SPEED, 
+                    decimal I_CONT_INTELLI, 
+                    decimal I_DEPOS_CHOICE, 
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS, 
+                    System.DateTime Original_DATE_POLL_DEPOS, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_DEPOS, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_DEPOS_PERIOD, 
+                    decimal Original_S_INTEREST_RATE, 
+                    decimal Original_S_SELECT_CURR, 
+                    decimal Original_S_REGISTR_SPEED, 
+                    decimal Original_S_CONT_INTELLI, 
+                    decimal Original_S_DEPOS_CHOICE, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_DEPOS_PERIOD, 
+                    decimal Original_I_INTEREST_RATE, 
+                    decimal Original_I_SELECT_CURR, 
+                    decimal Original_I_REGISTR_SPEED, 
+                    decimal Original_I_CONT_INTELLI, 
+                    decimal Original_I_DEPOS_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(DATE_POLL_DEPOS));
+            if ((SEX == null)) {
+                throw new global::System.ArgumentNullException("SEX");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SEX));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(AGE));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(NUMBER_POLL_DEPOS));
+            if ((REF_RKC.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(REF_RKC.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(REF_OTD));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(REF_OBL));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(S_DEPOS_PERIOD));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(S_INTEREST_RATE));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(S_SELECT_CURR));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(S_REGISTR_SPEED));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(S_CONT_INTELLI));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(S_DEPOS_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(S_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(I_DEPOS_PERIOD));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(I_INTEREST_RATE));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(I_SELECT_CURR));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((decimal)(I_REGISTR_SPEED));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(I_CONT_INTELLI));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((decimal)(I_DEPOS_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(I_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(REF_USER));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(DT_LAST_ACSESS));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(Original_DATE_POLL_DEPOS));
+            if ((Original_SEX == null)) {
+                throw new global::System.ArgumentNullException("Original_SEX");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_SEX));
+            }
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(Original_AGE));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(Original_NUMBER_POLL_DEPOS));
+            if ((Original_REF_RKC.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((decimal)(Original_REF_RKC.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((decimal)(Original_REF_OTD));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((decimal)(Original_REF_OBL));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((decimal)(Original_S_DEPOS_PERIOD));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((decimal)(Original_S_INTEREST_RATE));
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((decimal)(Original_S_SELECT_CURR));
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((decimal)(Original_S_REGISTR_SPEED));
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((decimal)(Original_S_CONT_INTELLI));
+            this.Adapter.UpdateCommand.Parameters[36].Value = ((decimal)(Original_S_DEPOS_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[37].Value = ((decimal)(Original_S_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[38].Value = ((decimal)(Original_I_DEPOS_PERIOD));
+            this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(Original_I_INTEREST_RATE));
+            this.Adapter.UpdateCommand.Parameters[40].Value = ((decimal)(Original_I_SELECT_CURR));
+            this.Adapter.UpdateCommand.Parameters[41].Value = ((decimal)(Original_I_REGISTR_SPEED));
+            this.Adapter.UpdateCommand.Parameters[42].Value = ((decimal)(Original_I_CONT_INTELLI));
+            this.Adapter.UpdateCommand.Parameters[43].Value = ((decimal)(Original_I_DEPOS_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[44].Value = ((decimal)(Original_I_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((decimal)(Original_REF_USER));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((System.DateTime)(Original_DT_LAST_ACSESS));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string SEX, 
+                    decimal AGE, 
+                    global::System.Nullable<decimal> REF_RKC, 
+                    decimal REF_OBL, 
+                    decimal S_DEPOS_PERIOD, 
+                    decimal S_INTEREST_RATE, 
+                    decimal S_SELECT_CURR, 
+                    decimal S_REGISTR_SPEED, 
+                    decimal S_CONT_INTELLI, 
+                    decimal S_DEPOS_CHOICE, 
+                    decimal S_ADD_SERVICE, 
+                    decimal I_DEPOS_PERIOD, 
+                    decimal I_INTEREST_RATE, 
+                    decimal I_SELECT_CURR, 
+                    decimal I_REGISTR_SPEED, 
+                    decimal I_CONT_INTELLI, 
+                    decimal I_DEPOS_CHOICE, 
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS, 
+                    System.DateTime Original_DATE_POLL_DEPOS, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_DEPOS, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_DEPOS_PERIOD, 
+                    decimal Original_S_INTEREST_RATE, 
+                    decimal Original_S_SELECT_CURR, 
+                    decimal Original_S_REGISTR_SPEED, 
+                    decimal Original_S_CONT_INTELLI, 
+                    decimal Original_S_DEPOS_CHOICE, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_DEPOS_PERIOD, 
+                    decimal Original_I_INTEREST_RATE, 
+                    decimal Original_I_SELECT_CURR, 
+                    decimal Original_I_REGISTR_SPEED, 
+                    decimal Original_I_CONT_INTELLI, 
+                    decimal Original_I_DEPOS_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS) {
+            return this.Update(Original_DATE_POLL_DEPOS, SEX, AGE, Original_NUMBER_POLL_DEPOS, REF_RKC, Original_REF_OTD, REF_OBL, S_DEPOS_PERIOD, S_INTEREST_RATE, S_SELECT_CURR, S_REGISTR_SPEED, S_CONT_INTELLI, S_DEPOS_CHOICE, S_ADD_SERVICE, I_DEPOS_PERIOD, I_INTEREST_RATE, I_SELECT_CURR, I_REGISTR_SPEED, I_CONT_INTELLI, I_DEPOS_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS, Original_DATE_POLL_DEPOS, Original_SEX, Original_AGE, Original_NUMBER_POLL_DEPOS, Original_REF_RKC, Original_REF_OTD, Original_REF_OBL, Original_S_DEPOS_PERIOD, Original_S_INTEREST_RATE, Original_S_SELECT_CURR, Original_S_REGISTR_SPEED, Original_S_CONT_INTELLI, Original_S_DEPOS_CHOICE, Original_S_ADD_SERVICE, Original_I_DEPOS_PERIOD, Original_I_INTEREST_RATE, Original_I_SELECT_CURR, Original_I_REGISTR_SPEED, Original_I_CONT_INTELLI, Original_I_DEPOS_CHOICE, Original_I_ADD_SERVICE, Original_REF_USER, Original_DT_LAST_ACSESS);
         }
     }
     

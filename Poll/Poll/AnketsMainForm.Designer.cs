@@ -118,6 +118,7 @@
             this.Controls.Add(this.toolStripContainer1);
             this.Name = "PollsMainForm";
             this.Text = "Анкеты физических лиц";
+            this.Activated += new System.EventHandler(this.PollsMainForm_Activated);
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

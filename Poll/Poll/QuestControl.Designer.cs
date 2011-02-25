@@ -82,7 +82,7 @@
             0});
             this.importanceUpDown.Name = "importanceUpDown";
             this.importanceUpDown.Size = new System.Drawing.Size(34, 20);
-            this.importanceUpDown.TabIndex = 1;
+            this.importanceUpDown.TabIndex = 2;
             this.importanceUpDown.Value = new decimal(new int[] {
             1,
             0,
@@ -117,7 +117,7 @@
             this.Controls.Add(this.satisfactionUpDown);
             this.Controls.Add(this.questLabel);
             this.Name = "QuestControl";
-            this.Size = new System.Drawing.Size(475, 43);
+            this.Size = new System.Drawing.Size(475, 40);
             ((System.ComponentModel.ISupportInitialize)(this.satisfactionUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.importanceUpDown)).EndInit();
             this.ResumeLayout(false);
