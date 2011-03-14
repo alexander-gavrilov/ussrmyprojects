@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Анкеты по вкладам");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Анкеты по кредитам");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Анкеты по вкладам");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Анкеты по кредитам");
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -91,13 +91,13 @@
             this.pollTypeTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pollTypeTreeView.Location = new System.Drawing.Point(0, 0);
             this.pollTypeTreeView.Name = "pollTypeTreeView";
-            treeNode1.Name = "deposPoll";
-            treeNode1.Text = "Анкеты по вкладам";
-            treeNode2.Name = "credPolls";
-            treeNode2.Text = "Анкеты по кредитам";
+            treeNode3.Name = "deposPoll";
+            treeNode3.Text = "Анкеты по вкладам";
+            treeNode4.Name = "credPolls";
+            treeNode4.Text = "Анкеты по кредитам";
             this.pollTypeTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.pollTypeTreeView.Size = new System.Drawing.Size(282, 313);
             this.pollTypeTreeView.TabIndex = 0;
             // 

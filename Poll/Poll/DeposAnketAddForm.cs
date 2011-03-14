@@ -19,181 +19,13 @@ namespace Poll
         private decimal _numberPoll;
         private ErrorProvider _numberErr;
         private Collection<Criterion> _collectionCriterion;
+        private DeposPollsTableForm _owner;
         //private Criterion _criterion;
         public DeposAnketAddForm(User user)
         {
             InitializeComponent();
-            _numberErr =new ErrorProvider();
-            _numberErr.SetIconAlignment(this.numberTextBox, ErrorIconAlignment.MiddleRight);
-            _numberErr.SetIconPadding(this.numberTextBox, 2);
-            _numberErr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
-            //numberTextBox_Validated(this, 0);
-            addPollButton.Enabled = false;
-
-
             _user = user;
-            pollsDataSet.Sex.AddSexRow('m', "Мужской");
-            pollsDataSet.Sex.AddSexRow('f', "Женский");
-            //PollsDataSet.FILIALDataTable tempTable=new PollsDataSet.FILIALDataTable();)
-            
-            if(_user.PrivilegesCodObl!=0)
-            {
-                fILIALBindingSource.DataSource =
-                    fILIALTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now).Where(
-                        c => c.COD_FIL == (decimal)_user.PrivilegesCodObl).AsDataView();
-
-            }
-            else
-            {
-                fILIALBindingSource.DataSource =
-                    fILIALTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now);
-
-
-            }
-            
-            sTRUCTUNITBindingSource.DataSource = sTRUCT_UNITTableAdapter.GetData(System.DateTime.Now,
-                                                                                 System.DateTime.Now,
-                                                                                 (decimal) filialСomboBox.SelectedValue);
-            //rKCBindingSource.DataSource = rKCTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now,
-            //                                                      (decimal) otdComboBox.SelectedValue);
-            tmpRKCTable = new PollsDataSet.RKCDataTable();
-            //rKCTableAdapter.ClearBeforeFill;
-            tmpRKCTable.AddRKCRow("<Отделение>", 0);
-            rKCTableAdapter.ClearBeforeFill = false;
-            rKCTableAdapter.Fill(tmpRKCTable, System.DateTime.Now, System.DateTime.Now,
-                                 (decimal) otdComboBox.SelectedValue);
-            
-            rKCBindingSource.DataSource = tmpRKCTable;
-            pollsTabControl.TabPages[0].Name = "DEPOS";
-            pollsTabControl.TabPages[0].Text = "Вклады";
-            pollsTabControl.TabPages[1].Name = "BANK";
-            pollsTabControl.TabPages[1].Text = "Банк";
-
-            //DataRow nullRKCRow = pollsDataSet1.RKC.Rows[0];
-            //nullRKCRow.
-            //new DataRow();
-            //PollsDataSet.RKCRow nullRKCRow = new PollsDataSet.RKCRow(drb);
-           
-            //rkcComboBox.Items.Add() rkcComboBox.Items.GetType()
-            //rkcComboBox.Items.;
-            //Criterion criterion = new Criterion();
-            //foreach (DataColumn currentColumn in pollsDataSet.POLL_DEPOS.Columns.)
-            //{
-            //    criterion.Id = currentColumn.ColumnName;
-            //    criterion.Name = currentColumn.Caption;
-
-            //}
-
-
-            _collectionCriterion=new Collection<Criterion>();
-            //_collectionCriterion.Add(new Criterion()
-            //                             {
-            //                                 Id = "depos_period",
-            //                                 Name = "Срок размещения денежных средств",
-            //                                 Value = 1,
-            //                                 Importance = 1
-            //                             });
-            //QuestControl questControl = new QuestControl(criterion);
-            //questControl.Location = new Point(7, y);
-            //List<String> t;
-            //t.Where()
-            
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 15),
-                                                             IdQuest = "depos_period",
-                                                             NameQuset = "Срок размещения денежных средств",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-            
-
-            //pollsTabControl.TabPages[0].Controls.
-
-            //pollsTabControl.TabPages[0].Controls
-            //criterion.Id = "interest_rate";
-            //criterion.Name = "Процентная ставка по вкладу";
-            //criterion.Value = 1;
-            //criterion.Importance = 1;
-           
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 55),
-                                                             IdQuest = "interest_rate",
-                                                             NameQuset = "Процентная ставка по вкладу",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-            
-
-
-            //criterion.Id = "select_curr";
-            //criterion.Name = "Выбор валюты вклада";
-            //criterion.Value = 1;
-            //criterion.Importance = 1;
-            //pollsTabControl.TabPages[0].Controls.Add(new QuestControl(criterion) { Location = new Point(7, 95) });
-            //_collectionCriterion.Add(new Criterion()
-            //                             {
-            //                                 Id = "select_curr",
-            //                                 Name = "Выбор валюты вклада",
-            //                                 Value = 1,
-            //                                 Importance = 1
-            //                             });
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 95),
-                                                             IdQuest = "select_curr",
-                                                             NameQuset = "Выбор валюты вклада",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 135),
-                                                             IdQuest = "registr_speed",
-                                                             NameQuset = "Скорость оформления перевода",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 175),
-                                                             IdQuest = "cont_intelli",
-                                                             NameQuset = "Понятность условий",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 215),
-                                                             IdQuest = "depos_choice",
-                                                             NameQuset = "Возможность выбора варианта вклада",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
-                                                         {
-                                                             Location = new Point(7, 255),
-                                                             IdQuest = "add_service",
-                                                             NameQuset = "Наличие дополнительных услуг и предложений",
-                                                             Value = 1,
-                                                             Importance = 1
-                                                         });
-
-            //foreach (QuestControl currentQuestControl in pollsTabControl.TabPages[0].Controls)
-            //{
-            //    _collectionCriterion.Add(currentQuestControl.Criter());
-            //}
-
-
-
-
-
-
-
-            //questDeposControlsCollectionForm.Add(new QuestControl(criterion));
-            //questDeposControlsCollectionForm.Refresh();
+            InitializeForm();
         }
 
         private void filialСomboBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -231,13 +63,13 @@ namespace Poll
         {
             //MessageBox.Show(_collectionCriterion.Where(c => c.Id == "depos_period").First().Name + " " +
             //                _collectionCriterion.Where(c => c.Id == "depos_period").First().Value.ToString());
-            pollsBindingSource.ResetItem(0);
+            //pollsBindingSource.ResetItem(0);
             
         }
 
         private void addPollButton_Click(object sender, EventArgs e)
         {
-            PollsDataSet.POLL_DEPOSRow tmpRow = pollsDataSet.POLL_DEPOS.NewPOLL_DEPOSRow();
+            PollsDataSet.POLL_DEPOSRow tmpRow = Owner.pollsDataSet.POLL_DEPOS.NewPOLL_DEPOSRow();
             tmpRow.DATE_POLL_DEPOS = System.DateTime.Now;
             tmpRow.SEX = sexСomboBox.SelectedValue.ToString();
             tmpRow.AGE = ageUpDown.Value;
@@ -259,14 +91,22 @@ namespace Poll
 
             }
             
-            pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(tmpRow);
-            
-            PollsDataSetTableAdapters.POLL_DEPOSTableAdapter tmp = new POLL_DEPOSTableAdapter();
-            //int t = tmp.Update(pollsDataSet.POLL_DEPOS);
-           // pollsDataSet.POLL_DEPOS.AcceptChanges();
+            //pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(tmpRow);
+            Owner.pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(tmpRow);
+            Owner.polL_DEPOSTableAdapter.Update(Owner.pollsDataSet.POLL_DEPOS);
+            Owner.pollsDataSet.POLL_DEPOS.AcceptChanges();
+            //Owner.polL_DEPOSTableAdapter.Update();
+            //PollsDataSetTableAdapters.POLL_DEPOSTableAdapter tmp = new POLL_DEPOSTableAdapter();
+            //tmp.Update(pollsDataSet.POLL_DEPOS);
+            //pollsDataSet.POLL_DEPOS.AcceptChanges();
            // MessageBox.Show(t.ToString());
-            tmp.Dispose();
-            
+            //tmp.Dispose();
+            //Owner.UpdateGrid();
+            //Close();
+            //InitializeComponent();
+            //DeposAnketAddForm(this._user);
+            InitializeForm();
+
         }
 
         private void numberTextBox_TextChanged(object sender, EventArgs e)
@@ -294,6 +134,200 @@ namespace Poll
         }
 
         public PollsDataSet PollsDataSet { get; set; }
-        public BindingSource PollsBindingSource { get; set; } 
+        public BindingSource PollsBindingSource { get; set; }
+        public DeposPollsTableForm Owner { get; set; }
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void InitializeForm()
+        {
+            //Инициализируем ErrorProvider отвечающий за контроль номера анкеты
+            _numberErr = new ErrorProvider();
+            _numberErr.SetIconAlignment(this.numberTextBox, ErrorIconAlignment.MiddleRight);
+            _numberErr.SetIconPadding(this.numberTextBox, 2);
+            _numberErr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
+            
+
+            //Устанавливаем начальные значения возраста и номера анкеты.
+            ageUpDown.Value = ageUpDown.Minimum;
+            numberTextBox.Text = "";
+            addPollButton.Enabled = false;
+
+
+            //Заполняем таблице Sex
+            pollsDataSet.Sex.AddSexRow('m', "Мужской");
+            pollsDataSet.Sex.AddSexRow('f', "Женский");
+            //PollsDataSet.FILIALDataTable tempTable=new PollsDataSet.FILIALDataTable();)
+            
+
+            
+            if (_user.PrivilegesCodObl != 0)
+            //Заполняем поле область в зависимости от предоставленых прав доступа
+            //Если это ЦА то CodObl=0 - доступ к анкетам всех подразделений
+            //Иначе - доступ к анкетам в пределах одной области
+            {
+                fILIALBindingSource.DataSource =
+                    fILIALTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now).Where(
+                        c => c.COD_FIL == (decimal)_user.PrivilegesCodObl).AsDataView();
+
+            }
+            else 
+            {
+                fILIALBindingSource.DataSource =
+                    fILIALTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now);
+
+
+            }
+            
+            //Заполняем таблицу отделений
+            sTRUCTUNITBindingSource.DataSource = sTRUCT_UNITTableAdapter.GetData(System.DateTime.Now,
+                                                                                 System.DateTime.Now,
+                                                                                 (decimal)filialСomboBox.SelectedValue);
+            //rKCBindingSource.DataSource = rKCTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now,
+            //                                                      (decimal) otdComboBox.SelectedValue);
+            tmpRKCTable = new PollsDataSet.RKCDataTable();
+            //rKCTableAdapter.ClearBeforeFill;
+            tmpRKCTable.AddRKCRow("<Отделение>", 0);
+            rKCTableAdapter.ClearBeforeFill = false;
+            rKCTableAdapter.Fill(tmpRKCTable, System.DateTime.Now, System.DateTime.Now,
+                                 (decimal)otdComboBox.SelectedValue);
+
+            rKCBindingSource.DataSource = tmpRKCTable;
+            pollsTabControl.TabPages[0].Name = "DEPOS";
+            pollsTabControl.TabPages[0].Text = "Вклады";
+            pollsTabControl.TabPages[1].Name = "BANK";
+            pollsTabControl.TabPages[1].Text = "Банк";
+             pollsTabControl.TabPages[0].Controls.Clear();
+
+            //DataRow nullRKCRow = pollsDataSet1.RKC.Rows[0];
+            //nullRKCRow.
+            //new DataRow();
+            //PollsDataSet.RKCRow nullRKCRow = new PollsDataSet.RKCRow(drb);
+
+            //rkcComboBox.Items.Add() rkcComboBox.Items.GetType()
+            //rkcComboBox.Items.;
+            //Criterion criterion = new Criterion();
+            //foreach (DataColumn currentColumn in pollsDataSet.POLL_DEPOS.Columns.)
+            //{
+            //    criterion.Id = currentColumn.ColumnName;
+            //    criterion.Name = currentColumn.Caption;
+
+            //}
+
+
+            _collectionCriterion = new Collection<Criterion>();
+            //_collectionCriterion.Add(new Criterion()
+            //                             {
+            //                                 Id = "depos_period",
+            //                                 Name = "Срок размещения денежных средств",
+            //                                 Value = 1,
+            //                                 Importance = 1
+            //                             });
+            //QuestControl questControl = new QuestControl(criterion);
+            //questControl.Location = new Point(7, y);
+            //List<String> t;
+            //t.Where()
+
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 15),
+                IdQuest = "depos_period",
+                NameQuset = "Срок размещения денежных средств",
+                Value = 1,
+                Importance = 1
+            });
+
+
+            //pollsTabControl.TabPages[0].Controls.
+
+            //pollsTabControl.TabPages[0].Controls
+            //criterion.Id = "interest_rate";
+            //criterion.Name = "Процентная ставка по вкладу";
+            //criterion.Value = 1;
+            //criterion.Importance = 1;
+
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 55),
+                IdQuest = "interest_rate",
+                NameQuset = "Процентная ставка по вкладу",
+                Value = 1,
+                Importance = 1
+            });
+
+
+
+            //criterion.Id = "select_curr";
+            //criterion.Name = "Выбор валюты вклада";
+            //criterion.Value = 1;
+            //criterion.Importance = 1;
+            //pollsTabControl.TabPages[0].Controls.Add(new QuestControl(criterion) { Location = new Point(7, 95) });
+            //_collectionCriterion.Add(new Criterion()
+            //                             {
+            //                                 Id = "select_curr",
+            //                                 Name = "Выбор валюты вклада",
+            //                                 Value = 1,
+            //                                 Importance = 1
+            //                             });
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 95),
+                IdQuest = "select_curr",
+                NameQuset = "Выбор валюты вклада",
+                Value = 1,
+                Importance = 1
+            });
+
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 135),
+                IdQuest = "registr_speed",
+                NameQuset = "Скорость оформления перевода",
+                Value = 1,
+                Importance = 1
+            });
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 175),
+                IdQuest = "cont_intelli",
+                NameQuset = "Понятность условий",
+                Value = 1,
+                Importance = 1
+            });
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 215),
+                IdQuest = "depos_choice",
+                NameQuset = "Возможность выбора варианта вклада",
+                Value = 1,
+                Importance = 1
+            });
+            pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
+            {
+                Location = new Point(7, 255),
+                IdQuest = "add_service",
+                NameQuset = "Наличие дополнительных услуг и предложений",
+                Value = 1,
+                Importance = 1
+            });
+
+            //foreach (QuestControl currentQuestControl in pollsTabControl.TabPages[0].Controls)
+            //{
+            //    _collectionCriterion.Add(currentQuestControl.Criter());
+            //}
+
+
+
+
+
+
+
+            //questDeposControlsCollectionForm.Add(new QuestControl(criterion));
+            //questDeposControlsCollectionForm.Refresh();
+
+        }
+
     }
 }
