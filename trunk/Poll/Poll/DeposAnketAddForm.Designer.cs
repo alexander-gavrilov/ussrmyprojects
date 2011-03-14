@@ -58,6 +58,7 @@
             this.questionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.addPollButton = new System.Windows.Forms.Button();
             this.pollsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fILIALBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -324,7 +325,7 @@
             // 
             // addPollButton
             // 
-            this.addPollButton.Location = new System.Drawing.Point(471, 509);
+            this.addPollButton.Location = new System.Drawing.Point(379, 509);
             this.addPollButton.Name = "addPollButton";
             this.addPollButton.Size = new System.Drawing.Size(75, 23);
             this.addPollButton.TabIndex = 5;
@@ -332,11 +333,23 @@
             this.addPollButton.UseVisualStyleBackColor = true;
             this.addPollButton.Click += new System.EventHandler(this.addPollButton_Click);
             // 
+            // closeButton
+            // 
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeButton.Location = new System.Drawing.Point(471, 509);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 6;
+            this.closeButton.Text = "Закрыть";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // DeposAnketAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 537);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.addPollButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -394,5 +407,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button addPollButton;
         private System.Windows.Forms.BindingSource pollsBindingSource;
+        private System.Windows.Forms.Button closeButton;
     }
 }

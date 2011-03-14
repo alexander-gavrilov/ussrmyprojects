@@ -30,6 +30,7 @@ namespace Poll
             
 
             //polL_DEPOSTableAdapter1.Fill(pollsDataSet1.POLL_DEPOS);
+            polL_DEPOSTableAdapter.FillByFil(pollsDataSet.POLL_DEPOS,(decimal) _user.PrivilegesCodObl);
             pollsBindingSource.DataSource = pollsDataSet.POLL_DEPOS;
             //PollsDataSetTableAdapters.POLL_DEPOSTableAdapter
             //PollsDataSetTableAdapters.POLL_DEPOSTableAdapter
@@ -70,13 +71,17 @@ namespace Poll
         }
         public override void showFormAdd() 
         {
+
             DeposAnketAddForm tmpF = new DeposAnketAddForm(_user);
+            tmpF.Owner = this;
             tmpF.PollsDataSet = pollsDataSet;
             tmpF.PollsBindingSource = pollsBindingSource;
+            
             tmpF.ShowDialog();
+            //tmpF.ShowDialog();
             
         }
-        private void UpdateGrid()
+        public void UpdateGrid()
         {
             polL_DEPOSTableAdapter.FillByFil(pollsDataSet.POLL_DEPOS, (decimal)_user.PrivilegesCodObl);
         }

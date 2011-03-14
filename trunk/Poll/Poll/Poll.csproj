@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1639B5EC-53F2-4079-B061-B1FA8FCAF5A0}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Poll</RootNamespace>
     <AssemblyName>Poll</AssemblyName>
@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,11 +75,11 @@
     <None Include="DeposPollsTableForm.Designer.cs">
       <DependentUpon>DeposPollsTableForm.cs</DependentUpon>
     </None>
-    <Compile Include="AnketsMainForm.cs">
+    <Compile Include="PollsMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnketsMainForm.Designer.cs">
-      <DependentUpon>AnketsMainForm.cs</DependentUpon>
+    <Compile Include="PollsMainForm.Designer.cs">
+      <DependentUpon>PollsMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PollsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,7 +92,7 @@
     <Compile Include="PollsTable.Designer.cs">
       <DependentUpon>PollsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <None Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DeposAnketAddForm.resx">
       <DependentUpon>DeposAnketAddForm.cs</DependentUpon>
@@ -97,8 +100,8 @@
     <EmbeddedResource Include="DeposPollsTableForm.resx">
       <DependentUpon>DeposPollsTableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketsMainForm.resx">
-      <DependentUpon>AnketsMainForm.cs</DependentUpon>
+    <EmbeddedResource Include="PollsMainForm.resx">
+      <DependentUpon>PollsMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PollsTable.resx">
       <DependentUpon>PollsTable.cs</DependentUpon>

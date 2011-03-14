@@ -19,19 +19,19 @@ namespace Poll
         private DeposPollsTableForm _deposPollsTable;
         private Properties.Settings settings;
         private User _anketsUser;
-        public PollsMainForm()
+        public PollsMainForm(User _user)
         {
             InitializeComponent();
-            _anketsUser=new User();
-            _anketsUser.Login = "br_964_avilkovskaya_001";
-            _anketsUser.CodMfo = 964;
-            _anketsUser.CodObl = 8;
-            _anketsUser.CodRKC = 0;
-            _anketsUser.PrivilegesCodMfo = 0;
-            _anketsUser.PrivilegesCodObl = 6;
-            _anketsUser.PrivilegesCodRKC = 0;
+            //_anketsUser=new User();
+            //_anketsUser.Login = "br_964_avilkovskaya_001";
+            //_anketsUser.CodMfo = 964;
+            //_anketsUser.CodObl = 8;
+            //_anketsUser.CodRKC = 0;
+            //_anketsUser.PrivilegesCodMfo = 0;
+            //_anketsUser.PrivilegesCodObl = 6;
+            //_anketsUser.PrivilegesCodRKC = 0;
             //_anketsUser.
-            
+            _anketsUser = _user;
             _deposPollsTable = new DeposPollsTableForm(_anketsUser);
             splitContainer1.Panel2.Controls.Add(_deposPollsTable);
             _deposPollsTable.Dock = DockStyle.Fill;
@@ -39,7 +39,7 @@ namespace Poll
             //Console.WriteLine(settings.Test);
             //settings.Test = "проверка";
             //Console.WriteLine(settings.Test);
-            MessageBox.Show(settings.Test);
+            //MessageBox.Show(settings.Test);
             OrderedDictionary ttt = new OrderedDictionary();
             foreach (DataColumn t in _deposPollsTable.pollsDataSet.POLL_DEPOS.Columns)
             {
@@ -59,7 +59,8 @@ namespace Poll
         {
             //_deposPollsTable.pollsDataSet.POLL_DEPOS.
             //_deposPollsTable.pollsBindingSource.Insert();
-            _deposPollsTable.pollsBindingSource.ResetItem(0);
+            //_deposPollsTable.pollsBindingSource.ResetItem(0);
+            _deposPollsTable.UpdateGrid();
 
         }
     }
