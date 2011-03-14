@@ -31,11 +31,18 @@
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
             // 
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.windowToolStripMenuItem,
+            this.pollToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.MdiWindowListItem = this.windowToolStripMenuItem;
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(967, 24);
             this.mainMenuStrip.TabIndex = 1;
@@ -57,6 +64,19 @@
             this.mainToolStrip.TabIndex = 3;
             this.mainToolStrip.Text = "toolStrip1";
             // 
+            // windowToolStripMenuItem
+            // 
+            this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
+            this.windowToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.windowToolStripMenuItem.Text = "&Окно";
+            // 
+            // pollToolStripMenuItem
+            // 
+            this.pollToolStripMenuItem.Name = "pollToolStripMenuItem";
+            this.pollToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.pollToolStripMenuItem.Text = "Анкеты";
+            this.pollToolStripMenuItem.Click += new System.EventHandler(this.pollToolStripMenuItem_Click);
+            // 
             // BAPBFormsMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -68,7 +88,9 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "BAPBFormsMainForm";
-            this.Text = "Form1";
+            this.Text = "Задачи";
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,6 +101,8 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.StatusStrip mainStatusStrip;
         private System.Windows.Forms.ToolStrip mainToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pollToolStripMenuItem;
     }
 }
 
