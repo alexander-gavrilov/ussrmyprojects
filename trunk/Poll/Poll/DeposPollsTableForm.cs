@@ -58,6 +58,10 @@ namespace Poll
             // splitContainer1
             // 
             // 
+            // buttonChangePoll
+            // 
+            this.buttonChangePoll.Click += new System.EventHandler(this.buttonChangePoll_Click);
+            // 
             // DeposPollsTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,6 +90,42 @@ namespace Poll
             polL_DEPOSTableAdapter.FillByFil(pollsDataSet.POLL_DEPOS, (decimal)_user.PrivilegesCodObl);
         }
 
+        private void buttonChangePoll_Click(object sender, EventArgs e)
+        {
+
+        }
+        public override void showFormChange()
+        {
+            //base.showFormChange();
+            CurrencyManager currencyManager =
+                (CurrencyManager)
+                PollsDataGridView.BindingContext[PollsDataGridView.DataSource, PollsDataGridView.DataMember];
+            if (currencyManager.Count > 0)
+            {
+                //PollsDataSet.POLL_DEPOSRow tmpRow = (PollsDataSet.POLL_DEPOSRow) currencyManager.Current;
+
+                DeposAnketAddForm tmpF = new DeposAnketAddForm(_user,
+                                                               pollsDataSet.POLL_DEPOS.First(
+                                                                   c =>
+                                                                   c.DATE_POLL_DEPOS ==
+                                                                   (DateTime)
+                                                                   PollsDataGridView.SelectedRows[0].Cells[
+                                                                       "DATE_POLL_DEPOS"].Value &&
+                                                                   c.NUMBER_POLL_DEPOS == (decimal)
+                                                                   PollsDataGridView.SelectedRows[0].Cells[
+                                                                       "NUMBER_POLL_DEPOS"].Value && 
+                                                                       c.REF_OTD == (decimal)
+                                                                   PollsDataGridView.SelectedRows[0].Cells[
+                                                                       "REF_OTD"].Value));
+                
+                tmpF.Owner = this;
+                tmpF.PollsDataSet = pollsDataSet;
+                tmpF.PollsBindingSource = pollsBindingSource;
+                tmpF.ShowDialog();
+            }
+
+
+        }
         
 
         
