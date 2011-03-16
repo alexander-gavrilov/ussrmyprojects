@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddChangeRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddChangeRecordForm.Designer.cs">
+      <DependentUpon>AddChangeRecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComponentsDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -55,6 +61,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddChangeRecordForm.resx">
+      <DependentUpon>AddChangeRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlsCollectionForm.resx">
       <DependentUpon>UserControlsCollectionForm.cs</DependentUpon>
     </EmbeddedResource>
