@@ -72,6 +72,7 @@
             this.PollsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PollsDataGridView.Location = new System.Drawing.Point(0, 0);
             this.PollsDataGridView.Name = "PollsDataGridView";
+            this.PollsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PollsDataGridView.Size = new System.Drawing.Size(544, 292);
             this.PollsDataGridView.TabIndex = 0;
             // 
@@ -83,6 +84,7 @@
             this.buttonChangePoll.TabIndex = 2;
             this.buttonChangePoll.Text = "Изменить";
             this.buttonChangePoll.UseVisualStyleBackColor = true;
+            this.buttonChangePoll.Click += new System.EventHandler(this.buttonChangePoll_Click);
             // 
             // buttonDeletePoll
             // 

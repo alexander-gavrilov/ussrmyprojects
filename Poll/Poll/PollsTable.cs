@@ -34,5 +34,14 @@ namespace Poll
         {
             
         }
+        public virtual void showFormChange()
+        {
+            
+        }
+
+        private void buttonChangePoll_Click(object sender, EventArgs e)
+        {
+            showFormChange();
+        }
     }
 }

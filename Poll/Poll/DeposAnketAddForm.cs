@@ -20,15 +20,31 @@ namespace Poll
         private ErrorProvider _numberErr;
         private Collection<Criterion> _collectionCriterion;
         private DeposPollsTableForm _owner;
+        private PollsDataSet.POLL_DEPOSRow _oldRow;
+        private bool _isChanges;
         //private Criterion _criterion;
         public DeposAnketAddForm(User user)
         {
             InitializeComponent();
             _user = user;
             InitializeForm();
+            _isChanges = false;
+        }
+        public DeposAnketAddForm(User user, PollsDataSet.POLL_DEPOSRow inputRow)
+        {
+            InitializeComponent();
+            _user = user;
+            _oldRow = inputRow;
+            InitializeForm();
+            SetDefault();
+            _isChanges = true;
         }
 
         private void filialСomboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            updateOtdComboBox();
+        }
+        private void updateOtdComboBox()
         {
             sTRUCTUNITBindingSource.DataSource = sTRUCT_UNITTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now, (decimal)filialСomboBox.SelectedValue);
             rKCBindingSource.DataSource = rKCTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now,
@@ -42,12 +58,17 @@ namespace Poll
             rKCBindingSource.DataSource = tmpRKCTable;
 
 
+
         }
 
         private void otdComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            updateRkcComboBox();
+        }
+        private void updateRkcComboBox()
+        {
             rKCBindingSource.DataSource = rKCTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now,
-                                                                  (decimal)otdComboBox.SelectedValue);
+                                                      (decimal)otdComboBox.SelectedValue);
             tmpRKCTable.Clear();
             tmpRKCTable.AddRKCRow("<Отделение>", 0);
             rKCTableAdapter.ClearBeforeFill = false;
@@ -55,6 +76,7 @@ namespace Poll
                      (decimal)otdComboBox.SelectedValue);
             //tmpRKCTable.AddRKCRow("", 0);
             rKCBindingSource.DataSource = tmpRKCTable;
+
 
 
         }
@@ -69,6 +91,17 @@ namespace Poll
 
         private void addPollButton_Click(object sender, EventArgs e)
         {
+            if (_isChanges)
+            {
+                updatePollRow();
+            }
+            else
+            {
+                addPollRow();
+            }
+        }
+        private PollsDataSet.POLL_DEPOSRow generatedRow()
+        {
             PollsDataSet.POLL_DEPOSRow tmpRow = Owner.pollsDataSet.POLL_DEPOS.NewPOLL_DEPOSRow();
             tmpRow.DATE_POLL_DEPOS = System.DateTime.Now;
             tmpRow.SEX = sexСomboBox.SelectedValue.ToString();
@@ -78,34 +111,38 @@ namespace Poll
             //{
             //    MessageBox.Show("Ошибка ввода! Номер анкеты числовое поле!!!");
             //}
-            
-            tmpRow.REF_RKC = (decimal) rkcComboBox.SelectedValue;
-            tmpRow.REF_OTD = (decimal) otdComboBox.SelectedValue;
-            tmpRow.REF_OBL = (decimal) filialСomboBox.SelectedValue;
-            tmpRow.REF_USER = (decimal) _user.Id_user;
+
+            tmpRow.REF_RKC = (decimal)rkcComboBox.SelectedValue;
+            tmpRow.REF_OTD = (decimal)otdComboBox.SelectedValue;
+            tmpRow.REF_OBL = (decimal)filialСomboBox.SelectedValue;
+            tmpRow.REF_USER = (decimal)_user.Id_user;
             tmpRow.DT_LAST_ACSESS = System.DateTime.Now;
             foreach (QuestControl currentQuestControl in pollsTabControl.TabPages[0].Controls)
             {
-                tmpRow["S_" + currentQuestControl.IdQuest.ToUpper()] = (decimal) currentQuestControl.Value;
-                tmpRow["I_" + currentQuestControl.IdQuest.ToUpper()] = (decimal) currentQuestControl.Importance;
+                tmpRow["S_" + currentQuestControl.IdQuest.ToUpper()] = (decimal)currentQuestControl.Value;
+                tmpRow["I_" + currentQuestControl.IdQuest.ToUpper()] = (decimal)currentQuestControl.Importance;
 
             }
-            
-            //pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(tmpRow);
-            Owner.pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(tmpRow);
+            return tmpRow;
+
+        }
+
+        private void addPollRow()
+        {
+
+            Owner.pollsDataSet.POLL_DEPOS.AddPOLL_DEPOSRow(generatedRow());
             Owner.polL_DEPOSTableAdapter.Update(Owner.pollsDataSet.POLL_DEPOS);
             Owner.pollsDataSet.POLL_DEPOS.AcceptChanges();
-            //Owner.polL_DEPOSTableAdapter.Update();
-            //PollsDataSetTableAdapters.POLL_DEPOSTableAdapter tmp = new POLL_DEPOSTableAdapter();
-            //tmp.Update(pollsDataSet.POLL_DEPOS);
-            //pollsDataSet.POLL_DEPOS.AcceptChanges();
-           // MessageBox.Show(t.ToString());
-            //tmp.Dispose();
-            //Owner.UpdateGrid();
-            //Close();
-            //InitializeComponent();
-            //DeposAnketAddForm(this._user);
             InitializeForm();
+
+        }
+        private void updatePollRow()
+        {
+            _oldRow = generatedRow();
+            //Owner.pollsDataSet.POLL_DEPOS.Select(c=>c.NUMBER_POLL_DEPOS==_oldRow.NUMBER_POLL_DEPOS&&c.DATE_POLL_DEPOS==_oldRow.DATE_POLL_DEPOS&&c.r)
+            //PollsDataSet.POLL_DEPOSRow tmpR = generatedRow();
+            Owner.polL_DEPOSTableAdapter.Update(Owner.pollsDataSet.POLL_DEPOS);
+            Owner.pollsDataSet.POLL_DEPOS.AcceptChanges();
 
         }
 
@@ -159,7 +196,6 @@ namespace Poll
             //Заполняем таблице Sex
             pollsDataSet.Sex.AddSexRow('m', "Мужской");
             pollsDataSet.Sex.AddSexRow('f', "Женский");
-            //PollsDataSet.FILIALDataTable tempTable=new PollsDataSet.FILIALDataTable();)
             
 
             
@@ -185,50 +221,25 @@ namespace Poll
             sTRUCTUNITBindingSource.DataSource = sTRUCT_UNITTableAdapter.GetData(System.DateTime.Now,
                                                                                  System.DateTime.Now,
                                                                                  (decimal)filialСomboBox.SelectedValue);
-            //rKCBindingSource.DataSource = rKCTableAdapter.GetData(System.DateTime.Now, System.DateTime.Now,
-            //                                                      (decimal) otdComboBox.SelectedValue);
+
+         //{ Запоняем таблицу РКЦ с добавлением кода РКЦ 0 для выбора самого отделения
             tmpRKCTable = new PollsDataSet.RKCDataTable();
-            //rKCTableAdapter.ClearBeforeFill;
+
             tmpRKCTable.AddRKCRow("<Отделение>", 0);
             rKCTableAdapter.ClearBeforeFill = false;
             rKCTableAdapter.Fill(tmpRKCTable, System.DateTime.Now, System.DateTime.Now,
                                  (decimal)otdComboBox.SelectedValue);
 
             rKCBindingSource.DataSource = tmpRKCTable;
+         //}
             pollsTabControl.TabPages[0].Name = "DEPOS";
             pollsTabControl.TabPages[0].Text = "Вклады";
             pollsTabControl.TabPages[1].Name = "BANK";
             pollsTabControl.TabPages[1].Text = "Банк";
-             pollsTabControl.TabPages[0].Controls.Clear();
-
-            //DataRow nullRKCRow = pollsDataSet1.RKC.Rows[0];
-            //nullRKCRow.
-            //new DataRow();
-            //PollsDataSet.RKCRow nullRKCRow = new PollsDataSet.RKCRow(drb);
-
-            //rkcComboBox.Items.Add() rkcComboBox.Items.GetType()
-            //rkcComboBox.Items.;
-            //Criterion criterion = new Criterion();
-            //foreach (DataColumn currentColumn in pollsDataSet.POLL_DEPOS.Columns.)
-            //{
-            //    criterion.Id = currentColumn.ColumnName;
-            //    criterion.Name = currentColumn.Caption;
-
-            //}
+            pollsTabControl.TabPages[0].Controls.Clear();
 
 
             _collectionCriterion = new Collection<Criterion>();
-            //_collectionCriterion.Add(new Criterion()
-            //                             {
-            //                                 Id = "depos_period",
-            //                                 Name = "Срок размещения денежных средств",
-            //                                 Value = 1,
-            //                                 Importance = 1
-            //                             });
-            //QuestControl questControl = new QuestControl(criterion);
-            //questControl.Location = new Point(7, y);
-            //List<String> t;
-            //t.Where()
 
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
@@ -239,15 +250,6 @@ namespace Poll
                 Importance = 1
             });
 
-
-            //pollsTabControl.TabPages[0].Controls.
-
-            //pollsTabControl.TabPages[0].Controls
-            //criterion.Id = "interest_rate";
-            //criterion.Name = "Процентная ставка по вкладу";
-            //criterion.Value = 1;
-            //criterion.Importance = 1;
-
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
                 Location = new Point(7, 55),
@@ -257,20 +259,6 @@ namespace Poll
                 Importance = 1
             });
 
-
-
-            //criterion.Id = "select_curr";
-            //criterion.Name = "Выбор валюты вклада";
-            //criterion.Value = 1;
-            //criterion.Importance = 1;
-            //pollsTabControl.TabPages[0].Controls.Add(new QuestControl(criterion) { Location = new Point(7, 95) });
-            //_collectionCriterion.Add(new Criterion()
-            //                             {
-            //                                 Id = "select_curr",
-            //                                 Name = "Выбор валюты вклада",
-            //                                 Value = 1,
-            //                                 Importance = 1
-            //                             });
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
                 Location = new Point(7, 95),
@@ -288,6 +276,7 @@ namespace Poll
                 Value = 1,
                 Importance = 1
             });
+
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
                 Location = new Point(7, 175),
@@ -296,6 +285,7 @@ namespace Poll
                 Value = 1,
                 Importance = 1
             });
+
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
                 Location = new Point(7, 215),
@@ -304,6 +294,7 @@ namespace Poll
                 Value = 1,
                 Importance = 1
             });
+
             pollsTabControl.TabPages[0].Controls.Add(new QuestControl()
             {
                 Location = new Point(7, 255),
@@ -313,19 +304,25 @@ namespace Poll
                 Importance = 1
             });
 
-            //foreach (QuestControl currentQuestControl in pollsTabControl.TabPages[0].Controls)
-            //{
-            //    _collectionCriterion.Add(currentQuestControl.Criter());
-            //}
+        }
+        private void SetDefault()
+        {
+            filialСomboBox.SelectedValue = _oldRow.REF_OBL;
+            updateOtdComboBox();
+            filialСomboBox.Enabled = false;
+            otdComboBox.SelectedValue = _oldRow.REF_OTD;
+            updateRkcComboBox();
+            otdComboBox.Enabled = false;
+            rkcComboBox.SelectedValue = _oldRow.REF_RKC;
+            
+            sexСomboBox.SelectedValue = _oldRow.SEX;
+            ageUpDown.Value = _oldRow.AGE;
+            numberTextBox.Text = _oldRow.NUMBER_POLL_DEPOS.ToString();
+            numberTextBox.Enabled = false;
+            addPollButton.Text = "Изменить";
+            addPollButton.DialogResult = DialogResult.OK;
+            addPollButton.Enabled = true;
 
-
-
-
-
-
-
-            //questDeposControlsCollectionForm.Add(new QuestControl(criterion));
-            //questDeposControlsCollectionForm.Refresh();
 
         }
 
