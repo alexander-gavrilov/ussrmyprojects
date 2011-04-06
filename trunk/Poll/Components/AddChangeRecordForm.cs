@@ -9,8 +9,10 @@ using System.Windows.Forms;
 
 namespace Components
 {
+    
     public partial class AddChangeRecordForm : Form
     {
+        //private Form _owner;
         public AddChangeRecordForm()
         {
             InitializeComponent();
@@ -33,5 +35,7 @@ namespace Components
         {
             
         }
+
+        public Form Owner { get; set; }
     }
 }

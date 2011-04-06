@@ -47,6 +47,12 @@
     <Compile Include="AddChangeRecordForm.Designer.cs">
       <DependentUpon>AddChangeRecordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComponentsComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComponentsComboBox.Designer.cs">
+      <DependentUpon>ComponentsComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComponentsDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -63,6 +69,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AddChangeRecordForm.resx">
       <DependentUpon>AddChangeRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComponentsComboBox.resx">
+      <DependentUpon>ComponentsComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlsCollectionForm.resx">
       <DependentUpon>UserControlsCollectionForm.cs</DependentUpon>
