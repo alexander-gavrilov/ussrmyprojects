@@ -54,6 +54,12 @@
     <Compile Include="AddPollForm.Designer.cs">
       <DependentUpon>AddPollForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePollForm.Designer.cs">
+      <DependentUpon>ChangePollForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </Compile>
     <EmbeddedResource Include="AddPollForm.resx">
       <DependentUpon>AddPollForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePollForm.resx">
+      <DependentUpon>ChangePollForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

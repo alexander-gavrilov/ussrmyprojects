@@ -46,7 +46,7 @@ namespace bapbpolls {
         
         private SEXDataTable tableSEX;
         
-        private global::System.Data.DataRelation relationFK_POLLSCOMMON;
+        private Polls2GridCommonDataTable tablePolls2GridCommon;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -108,6 +108,9 @@ namespace bapbpolls {
                 }
                 if ((ds.Tables["SEX"] != null)) {
                     base.Tables.Add(new SEXDataTable(ds.Tables["SEX"]));
+                }
+                if ((ds.Tables["Polls2GridCommon"] != null)) {
+                    base.Tables.Add(new Polls2GridCommonDataTable(ds.Tables["Polls2GridCommon"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -239,6 +242,16 @@ namespace bapbpolls {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public Polls2GridCommonDataTable Polls2GridCommon {
+            get {
+                return this.tablePolls2GridCommon;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -336,6 +349,9 @@ namespace bapbpolls {
                 }
                 if ((ds.Tables["SEX"] != null)) {
                     base.Tables.Add(new SEXDataTable(ds.Tables["SEX"]));
+                }
+                if ((ds.Tables["Polls2GridCommon"] != null)) {
+                    base.Tables.Add(new Polls2GridCommonDataTable(ds.Tables["Polls2GridCommon"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -436,7 +452,12 @@ namespace bapbpolls {
                     this.tableSEX.InitVars();
                 }
             }
-            this.relationFK_POLLSCOMMON = this.Relations["FK_POLLSCOMMON"];
+            this.tablePolls2GridCommon = ((Polls2GridCommonDataTable)(base.Tables["Polls2GridCommon"]));
+            if ((initTable == true)) {
+                if ((this.tablePolls2GridCommon != null)) {
+                    this.tablePolls2GridCommon.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -469,18 +490,8 @@ namespace bapbpolls {
             base.Tables.Add(this.tableRKCView);
             this.tableSEX = new SEXDataTable();
             base.Tables.Add(this.tableSEX);
-            this.relationFK_POLLSCOMMON = new global::System.Data.DataRelation("FK_POLLSCOMMON", new global::System.Data.DataColumn[] {
-                        this.tablePOLLSCOMMON.NUMColumn,
-                        this.tablePOLLSCOMMON.TYPEColumn,
-                        this.tablePOLLSCOMMON.RDAYColumn,
-                        this.tablePOLLSCOMMON.BRANCHColumn,
-                        this.tablePOLLSCOMMON.RKCColumn}, new global::System.Data.DataColumn[] {
-                        this.tablePOLLSDATA.NUMColumn,
-                        this.tablePOLLSDATA.TYPEColumn,
-                        this.tablePOLLSDATA.RDAYColumn,
-                        this.tablePOLLSDATA.BRANCHColumn,
-                        this.tablePOLLSDATA.RKCColumn}, false);
-            this.Relations.Add(this.relationFK_POLLSCOMMON);
+            this.tablePolls2GridCommon = new Polls2GridCommonDataTable();
+            base.Tables.Add(this.tablePolls2GridCommon);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -546,6 +557,12 @@ namespace bapbpolls {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeSEX() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializePolls2GridCommon() {
             return false;
         }
         
@@ -636,6 +653,9 @@ namespace bapbpolls {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SEXRowChangeEventHandler(object sender, SEXRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void Polls2GridCommonRowChangeEventHandler(object sender, Polls2GridCommonRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1229,6 +1249,18 @@ namespace bapbpolls {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLLSDATARow FindByNUMTYPERDAYBRANCHRKCIDQUEST(decimal NUM, string TYPE, System.DateTime RDAY, decimal BRANCH, decimal RKC, string IDQUEST) {
+                return ((POLLSDATARow)(this.Rows.Find(new object[] {
+                            NUM,
+                            TYPE,
+                            RDAY,
+                            BRANCH,
+                            RKC,
+                            IDQUEST})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 POLLSDATADataTable cln = ((POLLSDATADataTable)(base.Clone()));
                 cln.InitVars();
@@ -1273,6 +1305,13 @@ namespace bapbpolls {
                 base.Columns.Add(this.columnQUALITY);
                 this.columnIMPOTANCE = new global::System.Data.DataColumn("IMPOTANCE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIMPOTANCE);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNUM,
+                                this.columnTYPE,
+                                this.columnRDAY,
+                                this.columnBRANCH,
+                                this.columnRKC,
+                                this.columnIDQUEST}, true));
                 this.columnNUM.AllowDBNull = false;
                 this.columnTYPE.AllowDBNull = false;
                 this.columnTYPE.MaxLength = 10;
@@ -3840,11 +3879,6 @@ namespace bapbpolls {
                 xs.Add(dsSchema);
                 return type;
             }
-
-            internal System.Collections.Generic.IEnumerable<TYPEPOLLSRow> Select(System.Func<TYPEPOLLSRow, bool> func)
-            {
-                throw new System.NotImplementedException();
-            }
         }
         
         /// <summary>
@@ -4375,6 +4409,339 @@ namespace bapbpolls {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Polls2GridCommonDataTable : global::System.Data.TypedTableBase<Polls2GridCommonRow> {
+            
+            private global::System.Data.DataColumn columnNum;
+            
+            private global::System.Data.DataColumn columnType;
+            
+            private global::System.Data.DataColumn columnRDay;
+            
+            private global::System.Data.DataColumn columnBranch;
+            
+            private global::System.Data.DataColumn columnRKC;
+            
+            private global::System.Data.DataColumn columnPosition;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonDataTable() {
+                this.TableName = "Polls2GridCommon";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal Polls2GridCommonDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected Polls2GridCommonDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NumColumn {
+                get {
+                    return this.columnNum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TypeColumn {
+                get {
+                    return this.columnType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RDayColumn {
+                get {
+                    return this.columnRDay;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BranchColumn {
+                get {
+                    return this.columnBranch;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RKCColumn {
+                get {
+                    return this.columnRKC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PositionColumn {
+                get {
+                    return this.columnPosition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRow this[int index] {
+                get {
+                    return ((Polls2GridCommonRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Polls2GridCommonRowChangeEventHandler Polls2GridCommonRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Polls2GridCommonRowChangeEventHandler Polls2GridCommonRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Polls2GridCommonRowChangeEventHandler Polls2GridCommonRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event Polls2GridCommonRowChangeEventHandler Polls2GridCommonRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddPolls2GridCommonRow(Polls2GridCommonRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRow AddPolls2GridCommonRow(decimal Num, string Type, System.DateTime RDay, decimal Branch, decimal RKC, decimal Position) {
+                Polls2GridCommonRow rowPolls2GridCommonRow = ((Polls2GridCommonRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Num,
+                        Type,
+                        RDay,
+                        Branch,
+                        RKC,
+                        Position};
+                rowPolls2GridCommonRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPolls2GridCommonRow);
+                return rowPolls2GridCommonRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRow FindByPosition(decimal Position) {
+                return ((Polls2GridCommonRow)(this.Rows.Find(new object[] {
+                            Position})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Polls2GridCommonDataTable cln = ((Polls2GridCommonDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Polls2GridCommonDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnNum = base.Columns["Num"];
+                this.columnType = base.Columns["Type"];
+                this.columnRDay = base.Columns["RDay"];
+                this.columnBranch = base.Columns["Branch"];
+                this.columnRKC = base.Columns["RKC"];
+                this.columnPosition = base.Columns["Position"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnNum = new global::System.Data.DataColumn("Num", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNum);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
+                this.columnRDay = new global::System.Data.DataColumn("RDay", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRDay);
+                this.columnBranch = new global::System.Data.DataColumn("Branch", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBranch);
+                this.columnRKC = new global::System.Data.DataColumn("RKC", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRKC);
+                this.columnPosition = new global::System.Data.DataColumn("Position", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPosition);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnPosition}, true));
+                this.columnNum.AllowDBNull = false;
+                this.columnType.AllowDBNull = false;
+                this.columnType.MaxLength = 10;
+                this.columnRDay.AllowDBNull = false;
+                this.columnBranch.AllowDBNull = false;
+                this.columnPosition.AllowDBNull = false;
+                this.columnPosition.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRow NewPolls2GridCommonRow() {
+                return ((Polls2GridCommonRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Polls2GridCommonRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Polls2GridCommonRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Polls2GridCommonRowChanged != null)) {
+                    this.Polls2GridCommonRowChanged(this, new Polls2GridCommonRowChangeEvent(((Polls2GridCommonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Polls2GridCommonRowChanging != null)) {
+                    this.Polls2GridCommonRowChanging(this, new Polls2GridCommonRowChangeEvent(((Polls2GridCommonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Polls2GridCommonRowDeleted != null)) {
+                    this.Polls2GridCommonRowDeleted(this, new Polls2GridCommonRowChangeEvent(((Polls2GridCommonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Polls2GridCommonRowDeleting != null)) {
+                    this.Polls2GridCommonRowDeleting(this, new Polls2GridCommonRowChangeEvent(((Polls2GridCommonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovePolls2GridCommonRow(Polls2GridCommonRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                PollsDataSet ds = new PollsDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Polls2GridCommonDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class POLLSCOMMONRow : global::System.Data.DataRow {
@@ -4525,17 +4892,6 @@ namespace bapbpolls {
             public void SetTYPETRANSNull() {
                 this[this.tablePOLLSCOMMON.TYPETRANSColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public POLLSDATARow[] GetPOLLSDATARows() {
-                if ((this.Table.ChildRelations["FK_POLLSCOMMON"] == null)) {
-                    return new POLLSDATARow[0];
-                }
-                else {
-                    return ((POLLSDATARow[])(base.GetChildRows(this.Table.ChildRelations["FK_POLLSCOMMON"])));
-                }
-            }
         }
         
         /// <summary>
@@ -4637,17 +4993,6 @@ namespace bapbpolls {
                 }
                 set {
                     this[this.tablePOLLSDATA.IMPOTANCEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public POLLSCOMMONRow POLLSCOMMONRowParent {
-                get {
-                    return ((POLLSCOMMONRow)(this.GetParentRow(this.Table.ParentRelations["FK_POLLSCOMMON"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_POLLSCOMMON"]);
                 }
             }
         }
@@ -5626,6 +5971,104 @@ namespace bapbpolls {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class Polls2GridCommonRow : global::System.Data.DataRow {
+            
+            private Polls2GridCommonDataTable tablePolls2GridCommon;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal Polls2GridCommonRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePolls2GridCommon = ((Polls2GridCommonDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Num {
+                get {
+                    return ((decimal)(this[this.tablePolls2GridCommon.NumColumn]));
+                }
+                set {
+                    this[this.tablePolls2GridCommon.NumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Type {
+                get {
+                    return ((string)(this[this.tablePolls2GridCommon.TypeColumn]));
+                }
+                set {
+                    this[this.tablePolls2GridCommon.TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime RDay {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePolls2GridCommon.RDayColumn]));
+                }
+                set {
+                    this[this.tablePolls2GridCommon.RDayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Branch {
+                get {
+                    return ((decimal)(this[this.tablePolls2GridCommon.BranchColumn]));
+                }
+                set {
+                    this[this.tablePolls2GridCommon.BranchColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal RKC {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePolls2GridCommon.RKCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RKC\' in table \'Polls2GridCommon\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePolls2GridCommon.RKCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Position {
+                get {
+                    return ((decimal)(this[this.tablePolls2GridCommon.PositionColumn]));
+                }
+                set {
+                    this[this.tablePolls2GridCommon.PositionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRKCNull() {
+                return this.IsNull(this.tablePolls2GridCommon.RKCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRKCNull() {
+                this[this.tablePolls2GridCommon.RKCColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5985,6 +6428,40 @@ namespace bapbpolls {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SEXRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class Polls2GridCommonRowChangeEvent : global::System.EventArgs {
+            
+            private Polls2GridCommonRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRowChangeEvent(Polls2GridCommonRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public Polls2GridCommonRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -6786,6 +7263,18 @@ and extract(year from rday)=:year and FILIAL=:filial and TYPE=:type";
             tableMapping.ColumnMappings.Add("QUALITY", "QUALITY");
             tableMapping.ColumnMappings.Add("IMPOTANCE", "IMPOTANCE");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""POLL"".""POLLSDATA"" WHERE ((""NUM"" = :Original_NUM) AND (""TYPE"" = :Original_TYPE) AND (""RDAY"" = :Original_RDAY) AND (""BRANCH"" = :Original_BRANCH) AND (""RKC"" = :Original_RKC) AND (""IDQUEST"" = :Original_IDQUEST) AND (""QUALITY"" = :Original_QUALITY) AND (""IMPOTANCE"" = :Original_IMPOTANCE))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUM", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUM", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_TYPE", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "TYPE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RDAY", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "RDAY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_BRANCH", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "BRANCH", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_IDQUEST", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "IDQUEST", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_QUALITY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_IMPOTANCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "IMPOTANCE", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO \"POLL\".\"POLLSDATA\" (\"NUM\", \"TYPE\", \"RDAY\", \"BRANCH\", \"RKC\", \"IDQUEST\"" +
@@ -6800,6 +7289,26 @@ and extract(year from rday)=:year and FILIAL=:filial and TYPE=:type";
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IDQUEST", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "IDQUEST", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("QUALITY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITY", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMPOTANCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "IMPOTANCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE ""POLL"".""POLLSDATA"" SET ""NUM"" = :NUM, ""TYPE"" = :TYPE, ""RDAY"" = :RDAY, ""BRANCH"" = :BRANCH, ""RKC"" = :RKC, ""IDQUEST"" = :IDQUEST, ""QUALITY"" = :QUALITY, ""IMPOTANCE"" = :IMPOTANCE WHERE ((""NUM"" = :Original_NUM) AND (""TYPE"" = :Original_TYPE) AND (""RDAY"" = :Original_RDAY) AND (""BRANCH"" = :Original_BRANCH) AND (""RKC"" = :Original_RKC) AND (""IDQUEST"" = :Original_IDQUEST) AND (""QUALITY"" = :Original_QUALITY) AND (""IMPOTANCE"" = :Original_IMPOTANCE))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("NUM", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUM", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("TYPE", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "TYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RDAY", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "RDAY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("BRANCH", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "BRANCH", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "RKC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IDQUEST", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "IDQUEST", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("QUALITY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IMPOTANCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "IMPOTANCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUM", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUM", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_TYPE", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "TYPE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RDAY", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "RDAY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_BRANCH", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "BRANCH", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_IDQUEST", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, "IDQUEST", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_QUALITY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "QUALITY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_IMPOTANCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "IMPOTANCE", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6812,7 +7321,7 @@ and extract(year from rday)=:year and FILIAL=:filial and TYPE=:type";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[2];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[3];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT NUM, \"TYPE\", RDAY, BRANCH, RKC, IDQUEST, QUALITY, IMPOTANCE FROM POLL.POLL" +
@@ -6828,6 +7337,17 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
             this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("year", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, null, global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, null, global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("type", global::System.Data.OracleClient.OracleType.NVarChar, 0, global::System.Data.ParameterDirection.Input, null, global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT BRANCH, IDQUEST, IMPOTANCE, NUM, QUALITY, RDAY, RKC, \"TYPE\" FROM POLLSDATA" +
+                " WHERE (NUM = :num) AND (\"TYPE\" = :type) AND (RDAY = :rday) AND (BRANCH = :otd) " +
+                "AND (RKC = :rkc)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("num", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "NUM", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("type", global::System.Data.OracleClient.OracleType.NVarChar, 20, global::System.Data.ParameterDirection.Input, "TYPE", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("rday", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "RDAY", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("otd", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "BRANCH", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("rkc", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "RKC", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6899,6 +7419,50 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillCurrent(PollsDataSet.POLLSDATADataTable dataTable, decimal num, string type, System.DateTime rday, decimal otd, decimal rkc) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(num));
+            if ((type == null)) {
+                throw new global::System.ArgumentNullException("type");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(type));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(rday));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(otd));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(rkc));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.POLLSDATADataTable GetDataCurrent(decimal num, string type, System.DateTime rday, decimal otd, decimal rkc) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(num));
+            if ((type == null)) {
+                throw new global::System.ArgumentNullException("type");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(type));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(rday));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(otd));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(rkc));
+            PollsDataSet.POLLSDATADataTable dataTable = new PollsDataSet.POLLSDATADataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(PollsDataSet.POLLSDATADataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
@@ -6923,6 +7487,45 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(decimal Original_NUM, string Original_TYPE, System.DateTime Original_RDAY, decimal Original_BRANCH, decimal Original_RKC, string Original_IDQUEST, decimal Original_QUALITY, decimal Original_IMPOTANCE) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((decimal)(Original_NUM));
+            if ((Original_TYPE == null)) {
+                throw new global::System.ArgumentNullException("Original_TYPE");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_TYPE));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_RDAY));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_BRANCH));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_RKC));
+            if ((Original_IDQUEST == null)) {
+                throw new global::System.ArgumentNullException("Original_IDQUEST");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_IDQUEST));
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((decimal)(Original_QUALITY));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_IMPOTANCE));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6962,6 +7565,87 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    decimal NUM, 
+                    string TYPE, 
+                    System.DateTime RDAY, 
+                    decimal BRANCH, 
+                    decimal RKC, 
+                    string IDQUEST, 
+                    decimal QUALITY, 
+                    decimal IMPOTANCE, 
+                    decimal Original_NUM, 
+                    string Original_TYPE, 
+                    System.DateTime Original_RDAY, 
+                    decimal Original_BRANCH, 
+                    decimal Original_RKC, 
+                    string Original_IDQUEST, 
+                    decimal Original_QUALITY, 
+                    decimal Original_IMPOTANCE) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(NUM));
+            if ((TYPE == null)) {
+                throw new global::System.ArgumentNullException("TYPE");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(TYPE));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(RDAY));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(BRANCH));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(RKC));
+            if ((IDQUEST == null)) {
+                throw new global::System.ArgumentNullException("IDQUEST");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(IDQUEST));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(QUALITY));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(IMPOTANCE));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(Original_NUM));
+            if ((Original_TYPE == null)) {
+                throw new global::System.ArgumentNullException("Original_TYPE");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_TYPE));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_RDAY));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(Original_BRANCH));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(Original_RKC));
+            if ((Original_IDQUEST == null)) {
+                throw new global::System.ArgumentNullException("Original_IDQUEST");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_IDQUEST));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(Original_QUALITY));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(Original_IMPOTANCE));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(decimal QUALITY, decimal IMPOTANCE, decimal Original_NUM, string Original_TYPE, System.DateTime Original_RDAY, decimal Original_BRANCH, decimal Original_RKC, string Original_IDQUEST, decimal Original_QUALITY, decimal Original_IMPOTANCE) {
+            return this.Update(Original_NUM, Original_TYPE, Original_RDAY, Original_BRANCH, Original_RKC, Original_IDQUEST, QUALITY, IMPOTANCE, Original_NUM, Original_TYPE, Original_RDAY, Original_BRANCH, Original_RKC, Original_IDQUEST, Original_QUALITY, Original_IMPOTANCE);
         }
     }
     
@@ -10032,24 +10716,6 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(PollsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._pOLLSCOMMONTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._pOLLSCOMMONTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._pOLLSDATATableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._pOLLSDATATableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tYPEPOLLSTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TYPEPOLLS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -10068,15 +10734,6 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._rKCTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._rKCTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._fILIALTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.FILIAL.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -10086,12 +10743,39 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._pOLLSDATATableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._pOLLSDATATableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._pOLLSCOMMONTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._pOLLSCOMMONTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._sTRUCT_UNITTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.STRUCT_UNIT.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._sTRUCT_UNITTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._rKCTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._rKCTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -10105,22 +10789,6 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(PollsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._pOLLSCOMMONTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._pOLLSCOMMONTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._pOLLSDATATableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._pOLLSDATATableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tYPEPOLLSTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TYPEPOLLS.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -10137,14 +10805,6 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._rKCTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._rKCTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._fILIALTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.FILIAL.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -10153,11 +10813,35 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._pOLLSDATATableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._pOLLSDATATableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._pOLLSCOMMONTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._pOLLSCOMMONTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._sTRUCT_UNITTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.STRUCT_UNIT.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._sTRUCT_UNITTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._rKCTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._rKCTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -10171,6 +10855,14 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(PollsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._rKCTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._rKCTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._sTRUCT_UNITTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.STRUCT_UNIT.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -10179,19 +10871,27 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._pOLLSCOMMONTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._pOLLSCOMMONTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._pOLLSDATATableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._pOLLSDATATableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._fILIALTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.FILIAL.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._fILIALTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._rKCTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.RKC.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._rKCTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -10208,22 +10908,6 @@ and extract(year from rday)=:year and BRANCH in (SELECT BRANCH from directory.ST
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tYPEPOLLSTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._pOLLSDATATableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.POLLSDATA.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._pOLLSDATATableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._pOLLSCOMMONTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.POLLSCOMMON.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._pOLLSCOMMONTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

@@ -12,7 +12,7 @@ using bapbpolls.PollsDataSetTableAdapters;
 
 namespace bapbpolls
 {
-    public partial class AddPollForm : AddChangeRecordForm
+    public partial class ChangePollForm : AddChangeRecordForm
     {
         private MainPollsForm _owner;
         private User _user;
@@ -24,17 +24,18 @@ namespace bapbpolls
         //private BindingSource structBindingSource;
         private TYPESTableAdapter typesAdapter;
         private BindingSource typesBinding;
+        private PollsDataSet.POLLSCOMMONRow _oldRow;
+        private PollsDataSet.POLLSDATADataTable _oldData;
         //private FILIALTableAdapter filialTableAdapter;
         //private BindingSource filialBindingSource;
         //private RKCViewTableAdapter rkcTableAdapter;
         //private BindingSource rkcBindingSource;
 
-        public AddPollForm(User user,MainPollsForm owner)
+        public ChangePollForm(User user,MainPollsForm owner,PollsDataSet.POLLSCOMMONRow oldRow)
         {
             _user = user;
             Owner = owner;
-            _owner = owner;
-            
+            _oldRow = oldRow;
             InitializeComponent();
             _qTexts = new List<string>()
                           {
@@ -62,8 +63,12 @@ namespace bapbpolls
 
         public MainPollsForm Owner
         {
-            get;
-            set;
+            get { return _owner; }
+            set
+            {
+                _owner = value;
+                _pollsDataSet = value.pollsDataSet;
+            }
         }
 
         public User User { get { return _user; } }
@@ -72,17 +77,18 @@ namespace bapbpolls
             typesAdapter = new TYPESTableAdapter();
             typesBinding = new BindingSource(_owner.pollsDataSet, "TYPES");
             typesAdapter.Fill(_owner.pollsDataSet.TYPES);
-            checkedListBoxType.DataSource = typesBinding;
-            checkedListBoxType.DisplayMember = "NAME";
-            checkedListBoxType.ValueMember = "TYPE";
-            maskedTextBoxNumber.Text="";
-
+            
+            //checkedListBoxType.DataSource = typesBinding;
+            //checkedListBoxType.DisplayMember = "NAME";
+            //checkedListBoxType.ValueMember = "TYPE";
+            maskedTextBoxNumber.Text=_oldRow.NUM.ToString();
+            
             //Инициализируем ErrorProvider отвечающий за контроль номера анкеты
             _numberErr = new ErrorProvider();
             _numberErr.SetIconAlignment(maskedTextBoxNumber, ErrorIconAlignment.MiddleRight);
             _numberErr.SetIconPadding(maskedTextBoxNumber, 2);
             _numberErr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
-
+            
             //filialTableAdapter = new FILIALTableAdapter();
             //filialBindingSource = new BindingSource(_owner.pollsDataSet,"FILIAL");
             if (_user.PrivilegesCodObl != 0)
@@ -93,12 +99,22 @@ namespace bapbpolls
             fILIALTableAdapter.Fill(pollsDataSet.FILIAL, DateTime.Now);
             sTRUCT_UNITTableAdapter.Fill(pollsDataSet.STRUCT_UNIT, DateTime.Now);
             rKCViewTableAdapter.ClearBeforeFill = false;
+            comboBoxRegion.SelectedValue = _oldRow.FILIAL;
+            comboBoxStructUnite.SelectedValue = _oldRow.BRANCH;
+            comboBoxRKC.SelectedValue = _oldRow.RKC;
             pollsDataSet.RKCView.AddRKCViewRow(0, "<Отделение>");
             //structTableAdapter = new STRUCT_UNITTableAdapter();
             //structBindingSource = new BindingSource(_owner.pollsDataSet, "STRUCT_UNIT");
 
             pollsDataSet.SEX.AddSEXRow("М", "Мужской");
             pollsDataSet.SEX.AddSEXRow("Ж", "Женский");
+
+            comboBoxSex.SelectedValue = _oldRow.SEX;
+            numericUpDown1.Value = _oldRow.AGE;
+
+            tabControlPolls.TabPages.Add(GetTabPage(_oldRow.TYPE));
+            //_oldData
+
             //filialTableAdapter.Fill(_owner.pollsDataSet.FILIAL, DateTime.Now);
 
             //comboBoxRegion.DataSource = filialBindingSource;
@@ -213,7 +229,10 @@ namespace bapbpolls
             qHeadersRow.AutoSize = true;
             iHeadersRow.AutoSize = true;
             Console.WriteLine("Header "+qHeadersRow.Height);
-            
+            var pollsDataTA = new POLLSDATATableAdapter();
+            pollsDataTA.FillCurrent(pollsDataSet.POLLSDATA, _oldRow.NUM, _oldRow.TYPE, _oldRow.RDAY, _oldRow.BRANCH,
+                                    _oldRow.RKC);
+
 
             foreach (var currentRow in _owner.pollsDataSet.TYPEPOLLS.Where(c=>c.TYPE==Key))
             {
@@ -238,16 +257,35 @@ namespace bapbpolls
                 iPollRadioTable.tableLayoutPanel.Controls.Add(new Label() { Name = currentRow.IDQUEST, Text = qRadioRow.Text, AutoSize = true, Height = 0 }, 0, i + 1);
 
                 var qCurentRadioRow = new GroupeRow() { Dock = DockStyle.Fill, Name = "R" + currentRow.IDQUEST };
-                var iCurentRadioRow = new GroupeRow() { Dock = DockStyle.Fill, Name = "R" + currentRow.IDQUEST }; 
+                var iCurentRadioRow = new GroupeRow() { Dock = DockStyle.Fill, Name = "R" + currentRow.IDQUEST };
 
-                for (int j = 0; j < 5; j++)
+                var curentQ = pollsDataSet.POLLSDATA.Where(c => c.IDQUEST == currentRow.IDQUEST).FirstOrDefault().QUALITY;
+                var curentI = pollsDataSet.POLLSDATA.Where(c => c.IDQUEST == currentRow.IDQUEST).FirstOrDefault().IMPOTANCE;
+                
+                
+
+                for (int j = 0; j <5; j++)
                 {
                     //qPollRadioTable.tableLayoutPanel.Controls.Add(qRadioRow.Mark[j], j + 1, i+1);
                     ////qPollRadioTable.tableLayoutPanel.RowStyles[i + 1] = new RowStyle(qPollRadioTable.tableLayoutPanel.RowStyles[0]);
                     //iPollRadioTable.tableLayoutPanel.Controls.Add(iRadioRow.Mark[j], j + 1, i+1);
-                    qCurentRadioRow.tableLayoutPanel.Controls.Add(qRadioRow.Mark[j], j, 0);
+                    //if ()
+                    //{
+                        
+                    //}
+                    if (curentQ==j+1)
+                    {
+                        qRadioRow.Mark[4-j].Checked = true;
+                    }
+                    if (curentI == j+1)
+                    {
+                        iRadioRow.Mark[4 - j].Checked = true;
+                    }
 
+                    
+                    qCurentRadioRow.tableLayoutPanel.Controls.Add(qRadioRow.Mark[j], j, 0);
                     iCurentRadioRow.tableLayoutPanel.Controls.Add(iRadioRow.Mark[j], j, 0);
+                    
                 }
                 qPollRadioTable.tableLayoutPanel.Controls.Add(qCurentRadioRow, 1, i + 1);
                 iPollRadioTable.tableLayoutPanel.Controls.Add(iCurentRadioRow, 1, i + 1);
@@ -381,7 +419,12 @@ namespace bapbpolls
         {
             foreach (TabPage currentListBoxItem in tabControlPolls.TabPages)
             {
-                var _newCommonRow = _owner.pollsDataSet.POLLSCOMMON.NewPOLLSCOMMONRow();
+                var pollsCommonAdapter = new POLLSCOMMONTableAdapter();
+                pollsCommonAdapter.Fill(_owner.pollsDataSet.POLLSCOMMON);
+                var _newCommonRow = _owner.pollsDataSet.POLLSCOMMON.FindByNUMTYPERDAYBRANCHRKC(_oldRow.NUM, _oldRow.TYPE,
+                                                                                               _oldRow.RDAY,
+                                                                                               _oldRow.BRANCH,
+                                                                                               _oldRow.RKC);
                 _newCommonRow.NUM = Convert.ToDecimal(maskedTextBoxNumber.Text);
                 _newCommonRow.RDAY = dateTimePicker.Value;
                 _newCommonRow.TYPE = currentListBoxItem.Name;
@@ -405,18 +448,18 @@ namespace bapbpolls
                 var splitQI = (SplitContainer) currentListBoxItem.Controls["SplitQI"];
                 var qPollRadioTable = (PollRadioTable) splitQI.Panel1.Controls["QTABLE"];
                 var iPollRadioTable = (PollRadioTable) splitQI.Panel2.Controls["ITABLE"];
-                _owner.pollsDataSet.POLLSCOMMON.AddPOLLSCOMMONRow(_newCommonRow);
-                var pollsCommonAdapter = new POLLSCOMMONTableAdapter();
-                pollsCommonAdapter.Update(_owner.pollsDataSet.POLLSCOMMON);
-                _owner.pollsDataSet.POLLSCOMMON.AcceptChanges();
-
-                //c => c.TYPE == currentListBoxItem.Name/*"TYPE="+currentListBoxItem.Name*/)
+                //_owner.pollsDataSet.POLLSCOMMON.
+                
+                //_owner.pollsDataSet.POLLSDATA.
+                var pollsDataAdapter = new POLLSDATATableAdapter();
+                pollsDataAdapter.Fill(_owner.pollsDataSet.POLLSDATA);
+                //c => c.TYPE == currentListBoxItem.Name/*"TYPE="+currentListBoxItem.Name*/))
                 foreach (PollsDataSet.TYPEPOLLSRow curCrit in _owner.pollsDataSet.TYPEPOLLS.Where(c=>c.TYPE==currentListBoxItem.Name))
                 {
                     var qCurRadioRow = (GroupeRow)qPollRadioTable.tableLayoutPanel.Controls["R" + curCrit.IDQUEST];
                     var iCurRadioRow = (GroupeRow)iPollRadioTable.tableLayoutPanel.Controls["R" + curCrit.IDQUEST];
-                    int markQ = 3;
-                    int markI = 3;
+                    int markQ = 0;
+                    int markI = 0;
                     for (int i = 1; i <= 5; i++)
                     {
                         var rbQ = (RadioButton) qCurRadioRow.tableLayoutPanel.Controls["Mark" + i];
@@ -427,8 +470,11 @@ namespace bapbpolls
                             markI = i;
  
                     }
-                    var newPollsDataRow = _owner.pollsDataSet.POLLSDATA.NewPOLLSDATARow();
-                    newPollsDataRow.IDQUEST = curCrit.IDQUEST;
+                    var newPollsDataRow = _owner.pollsDataSet.POLLSDATA.FindByNUMTYPERDAYBRANCHRKCIDQUEST(_oldRow.NUM, _oldRow.TYPE,
+                                                                                               _oldRow.RDAY,
+                                                                                               _oldRow.BRANCH,
+                                                                                               _oldRow.RKC, curCrit.IDQUEST);
+                    
                     newPollsDataRow.BRANCH = _newCommonRow.BRANCH;
                     newPollsDataRow.RKC = _newCommonRow.RKC;
                     newPollsDataRow.NUM = _newCommonRow.NUM;
@@ -436,20 +482,19 @@ namespace bapbpolls
                     newPollsDataRow.TYPE = _newCommonRow.TYPE;
                     newPollsDataRow.QUALITY = markQ;
                     newPollsDataRow.IMPOTANCE = markI;
-                    _owner.pollsDataSet.POLLSDATA.AddPOLLSDATARow(newPollsDataRow);
-                    var pollsDataAdapter = new POLLSDATATableAdapter();
-                    pollsDataAdapter.Update(_owner.pollsDataSet.POLLSDATA);
-                    _owner.pollsDataSet.POLLSDATA.AcceptChanges();
+                    //_owner.pollsDataSet.POLLSDATA.AddPOLLSDATARow(newPollsDataRow);
                     
-                    Owner.InitializePollsGridView();
-                    tabControlPolls.TabPages.Clear();
-                    LoadControls();
-                    
+                   
                     //Console.WriteLine(qCurRadioRow.Name+ "  "+markQ);
                 }
+                pollsDataAdapter.Update(_owner.pollsDataSet.POLLSDATA);
+                _owner.pollsDataSet.POLLSDATA.AcceptChanges();
 
+                pollsCommonAdapter.Update(_owner.pollsDataSet.POLLSCOMMON);
+                _owner.pollsDataSet.POLLSCOMMON.AcceptChanges();
 
             }
+            
 
         }
 
@@ -496,11 +541,11 @@ namespace bapbpolls
             var pollscommonTableAdapter=new POLLSCOMMONTableAdapter();
             decimal num;
             return Decimal.TryParse(maskedTextBoxNumber.Text, out num) &&
-                   Convert.ToInt32(pollscommonTableAdapter.CountByNum(Convert.ToDecimal(num),
+                   (Convert.ToInt32(pollscommonTableAdapter.CountByNum(Convert.ToDecimal(num),
                                                                       Convert.ToDecimal(
                                                                           comboBoxStructUnite.SelectedValue),
                                                                       Convert.ToDecimal(comboBoxRKC.SelectedValue))) ==
-                   0;
+                   0||num==_oldRow.NUM);
 
             //return (decimal.TryParse(maskedTextBoxNumber.Text, out _numberPoll));
         }

@@ -120,6 +120,7 @@
             this.pollsGridView.ReadOnly = true;
             this.pollsGridView.Size = new System.Drawing.Size(865, 272);
             this.pollsGridView.TabIndex = 0;
+            this.pollsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.pollsGridView_CellContentClick);
             // 
             // panel1
             // 
