@@ -18,7 +18,9 @@ namespace bapbpolls
         private decimal year;
         private decimal region;
         private string type;
+        //private PollsDataSet.Polls2GridCommonDataTable _polls2GridCommonDataTable;
         public User _user;
+        private PollsDataSet.POLLSCOMMONDataTable pollscommonDataTable;
 
         public MainPollsForm()
         {
@@ -32,11 +34,12 @@ namespace bapbpolls
                             PrivilegesCodObl = 6,
                             PrivilegesCodRKC = 0
                         };
-
+            //_polls2GridCommonDataTable=new PollsDataSet.Polls2GridCommonDataTable();
             InitializeComponent();
             _selectionAnketControl = new SelectionAnketControl {Owner = this,Dock = DockStyle.Fill};
             panel1.Controls.Add(_selectionAnketControl);
             InitializePollsGridView();
+
         }
         public void InitializePollsGridView()
         {
@@ -66,7 +69,7 @@ namespace bapbpolls
 
 
                 //DataTable pollsGridTable=new DataTable();
-                var pollscommonDataTable = new PollsDataSet.POLLSCOMMONDataTable();
+                pollscommonDataTable = new PollsDataSet.POLLSCOMMONDataTable();
                 pollscommonTableAdapter.FillByFiltr(pollscommonDataTable, quarter, year
                                                     , region
                                                     , type);
@@ -80,6 +83,7 @@ namespace bapbpolls
                 //newRow.SetValues("QQQQQQ", "1");
                 //pollsGridView.Columns.Add(new DataGridViewColumn{Visible = false,CellTemplate = new DataGridViewTextBoxCell()});
                 List<String> columnIDs = new List<string>();
+                pollsDataSet.Polls2GridCommon.Clear();
                 foreach (var row in pollscommonDataTable.OrderBy(c => c.NUM))
                 {
                     var newColumn = new DataGridViewColumn
@@ -89,6 +93,8 @@ namespace bapbpolls
                                             CellTemplate = new DataGridViewTextBoxCell()
                                         };
                     pollsGridView.Columns.Add(newColumn);
+                    pollsDataSet.Polls2GridCommon.AddPolls2GridCommonRow(row.NUM, row.TYPE, row.RDAY, row.BRANCH, row.RKC,
+                                                                      newColumn.Index);
 
                 }
                 //var newRow = new DataGridViewRow{};
@@ -96,6 +102,19 @@ namespace bapbpolls
                 pollsGridView.RowHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 pollsGridView.SelectionMode = DataGridViewSelectionMode.FullColumnSelect;
                 var indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow
+                                               {Visible = false});
+                columnIDs.Add("RDAY");
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow { Visible = false });
+                columnIDs.Add("FILIAL");
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow { Visible = false });
+                columnIDs.Add("BRANCH");
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow { Visible = false });
+                columnIDs.Add("RDAY");
+                 indRow =
                     pollsGridView.Rows.Add(new DataGridViewRow
                                                {
                                                    HeaderCell =
@@ -207,8 +226,10 @@ namespace bapbpolls
                     columnIDs.Add("I" + VARIABLE.IDQUEST);
 
                 }
+                //Заполняем столбцы
                 foreach (var VARIABLE in pollscommonDataTable.OrderBy(c => c.NUM))
                 {
+                    
                     pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("SEX"))].Cells[VARIABLE.NUM.ToString()].Value
                         = VARIABLE.SEX[0];
                     pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("AGE"))].Cells[VARIABLE.NUM.ToString()].Value
@@ -262,5 +283,23 @@ namespace bapbpolls
         }
 
         public User User { get; set; }
+
+        private void pollsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            var row =pollscommonDataTable.FindByNUMTYPERDAYBRANCHRKC(
+                pollsDataSet.Polls2GridCommon.FindByPosition(e.ColumnIndex).Num,
+                pollsDataSet.Polls2GridCommon.FindByPosition(e.ColumnIndex).Type,
+                pollsDataSet.Polls2GridCommon.FindByPosition(e.ColumnIndex).RDay,
+                pollsDataSet.Polls2GridCommon.FindByPosition(e.ColumnIndex).Branch,
+                pollsDataSet.Polls2GridCommon.FindByPosition(e.ColumnIndex).RKC);
+            var changePoll = new ChangePollForm(_user, this,row);
+            //e.ColumnIndex
+            if (changePoll.ShowDialog()==DialogResult.OK)
+            {
+                GetGridRow();
+            }
+            
+        }
     }
 }

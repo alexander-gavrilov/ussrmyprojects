@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using bapbpolls.PollsDataSetTableAdapters;
 
+
 namespace bapbpolls
 {
     public partial class SelectionAnketControl : UserControl
@@ -23,10 +24,11 @@ namespace bapbpolls
             InitializeComponent();
             LoadRegions();
             LoadYears();
-            var year = (decimal) comboBoxYear.SelectedValue;
-            LoadQuarter((int)year);
-            LoadTypes();
+            decimal year;
+            year = (decimal) comboBoxYear.SelectedValue;
+            LoadQuarter((int) year);
 
+            LoadTypes();
         }
 
         public PollsDataSet PollsDataSource { get; set; }
@@ -46,7 +48,13 @@ namespace bapbpolls
             //var yearsTableAdapter=new YEARSTableAdapter();
             //yearsBindungSource.DataSource = _pollsDataSource;
             //yearsBindungSource.DataMember = "YEARS";
-            yearsBindungSource.DataSource =yEARSTableAdapter.GetData();
+            yEARSTableAdapter.Fill(pollsDataSet.YEARS);
+            //yearsBindungSource.DataSource =yEARSTableAdapter.GetData();
+            if (pollsDataSet.YEARS.Rows.Count == 0)
+            {
+                pollsDataSet.YEARS.AddYEARSRow(DateTime.Now.Year);
+                
+            }
             //comboBoxYear.DataSource = yearsBindungSource;
             //comboBoxYear.ValueMember = "YEARS";
             //comboBoxYear.DisplayMember = "YEARS";
@@ -58,8 +66,17 @@ namespace bapbpolls
             //quarterBindingSource.DataMember = "QUARTER";
             //qUARTERTableAdapter.Fill(pollsDataSet.QUARTER);
             //quarterBindingSource.DataSource = pollsDataSet.QUARTER;
-            quartersBindingSource.DataSource = qUARTERSTableAdapter.GetData();
-            quartersBindingSource.Filter = "YEAR=" + year.ToString();
+            //quartersBindingSource.DataSource = qUARTERSTableAdapter.GetData();
+            qUARTERSTableAdapter.Fill(pollsDataSet.QUARTERS);
+            
+            if(pollsDataSet.QUARTERS.Rows.Count==0)
+            {
+                pollsDataSet.QUARTERS.AddQUARTERSRow((Math.Truncate((decimal)((DateTime.Now.Month - 1) / 3))) + 1, ((Math.Truncate((decimal)((DateTime.Now.Month - 1) / 3))) + 1).ToString()+" квартал",year);
+            }
+            else
+            {
+                quartersBindingSource.Filter = "YEAR=" + year.ToString();
+            }
             //comboBoxQuarter.DataSource = quarterBindingSource;
             //comboBoxQuarter.DataSource = quarterBindingSource;
             //comboBoxQuarter.DisplayMember = "TEXT";
