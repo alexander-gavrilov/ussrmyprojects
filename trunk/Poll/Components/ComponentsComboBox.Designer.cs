@@ -34,8 +34,9 @@
             // 
             // label
             // 
+            this.label.AutoEllipsis = true;
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(3, 7);
+            this.label.Location = new System.Drawing.Point(3, 6);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(35, 13);
             this.label.TabIndex = 0;
@@ -44,9 +45,9 @@
             // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(44, 4);
+            this.comboBox.Location = new System.Drawing.Point(123, 3);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(121, 21);
+            this.comboBox.Size = new System.Drawing.Size(143, 21);
             this.comboBox.TabIndex = 1;
             // 
             // ComponentsComboBox
@@ -58,7 +59,7 @@
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.label);
             this.Name = "ComponentsComboBox";
-            this.Size = new System.Drawing.Size(168, 28);
+            this.Size = new System.Drawing.Size(269, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
 
