@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AA8EA831-4234-47F8-8EBE-1104B411E8D1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>bapbpolls</RootNamespace>
+    <AssemblyName>bapbpolls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="bapbpolls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPollForm.Designer.cs">
+      <DependentUpon>AddPollForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePollForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePollForm.Designer.cs">
+      <DependentUpon>ChangePollForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupeRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GroupeRow.Designer.cs">
+      <DependentUpon>GroupeRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollRadioTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PollRadioTable.Designer.cs">
+      <DependentUpon>PollRadioTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollsDataSet.cs">
+      <DependentUpon>PollsDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PollsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PollsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestControl.Designer.cs">
+      <DependentUpon>QuestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RowRadioButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SelectionAnketControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SelectionAnketControl.Designer.cs">
+      <DependentUpon>SelectionAnketControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddPollForm.resx">
+      <DependentUpon>AddPollForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePollForm.resx">
+      <DependentUpon>ChangePollForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupeRow.resx">
+      <DependentUpon>GroupeRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PollRadioTable.resx">
+      <DependentUpon>PollRadioTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QuestControl.resx">
+      <DependentUpon>QuestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectionAnketControl.resx">
+      <DependentUpon>SelectionAnketControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="PollsDataSet.xsc">
+      <DependentUpon>PollsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PollsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PollsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PollsDataSet.xss">
+      <DependentUpon>PollsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Green.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Grey.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Green_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Grey_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Minus_Orange_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_ArrowCurve_Blue_Right_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BAPBForms\Components\Components.csproj">
+      <Project>{29B05B2C-5839-4F15-A1D7-AA1B2425D23C}</Project>
+      <Name>Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{749C6EAF-A321-43A6-B7DE-8DF9FA058E23}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
