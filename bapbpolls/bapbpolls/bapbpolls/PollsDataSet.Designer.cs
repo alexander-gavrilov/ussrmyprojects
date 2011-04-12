@@ -4977,6 +4977,12 @@ namespace bapbpolls {
                 base.Columns.Add(this.columnPosition);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPosition}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Polls2GridCommonKey1", new global::System.Data.DataColumn[] {
+                                this.columnNum,
+                                this.columnType,
+                                this.columnRDay,
+                                this.columnBranch,
+                                this.columnRKC}, false));
                 this.columnNum.AllowDBNull = false;
                 this.columnType.AllowDBNull = false;
                 this.columnType.MaxLength = 10;

@@ -16,6 +16,7 @@ namespace bapbpolls
     {
         private MainPollsForm _owner;
         private User _user;
+        private Int32 _num_module;
         private PollsDataSet _pollsDataSet;
         private List<String> _qTexts;
         private List<String> _iTexts;
@@ -30,10 +31,11 @@ namespace bapbpolls
         //private RKCViewTableAdapter rkcTableAdapter;
         //private BindingSource rkcBindingSource;
 
-        public AddPollForm(User user,MainPollsForm owner)
+        public AddPollForm(User user, Int32 num_module, MainPollsForm owner)
         {
             _user = user;
             Owner = owner;
+            _num_module = num_module;
             _owner = owner;
             
             InitializeComponent();
@@ -86,10 +88,10 @@ namespace bapbpolls
 
             //filialTableAdapter = new FILIALTableAdapter();
             //filialBindingSource = new BindingSource(pollsDataSet,"FILIAL");
-            if (_user.PrivilegesCodObl != 0)
+            if (_user.dictionary_arms[_num_module].CodObl != 0)
             {
-               // filialBindingSource.Filter = "COD_FIL=" + _user.PrivilegesCodObl;
-                fILIALBindingSource.Filter = "COD_FIL=" + _user.PrivilegesCodObl;
+                // filialBindingSource.Filter = "COD_FIL=" + _user.PrivilegesCodObl;
+                fILIALBindingSource.Filter = "COD_FIL=" + _user.dictionary_arms[_num_module].CodObl;
             }
             fILIALTableAdapter.Fill(pollsDataSet.FILIAL, DateTime.Now);
             sTRUCT_UNITTableAdapter.Fill(pollsDataSet.STRUCT_UNIT, DateTime.Now);

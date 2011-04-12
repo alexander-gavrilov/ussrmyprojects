@@ -8,39 +8,82 @@ using System.Text;
 using System.Windows.Forms;
 using admin;
 using bapbpolls.PollsDataSetTableAdapters;
+using Helpers;
 
 namespace bapbpolls
 {
-    public partial class MainPollsForm : Form
+    public partial class MainPollsForm : Form,IModules
     {
         private SelectionAnketControl _selectionAnketControl;
         private decimal quarter;
         private decimal year;
         private decimal region;
         private string type;
+        public Int32 _num_module;
         //private PollsDataSet.Polls2GridCommonDataTable _polls2GridCommonDataTable;
         public User _user;
         private PollsDataSet.POLLSCOMMONDataTable pollscommonDataTable;
-
-        public MainPollsForm()
+        public void Start(User user, Int32 num_module, String pathDLL, Form form)
         {
-            _user = new User
-                        {
-                            Login = "br_964_avilkovskaya_001",
-                            CodMfo = 964,
-                            CodObl = 8,
-                            CodRKC = 0,
-                            PrivilegesCodMfo = 0,
-                            PrivilegesCodObl = 6,
-                            PrivilegesCodRKC = 0
-                        };
+            MainPollsForm frmPolls = new MainPollsForm(user, num_module, pathDLL, form);
+            frmPolls.MdiParent = form;
+            frmPolls.Show();
+        }
+
+        public MainPollsForm(User user, Int32 num_module, String pathDLL, Form form)
+        {
+            //_user = new User
+            //            {
+            //                Login = "br_964_avilkovskaya_001",
+            //                CodMfo = 964,
+            //                CodObl = 8,
+            //                CodRKC = 0,
+            //                PrivilegesCodMfo = 0,
+            //                PrivilegesCodObl = 6,
+            //                PrivilegesCodRKC = 0
+                            
+            //            };
             //_polls2GridCommonDataTable=new PollsDataSet.Polls2GridCommonDataTable();
+
+            // Проверка наличия конекта и БД
+            
+
+
+            
+            _user = user;
+            _num_module = num_module;
             InitializeComponent();
+
+            var testConnection = new POLLSCOMMONTableAdapter();
+            try
+            {
+                testConnection.Connection.Open();
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show(this, "Невозможно подключиться к БД");
+                Close();
+                
+            }
+            catch (System.Data.OracleClient.OracleException)
+            {
+                MessageBox.Show(this, "Ошибка подключения к БД");
+                Close();
+            }
+            catch(Exception)
+            {
+                MessageBox.Show(this, "Непредвиденная ошибка. Обратитесь к разработчику");
+                Close();
+            }
+
+            
+
+
             _selectionAnketControl = new SelectionAnketControl {Owner = this,Dock = DockStyle.Fill};
             panel1.Controls.Add(_selectionAnketControl);
             InitializePollsGridView();
 
-        }
+      }
         public void InitializePollsGridView()
         {
             LoadPollCommons();
@@ -120,13 +163,27 @@ namespace bapbpolls
                                                                       newColumn.Index);
 
                 }
-                
+
                 pollsGridView.Columns.Add(new DataGridViewColumn
-                {
-                    Name = "Итого",
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                    CellTemplate = new DataGridViewTextBoxCell(){Style = new DataGridViewCellStyle(){Alignment = DataGridViewContentAlignment.MiddleCenter,BackColor = Color.LightPink}}
-                });
+                                              {
+                                                  Name = "Итого",
+                                                  AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                                                  HeaderCell = new DataGridViewColumnHeaderCell(){Style=new DataGridViewCellStyle(){Font = new Font(DefaultFont, FontStyle.Bold),BackColor = Color.LightPink}},
+                                                  CellTemplate =
+                                                      new DataGridViewTextBoxCell()
+                                                          {
+                                                              Style =
+                                                                  new DataGridViewCellStyle()
+                                                                      {
+                                                                          Alignment =
+                                                                              DataGridViewContentAlignment.MiddleCenter,
+                                                                          BackColor = Color.LightPink,
+                                                                          Font = new Font(DefaultFont, FontStyle.Bold)
+                                                                      
+                                                                      }
+                                                                    
+                                                          }
+                                              });
                 
 
                 //var newRow = new DataGridViewRow{};
@@ -222,6 +279,12 @@ namespace bapbpolls
 
 
                 }
+
+
+
+
+
+
                 pollsGridView.RowHeadersWidth = 200;
                 pollsGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
                 pollsGridView.AutoSizeRowsMode =
@@ -278,34 +341,74 @@ namespace bapbpolls
                     columnIDs.Add("I" + VARIABLE.IDQUEST);
 
                 }
+
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow
+                                               {
+                                                   HeaderCell =
+                                                       new DataGridViewRowHeaderCell()
+                                                           {Value = "Реальная удовлетворенность"}
+                                               });
+                pollsGridView.Rows[indRow].HeaderCell.Style.Font = new Font(DefaultFont, FontStyle.Bold);
+                //pollsGridView.Rows[indRow].Cells[0].Value = "";
+                columnIDs.Add("IP");
+
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow
+                                               {
+                                                   HeaderCell =
+                                                       new DataGridViewRowHeaderCell()
+                                                           {Value = "Оптимальная удовлетворенность"}
+                                               });
+                pollsGridView.Rows[indRow].HeaderCell.Style.Font = new Font(DefaultFont, FontStyle.Bold);
+                //pollsGridView.Rows[indRow].Cells[0].Value = "";
+                columnIDs.Add("IO");
+
+                indRow =
+                    pollsGridView.Rows.Add(new DataGridViewRow
+                                               {
+                                                   HeaderCell =
+                                                       new DataGridViewRowHeaderCell()
+                                                           {Value = "Индекс удовлетворенности, %"}
+                                               });
+                pollsGridView.Rows[indRow].HeaderCell.Style.Font = new Font(DefaultFont, FontStyle.Bold);
+                //pollsGridView.Rows[indRow].Cells[0].Value = "";
+                columnIDs.Add("IPIO");
+
                 //Заполняем столбцы
-                foreach (var VARIABLE in pollscommonDataTable.OrderBy(c => c.NUM))
+                decimal Ip=0;
+                decimal Io=0;
+                
+                foreach (var VARIABLE in pollsDataSet.Polls2GridCommon.OrderBy(c=>c.Position))
                 {
-                    
-                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("SEX"))].Cells[VARIABLE.NUM.ToString()].Value
-                        = VARIABLE.SEX[0];
-                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("AGE"))].Cells[VARIABLE.NUM.ToString()].Value
-                        = VARIABLE.AGE.ToString();
-                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("BRANCH"))].Cells[VARIABLE.NUM.ToString()].
+                    var curComRow = pollscommonDataTable.FindByNUMTYPERDAYBRANCHRKC(VARIABLE.Num, VARIABLE.Type,
+                                                                                    VARIABLE.RDay, VARIABLE.Branch,
+                                                                                    VARIABLE.RKC);
+
+                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("SEX"))].Cells[(int) VARIABLE.Position].Value
+                        = curComRow.SEX[0];
+                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("AGE"))].Cells[(int)VARIABLE.Position].Value
+                        = curComRow.AGE.ToString();
+                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("BRANCH"))].Cells[(int)VARIABLE.Position].
                         Value
-                        = VARIABLE.BRANCH.ToString();
-                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("BRANCH"))].Cells[VARIABLE.NUM.ToString()].
+                        = curComRow.BRANCH.ToString();
+                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("BRANCH"))].Cells[(int) VARIABLE.Position].
                         ToolTipText
-                        = pollsDataSet.STRUCT_UNIT.FirstOrDefault(c => c.BRANCH == VARIABLE.BRANCH).NAME;
-                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[VARIABLE.NUM.ToString()].Value
-                        = VARIABLE.RKC.ToString();
+                        = pollsDataSet.STRUCT_UNIT.FirstOrDefault(c => c.BRANCH == curComRow.BRANCH).NAME;
+                    pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[(int) VARIABLE.Position].Value
+                        = curComRow.RKC.ToString();
                     if (VARIABLE.RKC != 0)
                     {
-                        pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[VARIABLE.NUM.ToString()].
+                        pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[(int)VARIABLE.Position].
                             ToolTipText
                             =
                             pollsDataSet.RKC.FirstOrDefault(
-                                c => c.REF_OTD == VARIABLE.BRANCH && c.CODE_RKC == VARIABLE.RKC).NAME;
+                                c => c.REF_OTD == VARIABLE.Branch && c.CODE_RKC == VARIABLE.RKC).NAME;
                     }
                     else
                     {
-                        pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[VARIABLE.NUM.ToString()].
-                            ToolTipText = pollsDataSet.STRUCT_UNIT.FirstOrDefault(c => c.BRANCH == VARIABLE.BRANCH).NAME;
+                        pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("RKC"))].Cells[(int)VARIABLE.Position].
+                            ToolTipText = pollsDataSet.STRUCT_UNIT.FirstOrDefault(c => c.BRANCH == VARIABLE.Branch).NAME;
                     }
 
 
@@ -313,8 +416,8 @@ namespace bapbpolls
                     {
 
                         pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("TYPETRANS"))].Cells[
-                            VARIABLE.NUM.ToString()].Value
-                            = VARIABLE.TYPETRANS.ToString();
+                            (int)VARIABLE.Position].Value
+                            = curComRow.TYPETRANS.ToString();
 
 
                     }
@@ -322,23 +425,24 @@ namespace bapbpolls
                     int firstDataRow = indRow;
                     foreach (var curentRow in pollsDataSet.POLLSDATA.Where(
                         c =>
-                        c.BRANCH == VARIABLE.BRANCH && c.NUM == VARIABLE.NUM && c.RDAY == VARIABLE.RDAY && c.RKC
+                        c.BRANCH == VARIABLE.Branch && c.NUM == VARIABLE.Num && c.RDAY == VARIABLE.RDay && c.RKC
                         == VARIABLE.RKC))
                     {
                         pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("Q" + curentRow.IDQUEST))].Cells[
-                            VARIABLE.NUM.ToString()].Value = curentRow.QUALITY;
+                            (int)VARIABLE.Position].Value = curentRow.QUALITY;
                         pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("I" + curentRow.IDQUEST))].Cells[
-                            VARIABLE.NUM.ToString()].Value = curentRow.IMPOTANCE;
+                            (int)VARIABLE.Position].Value = curentRow.IMPOTANCE;
                         pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).QSUM += curentRow.QUALITY;
                         pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("Q" + curentRow.IDQUEST))].Cells[
-                            pollsGridView.ColumnCount - 1].Value =
+                            pollsGridView.ColumnCount - 1].Value =Math.Round(
                             pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).QSUM/
-                            pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).COUNT;
+                            pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).COUNT,1);
+
                         pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).ISUM += curentRow.IMPOTANCE;
                         pollsGridView.Rows[columnIDs.FindIndex(c => c.Contains("I" + curentRow.IDQUEST))].Cells[
-                            pollsGridView.ColumnCount - 1].Value =
+                            pollsGridView.ColumnCount - 1].Value =Math.Round(
                             pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).ISUM/
-                            pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).COUNT;
+                            pollsDataSet.ResaultColumn.FindByIDQUEST(curentRow.IDQUEST).COUNT,1);
 
 
 
@@ -356,6 +460,29 @@ namespace bapbpolls
 
 
                 }
+                foreach (var resRow in pollsDataSet.ResaultColumn)
+                {
+                    Ip += (resRow.QSUM / resRow.COUNT) * (resRow.ISUM / resRow.COUNT);
+                    Io += resRow.ISUM*5;
+                }
+                pollsGridView.Rows[columnIDs.IndexOf("IP")].Cells[
+                    pollsGridView.ColumnCount - 1].Value = Math.Round(Ip,1);
+                pollsGridView.Rows[columnIDs.IndexOf("IP")].Cells[
+                    pollsGridView.ColumnCount - 1].Style.BackColor = Color.Yellow;
+                pollsGridView.Rows[columnIDs.IndexOf("IP")].DefaultCellStyle.BackColor = Color.Yellow;
+                pollsGridView.Rows[columnIDs.IndexOf("IO")].Cells[
+                    pollsGridView.ColumnCount - 1].Value = Io;
+                pollsGridView.Rows[columnIDs.IndexOf("IO")].Cells[
+                    pollsGridView.ColumnCount - 1].Style.BackColor = Color.LightGreen;
+                pollsGridView.Rows[columnIDs.IndexOf("IO")].DefaultCellStyle.BackColor = Color.LightGreen;
+                pollsGridView.Rows[columnIDs.IndexOf("IPIO")].Cells[
+                    pollsGridView.ColumnCount - 1].Value = (Math.Round((Ip/Io)*100, 2));
+                pollsGridView.Rows[columnIDs.IndexOf("IPIO")].Cells[
+                    pollsGridView.ColumnCount - 1].Style.BackColor = Color.DarkRed;
+                pollsGridView.Rows[columnIDs.IndexOf("IPIO")].Cells[
+                    pollsGridView.ColumnCount - 1].Style.ForeColor = Color.White;
+                pollsGridView.Rows[columnIDs.IndexOf("IPIO")].DefaultCellStyle.BackColor = Color.DarkRed;
+
 
 
 
@@ -376,7 +503,7 @@ namespace bapbpolls
 
         private void addPollToolStripButton_Click(object sender, EventArgs e)
         {
-            var addPoll = new AddPollForm(_user,this);
+            var addPoll = new AddPollForm(_user,_num_module,this);
             addPoll.ShowDialog();
         }
 
@@ -404,7 +531,7 @@ namespace bapbpolls
                     pollsDataSet.Polls2GridCommon.FindByPosition(columnIndex).RDay,
                     pollsDataSet.Polls2GridCommon.FindByPosition(columnIndex).Branch,
                     pollsDataSet.Polls2GridCommon.FindByPosition(columnIndex).RKC);
-                var changePoll = new ChangePollForm(_user, this, row);
+                var changePoll = new ChangePollForm(_user,_num_module, this, row);
                 //columnIndex
                 if (changePoll.ShowDialog() == DialogResult.OK)
                 {
