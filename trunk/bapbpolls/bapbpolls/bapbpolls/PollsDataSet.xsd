@@ -1189,6 +1189,14 @@ WHERE        (:currentdate &gt;=BEG_EXP AND  :currentdate&lt;=END_EXP)</CommandT
       <xs:selector xpath=".//mstns:Polls2GridCommon" />
       <xs:field xpath="mstns:Position" />
     </xs:unique>
+    <xs:unique name="Polls2GridCommonKey1">
+      <xs:selector xpath=".//mstns:Polls2GridCommon" />
+      <xs:field xpath="mstns:Num" />
+      <xs:field xpath="mstns:Type" />
+      <xs:field xpath="mstns:RDay" />
+      <xs:field xpath="mstns:Branch" />
+      <xs:field xpath="mstns:RKC" />
+    </xs:unique>
     <xs:unique name="ResaultColumn_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ResaultColumn" />
       <xs:field xpath="mstns:IDQUEST" />

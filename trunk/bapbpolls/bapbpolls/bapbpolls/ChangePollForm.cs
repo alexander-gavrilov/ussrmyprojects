@@ -16,6 +16,7 @@ namespace bapbpolls
     {
         private MainPollsForm _owner;
         private User _user;
+        private Int32 _num_module;
         private PollsDataSet _pollsDataSet;
         private List<String> _qTexts;
         private List<String> _iTexts;
@@ -32,9 +33,10 @@ namespace bapbpolls
         //private RKCViewTableAdapter rkcTableAdapter;
         //private BindingSource rkcBindingSource;
 
-        public ChangePollForm(User user,MainPollsForm owner,PollsDataSet.POLLSCOMMONRow oldRow)
+        public ChangePollForm(User user, Int32 num_module, MainPollsForm owner, PollsDataSet.POLLSCOMMONRow oldRow)
         {
             _user = user;
+            _num_module = num_module;
             Owner = owner;
             _oldRow = oldRow;
             InitializeComponent();
@@ -88,10 +90,10 @@ namespace bapbpolls
             
             //filialTableAdapter = new FILIALTableAdapter();
             //filialBindingSource = new BindingSource(pollsDataSet,"FILIAL");
-            if (_user.PrivilegesCodObl != 0)
+            if (_user.dictionary_arms[_num_module].CodObl != 0)
             {
                // filialBindingSource.Filter = "COD_FIL=" + _user.PrivilegesCodObl;
-                fILIALBindingSource.Filter = "COD_FIL=" + _user.PrivilegesCodObl;
+                fILIALBindingSource.Filter = "COD_FIL=" + _user.dictionary_arms[_num_module].CodObl;
             }
             fILIALTableAdapter.Fill(pollsDataSet.FILIAL, DateTime.Now);
             sTRUCT_UNITTableAdapter.Fill(pollsDataSet.STRUCT_UNIT, DateTime.Now);
@@ -99,6 +101,7 @@ namespace bapbpolls
             comboBoxRegion.SelectedValue = _oldRow.FILIAL;
             comboBoxStructUnite.SelectedValue = _oldRow.BRANCH;
             comboBoxRKC.SelectedValue = _oldRow.RKC;
+            pollsDataSet.RKCView.Clear();
             pollsDataSet.RKCView.AddRKCViewRow(0, "<Отделение>");
             //structTableAdapter = new STRUCT_UNITTableAdapter();
             //structBindingSource = new BindingSource(pollsDataSet, "STRUCT_UNIT");
@@ -114,6 +117,7 @@ namespace bapbpolls
 
             comboBoxSex.SelectedValue = _oldRow.SEX;
             numericUpDown1.Value = _oldRow.AGE;
+            dateTimePicker.Value = _oldRow.RDAY;
 
             tabControlPolls.TabPages.Add(GetTabPage(_oldRow.TYPE));
             //_oldData

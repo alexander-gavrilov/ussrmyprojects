@@ -100,7 +100,7 @@ namespace bapbpolls
             if (Owner != null)
             {
                 Owner.InitializePollsGridView();
-                if (Owner._user.PrivilegesCodObl==Convert.ToInt32(comboBoxRegion.SelectedValue))
+                if (Owner._user.dictionary_arms[Owner._num_module].CodObl == Convert.ToInt32(comboBoxRegion.SelectedValue))
                 {
                     Owner.addPollToolStripButton.Enabled = true;
                     Owner.delPollToolStripButton.Enabled = true;
@@ -120,7 +120,9 @@ namespace bapbpolls
         }
 
 
-        public MainPollsForm Owner { get { return _owner; } set { _owner = value; } }
+        public MainPollsForm Owner
+        {
+            get; set; }
 
         private void comboBoxYear_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -147,9 +149,13 @@ namespace bapbpolls
                 {
                     if(comboBoxRegion.SelectedValue!=null)
                     {
-                        if (Owner != null)
-                            Owner.InitializePollsGridView();
-                        
+                        if (comboBoxPollType.SelectedValue != null)
+                        {
+
+
+                            if (Owner != null)
+                                Owner.InitializePollsGridView();
+                        }
                     }
                 }
             }

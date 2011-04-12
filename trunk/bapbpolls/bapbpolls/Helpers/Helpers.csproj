@@ -16,9 +16,8 @@
     </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -34,10 +33,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,10 +54,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dsBroker.Designer.cs, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tasks\Broker\Broker\obj\Debug\TempPE\dsBroker.Designer.cs.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -71,9 +62,6 @@
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -85,8 +73,33 @@
     <Compile Include="DataGridViewSettings.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DateTimePickerClear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DateTimePickerClear.designer.cs">
+      <DependentUpon>DateTimePickerClear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filter.cs" />
+    <Compile Include="FilterPar.cs" />
     <Compile Include="Hash.cs" />
+    <Compile Include="Modules.cs" />
+    <Compile Include="MyCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OracleHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="QualityFlter.cs">
+    </Compile>
     <Compile Include="Transliteration.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ValidationHelper.cs" />
@@ -100,6 +113,97 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DateTimePickerClear.resx">
+      <DependentUpon>DateTimePickerClear.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\298_7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apple.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bolt.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bomb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Book.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bulb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Butterfly.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CheckIt.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cross.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Diamond.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exclamation.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Heart.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Keys2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Money.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\normal_post.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OracleWorksheet.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Recycle.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmileyFrown.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmileySad.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmileySmile.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SmileyWink.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\SQLPlus.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
