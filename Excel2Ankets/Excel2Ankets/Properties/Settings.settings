@@ -22,10 +22,10 @@
       <Value Profile="(Default)">cbd_ankets</Value>
     </Setting>
     <Setting Name="inputDir" Type="System.String" Scope="User">
-      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\test\</Value>
+      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\test\in</Value>
     </Setting>
     <Setting Name="outputDir" Type="System.String" Scope="User">
-      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\backup\</Value>
+      <Value Profile="(Default)">e:\projects\.net\Excel2Ankets\test\out</Value>
     </Setting>
   </Settings>
 </SettingsFile>
