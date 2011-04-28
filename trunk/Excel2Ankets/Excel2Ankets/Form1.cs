@@ -134,44 +134,59 @@ namespace Excel2Ankets
                         LogFile.Wrile2Log("Создан рабочий каталог  " + workPath.FullName);
 
                         countFiles = 0;
-
+                        int ii=0;
                         foreach (FileInfo currentFile in sourcePath.GetFiles("*.xls"))
                         {
+                            ii++;
                             tmpFile = new XlsFile();
                             try
                             {
-                                label3.Text = (progressBar1.Value+1).ToString() + " из " + progressBar1.Maximum + " " +
+                                label3.Text = (progressBar1.Value + 1).ToString() + " из " + progressBar1.Maximum + " " +
                                               currentFile.Name;
-                                currentFile.CopyTo(workPath.FullName + "\\" + currentFile.Name);
-                                
-                                String workFile = workPath.FullName + "\\" + currentFile.Name;
-                                LogFile.Wrile2Log("********************************Чтение файла " + currentFile.Name+"**************************");
+                                FileInfo currentFileM = currentFile.CopyTo(workPath.FullName + "\\" + sourcePath.Name + ii.ToString("D3")+currentFile.Extension);
+
+                                String workFile = currentFileM.FullName;
+                                LogFile.Wrile2Log("********************************Чтение файла " + currentFile.Name + "**************************");
                                 Receipt1.Wrile2Log("********************************Чтение файла " + currentFile.Name + "**************************");
+                                bool readRes = false;
+                                try
+                                {
+                                    curConnect.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" +
+                                                                  "Data Source=" + workFile +
+                                                                  ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\"";
 
-                                curConnect.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;" +
-                                                              "Data Source=" + workFile +
-                                                              ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\"";
-
-                                curConnect.Open();
-                                Console.WriteLine("DataSource: {0} \nDatabase: {1}",
-                                                  curConnect.DataSource, curConnect.Database);
+                                    curConnect.Open();
+                                    Console.WriteLine("DataSource: {0} \nDatabase: {1}",
+                                                      curConnect.DataSource, curConnect.Database);
 
 
-                                tmpFile.LogFile = LogFile;
-                                tmpFile.LogFile2 = Receipt1;
-                                //tmpFile.prBarSheets = progressBar2;
-                                tmpFile.excelConnection = curConnect;
-                                tmpFile.currentFileName = currentFile.Name;
-                                tmpFile.mfo = mfo;
-                                tmpFile.porc = porc;
-                                bool readRes = tmpFile.Read();
+                                    tmpFile.LogFile = LogFile;
+                                    tmpFile.LogFile2 = Receipt1;
+                                    //tmpFile.prBarSheets = progressBar2;
+                                    tmpFile.excelConnection = curConnect;
+                                    tmpFile.currentFileName = currentFile.Name;
+                                    tmpFile.mfo = mfo;
+                                    tmpFile.porc = porc;
+                                    readRes = tmpFile.Read();
+                                    curConnect.Close();
+                                    curConnect.Dispose();
+                                    tmpFile.excelConnection.Close();
+                                    tmpFile.excelConnection.Dispose();
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    String tmpStr = "Невозможно загрузить файл " + currentFile.Name;
+                                    LogFile.Wrile2Log(tmpStr +
+                                                    ". Файл будет перемещен в " +
+                                                    badPath.Name);
+                                    Receipt1.Wrile2Log(tmpStr);
+
+
+                                }
                                 countFiles++;
                                 progressBar1.PerformStep();
-                                
-                                curConnect.Close();
-                                curConnect.Dispose();
-                                tmpFile.excelConnection.Close();
-                                tmpFile.excelConnection.Dispose();
+
 
 
                                 if (readRes)
@@ -181,12 +196,22 @@ namespace Excel2Ankets
                                                       bakPath.Name);
                                     Receipt1.Wrile2Log("По файлу " + currentFile.Name +
                                                       " ошибок не обнаружено.");
-                                    curConnect.Close();
-                                    curConnect.Dispose();
-                                    tmpFile.excelConnection.Close();
-                                    tmpFile.excelConnection.Dispose();
-                                    int i=0;
-                                    String movedFileName=currentFile.Name;
+                                    if (curConnect != null)
+                                    {
+                                        if (curConnect.State != ConnectionState.Closed)
+                                            curConnect.Close();
+                                        curConnect.Dispose();
+                                    }
+                                    if (tmpFile.excelConnection != null)
+                                    {
+                                        if (tmpFile.excelConnection.State != ConnectionState.Closed)
+                                        {
+                                            tmpFile.excelConnection.Close();
+                                        }
+                                        tmpFile.excelConnection.Dispose();
+                                    }
+                                    int i = 0;
+                                    String movedFileName = currentFile.Name;
                                     while (File.Exists(bakPath.FullName + "\\" + movedFileName))
                                     {
                                         i++;
@@ -205,21 +230,32 @@ namespace Excel2Ankets
                                     Receipt1.Wrile2Log("По файлу " + currentFile.Name +
                                                       " обнаружены ошибки.");
                                     haveErr = false;
+                                    if (curConnect != null)
+                                    {
+                                        if (curConnect.State != ConnectionState.Closed)
+                                            curConnect.Close();
+                                        curConnect.Dispose();
+                                    }
+                                    if (tmpFile.excelConnection != null)
+                                    {
+                                        if (tmpFile.excelConnection.State != ConnectionState.Closed)
+                                        {
+                                            tmpFile.excelConnection.Close();
+                                        }
+                                        tmpFile.excelConnection.Dispose();
+                                    }
 
-                                    curConnect.Close();
-                                    curConnect.Dispose();
-                                    tmpFile.excelConnection.Close();
-                                    tmpFile.excelConnection.Dispose();
-                                    int i=0;
-                                    String movedFileName=currentFile.Name;
+
+                                    int i = 0;
+                                    String movedFileName = currentFile.Name;
                                     while (File.Exists(badPath.FullName + "\\" + movedFileName))
                                     {
                                         i++;
                                         movedFileName = currentFile.Name.Insert(currentFile.Name.Length - 4,
                                                                                 "_" + i.ToString("D3"));
                                     }
-                                        currentFile.MoveTo(badPath.FullName + "\\" + movedFileName);
-                                        LogFile.Wrile2Log("Файл перемещен.\n\n");
+                                    currentFile.MoveTo(badPath.FullName + "\\" + movedFileName);
+                                    LogFile.Wrile2Log("Файл перемещен.\n\n");
 
 
                                 }
@@ -229,25 +265,45 @@ namespace Excel2Ankets
                             {
                                 LogFile.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
                                                   ioException.InnerException + "\n\t" + ioException.Message);
-                                Receipt1.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
-                                                  ioException.InnerException + "\n\t" + ioException.Message);
+                                //Receipt1.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
+                                //                  ioException.InnerException + "\n\t" + ioException.Message);
 
-                                curConnect.Close();
-                                curConnect.Dispose();
-                                tmpFile.excelConnection.Close();
-                                tmpFile.excelConnection.Dispose();
+                                if (curConnect != null)
+                                {
+                                    if (curConnect.State != ConnectionState.Closed)
+                                        curConnect.Close();
+                                    curConnect.Dispose();
+                                }
+                                if (tmpFile.excelConnection != null)
+                                {
+                                    if (tmpFile.excelConnection.State != ConnectionState.Closed)
+                                    {
+                                        tmpFile.excelConnection.Close();
+                                    }
+                                    tmpFile.excelConnection.Dispose();
+                                }
 
                             }
                             catch (Exception exception)
                             {
-                                curConnect.Close();
-                                curConnect.Dispose();
-                                tmpFile.excelConnection.Close();
-                                tmpFile.excelConnection.Dispose();
+                                if (curConnect != null)
+                                {
+                                    if (curConnect.State != ConnectionState.Closed)
+                                        curConnect.Close();
+                                    curConnect.Dispose();
+                                }
+                                if (tmpFile.excelConnection != null)
+                                {
+                                    if (tmpFile.excelConnection.State != ConnectionState.Closed)
+                                    {
+                                        tmpFile.excelConnection.Close();
+                                    }
+                                    tmpFile.excelConnection.Dispose();
+                                }
                                 LogFile.Wrile2Log("Ошибка при обработке файла " + currentFile.Name + "\n\t" +
                                                   exception.InnerException + "\n\t" + exception.Message);
 
-                                throw;
+
                             }
 
 
@@ -282,7 +338,7 @@ namespace Excel2Ankets
 
                 Receipt1.Close();
                 LogFile.Wrile2Log(exception.InnerException + "\n\t" + exception.Message);
-                throw;
+                throw exception;
             }
 
         }

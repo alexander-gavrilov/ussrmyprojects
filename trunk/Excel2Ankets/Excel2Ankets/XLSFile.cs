@@ -211,7 +211,7 @@ namespace Excel2Ankets
                             /// <summary>
                             /// Определение строки юрлиц
                             /// </summary>                           
-                            DataRow tmpRowUl = tmpTestDataSet.bd_org_t.Newbd_org_tRow();
+                            testDataSet.bd_org_tRow tmpRowUl = tmpTestDataSet.bd_org_t.Newbd_org_tRow();
 //tmpRowUl init-----------------------------------------------------------------------------------------------------------------
 //Наполняем запись для данных анкеты юр. лица значениями по умолчанию, 
 //кроме тех которые не должны быть пустыми                            
@@ -253,7 +253,7 @@ namespace Excel2Ankets
                             tmpRowUl["dt_set"] = DateTime.Now;
 //tmpRowUl init end -----------------------------------------------------------------------------------------------------
 
-                            DataRow tmpRowIp = tmpTestDataSet.bd_ip_t.Newbd_ip_tRow();
+                            testDataSet.bd_ip_tRow tmpRowIp = tmpTestDataSet.bd_ip_t.Newbd_ip_tRow();
 
 //tmpRowIp init-----------------------------------------------------------------------------------------------------------------
 //Наполняем запись для данных анкеты юр. лица значениями по умолчанию, 
@@ -336,43 +336,46 @@ namespace Excel2Ankets
                                     if (typeAnkt == 1)
                                     {
 
-                                        for (int i = 0; (i < dataReader.FieldCount) && (!tableFound); i++)  
+                                        for (int i = 0; (i < dataReader.FieldCount) && (!tableFound); i++)
                                             //Цикл поиска столбца наименований полей анкеты
                                         {
                                             currentColumnXls = i;
-                                            if (!dataReader.IsDBNull(i)) 
+                                            if (!dataReader.IsDBNull(i))
                                                 //если не пустая ячейка
                                             {
                                                 String strCell = String.Concat(dataReader.GetValue(i));
 
-                                                if (_fieldsDictUL.ContainsKey(strCell.ToLower().Replace(" ", ""))) 
+                                                if (_fieldsDictUL.ContainsKey(strCell.ToLower().Replace(" ", "")))
                                                     //Проверяем значение ячейки является ли наименованием поля анкеты из словаря _fieldsDictUL
                                                 {
                                                     x = i;
                                                     y = j;
-                                                    tableFound = true; //Если нашли ячейку с наименованием то считаем, что таблица анкеты найдена 
+                                                    tableFound = true;
+                                                        //Если нашли ячейку с наименованием то считаем, что таблица анкеты найдена 
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета организации");
-                                                    LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
-                                                                      " обнаружена анкета организации");
-                                                    
+                                                    //LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
+                                                    //                  " обнаружена анкета организации");
+
                                                 }
 
 
                                             }
                                         }
-                                        
+
                                         if (!dataReader.IsDBNull(x) && tableFound)
-                                        //Если не пустая ячейка и таблица анкеты найдена
+                                            //Если не пустая ячейка и таблица анкеты найдена
                                         {
-                                            if (_fieldsDictUL.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower().Replace(
-                                                    " ", "")))
-                                            //Проверяем значение текущей ячейки является ли наименованием поля анкеты из словаря _fieldsDictUL
+                                            if (
+                                                _fieldsDictUL.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower()
+                                                                              .Replace(
+                                                                                  " ", "")))
+                                                //Проверяем значение текущей ячейки является ли наименованием поля анкеты из словаря _fieldsDictUL
                                             {
                                                 try
-                                                //Пытаемся прочитать и загрузить в tmpRowUl значение ячейки
+                                                    //Пытаемся прочитать и загрузить в tmpRowUl значение ячейки
                                                 {
-                                                    
+
                                                     if (dataReader.IsDBNull(x + 1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
@@ -381,13 +384,40 @@ namespace Excel2Ankets
                                                                     " ", "")
                                                                 ], dataReader.GetValue(x + 1), "Недопустимое значение");
                                                     }
+                                                    try
+                                                    {
+                                                        if ((tmpTestDataSet.bd_org_t.Columns[
+                                                            _fieldsDictUL[
+                                                                String.Concat(dataReader.GetValue(x)).ToLower().Replace(
+                                                                    " ", "")
+                                                                ]].MaxLength == -1) || (tmpTestDataSet.bd_org_t.Columns[
+                                                            _fieldsDictUL[
+                                                                String.Concat(dataReader.GetValue(x)).ToLower().Replace(
+                                                                    " ", "")
+                                                                ]].MaxLength >= dataReader.GetValue(x + 1).ToString().Length))
+                                                        {
+                                                            tmpRowUl[
+                                                                _fieldsDictUL[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(
+                                                                            " ", "")
+                                                                    ]]
+                                                                = dataReader.GetValue(x + 1);
 
-                                                    tmpRowUl[
-                                                        _fieldsDictUL[
+                                                        }
+                                                        else
+                                                        {
+                                                            throw new ArgumentException();
+                                                        }
+
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        LogFile.Wrile2Log("При загрузке поля " + _fieldsDictUL[
                                                             String.Concat(dataReader.GetValue(x)).ToLower().Replace(
-                                                                " ", "")
-                                                            ]]
-                                                        = dataReader.GetValue(x + 1);
+                                                                " ", "")] + " со значением " + dataReader.GetValue(x + 1) +
+                                                            " возникла ошибка " + e.Message);
+                                                    }
                                                     if (
                                                         _fieldsDictUL[
                                                             String.Concat(dataReader.GetValue(x)).ToLower().Replace(
@@ -395,16 +425,12 @@ namespace Excel2Ankets
                                                             ] ==
                                                         "unp")
                                                     {
-                                                        LogFile.Wrile2Log("Контроль УНП " +
-                                                                          unpCheck(
-                                                                              String.Concat(dataReader.GetValue(x + 1)).
-                                                                                  Replace(" ",
-                                                                                          "")));
-                                                        LogFile2.Wrile2Log("Контроль УНП " +
-                                                                          unpCheck(
-                                                                              String.Concat(dataReader.GetValue(x + 1)).
-                                                                                  Replace(" ",
-                                                                                          "")));
+                                                        bool unpCheckValue = unpCheck(
+                                                            String.Concat(dataReader.GetValue(x + 1)).
+                                                                Replace(" ",
+                                                                        ""));
+                                                        LogFile.Wrile2Log("Контроль УНП " + unpCheckValue);
+
                                                         cbd_anketsDataSetTableAdapters.QueriesTableAdapter tmpAdp_cdb =
                                                             new cbd_anketsDataSetTableAdapters.QueriesTableAdapter();
                                                         String tmpR =
@@ -413,11 +439,31 @@ namespace Excel2Ankets
                                                                                                                   ""))
                                                                 .
                                                                 ToString();
+                                                        if (!unpCheckValue)
+                                                        {
+                                                            LogFile2.Wrile2Log("Неверный контрольный разряд в УНП " +
+                                                                               String.Concat(dataReader.GetValue(x + 1))
+                                                                                   .
+                                                                                   Replace(" ",
+                                                                                           ""));
+                                                            throw new ArgumentOutOfRangeException(
+                                                                _fieldsDictUL[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x + 1)),
+                                                                "Неверный контрольный разряд в УНП");
+                                                        }
                                                         if (tmpR != "0")
                                                         {
                                                             //LogFile.Wrile2Log("Ошибка. В таблице bd_org такой УНП " +
                                                             //                  dataReader.GetString(x + 1).Replace(" ", "") +
                                                             //                  " уже присутствует.");
+                                                            LogFile2.Wrile2Log("Анкета организации УНП " +
+                                                                               String.Concat(dataReader.GetValue(x + 1))
+                                                                                   .
+                                                                                   Replace(" ",
+                                                                                           "") +
+                                                                               " уже присутствует в БИАС");
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictUL[
                                                                     String.Concat(dataReader.GetValue(x)).ToLower().
@@ -438,6 +484,13 @@ namespace Excel2Ankets
                                                             //LogFile.Wrile2Log("Ошибка. В таблице bd_org_t такой УНП " +
                                                             //                  dataReader.GetString(x + 1).Replace(" ", "") +
                                                             //                  " уже присутствует.");
+                                                            LogFile2.Wrile2Log("Анкета организации УНП " +
+                                                                               String.Concat(dataReader.GetValue(x + 1))
+                                                                                   .
+                                                                                   Replace(" ",
+                                                                                           "") +
+                                                                               " уже присутствует в БИАС");
+
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictUL[
                                                                     String.Concat(dataReader.GetValue(x)).ToLower().
@@ -453,27 +506,40 @@ namespace Excel2Ankets
                                                 catch (ArgumentOutOfRangeException outOfRangeException)
                                                 {
                                                     LogFile.Wrile2Log(outOfRangeException.Message);
-                                                    LogFile2.Wrile2Log(outOfRangeException.Message);
-                                                    if (outOfRangeException.ParamName == "unp" ||
-                                                        outOfRangeException.ParamName == "name")
+                                                    //LogFile2.Wrile2Log(outOfRangeException.Message);
+                                                    if (outOfRangeException.ParamName == "unp")
+                                                    {
+                                                        //LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " + currentRow["TABLE_NAME"] + " - недопустимый УНП");
                                                         throw new ArgumentOutOfRangeException("Лист",
                                                                                               currentRow["TABLE_NAME"],
                                                                                               "Невозможно загрузить анкету");
+                                                    }
+                                                    if (outOfRangeException.ParamName == "name")
+                                                    {
+                                                        LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " +
+                                                                           currentRow["TABLE_NAME"] +
+                                                                           " - недопустимое или не заполненое наименование организации");
+                                                        throw new ArgumentOutOfRangeException("Лист",
+                                                                                              currentRow["TABLE_NAME"],
+                                                                                              "Невозможно загрузить анкету");
+                                                    }
+
 
                                                 }
                                                 catch (ArgumentException argumentException)
                                                 {
                                                     LogFile.Wrile2Log(argumentException.Message);
-                                                    LogFile2.Wrile2Log(argumentException.Message);
+                                                    //LogFile2.Wrile2Log(argumentException.Message);
                                                 }
                                                 catch (Exception exp)
                                                 {
                                                     LogFile.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
                                                                       "\t Столбец - " + currentColumnXls);
-                                                    LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
-                                                                      "\t Столбец - " + currentColumnXls);
+                                                    //LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
+                                                    //                  "\t Столбец - " + currentColumnXls);
 
                                                     throw;
+
                                                 }
 
 
@@ -502,8 +568,8 @@ namespace Excel2Ankets
                                                     y = j;
                                                     LogFile.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
                                                                       " обнаружена анкета индивидуального предпринимателя");
-                                                    LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
-                                                                       " обнаружена анкета индивидуального предпринимателя");
+                                                    //LogFile2.Wrile2Log("На листе " + currentRow["TABLE_NAME"] +
+                                                    //                   " обнаружена анкета индивидуального предпринимателя");
 
                                                 }
 
@@ -513,42 +579,93 @@ namespace Excel2Ankets
                                         {
 
                                             if (
-                                                _fieldsDictIP.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower().Replace(
-                                                    " ", "")))
+                                                _fieldsDictIP.ContainsKey(String.Concat(dataReader.GetValue(x)).ToLower()
+                                                                              .Replace(
+                                                                                  " ", "")))
                                             {
                                                 try
                                                 {
-                                                    if (dataReader.IsDBNull(x+1))
+                                                    if (dataReader.IsDBNull(x + 1))
                                                     {
                                                         throw new ArgumentOutOfRangeException(
                                                             _fieldsDictIP[
-                                                               String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                                String.Concat(dataReader.GetValue(x)).ToLower().Replace(
+                                                                    " ", "")
                                                                 ], dataReader.GetValue(x + 1), "Недопустимое значение");
                                                     }
-                                                    tmpRowIp[
-                                                        _fieldsDictIP[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
-                                                            ]]
-                                                        = dataReader.GetValue(x + 1);
+                                                    try
+                                                    {
+                                                        if ((tmpTestDataSet.bd_ip_t.Columns[
+                                                                _fieldsDictIP[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(
+                                                                            " ", "")]].MaxLength == -1) || (tmpTestDataSet.bd_ip_t.Columns[
+                                                                _fieldsDictIP[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(
+                                                                            " ", "")]].MaxLength >= dataReader.GetValue(x + 1).ToString().Length))
+                                                        {
+                                                            tmpRowIp[
+                                                                _fieldsDictIP[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(
+                                                                            " ", "")]] = dataReader.GetValue(x + 1);
+
+                                                        }
+                                                        else
+                                                        {
+                                                            throw new ArgumentException();
+                                                        }
+
+                                                    }
+                                                    catch (Exception e)
+                                                    {
+                                                        LogFile.Wrile2Log("При загрузке поля " + _fieldsDictIP[
+                                                            String.Concat(dataReader.GetValue(x)).ToLower().Replace(
+                                                                " ", "")] + " со значением " +
+                                                                          dataReader.GetValue(x + 1) +
+                                                                          " возникла ошибка " + e.Message);
+                                                    }
+
                                                     if (
-                                                        _fieldsDictIP[String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
+                                                        _fieldsDictIP[
+                                                            String.Concat(dataReader.GetValue(x)).ToLower().Replace(
+                                                                " ", "")
                                                             ] ==
                                                         "unp")
                                                     {
+                                                        bool unpCheckValue = unpCheck(
+                                                            String.Concat(dataReader.GetValue(x + 1)).Replace(" ",
+                                                                                                              ""));
                                                         LogFile.Wrile2Log("Контроль УНП " +
-                                                                          unpCheck(
-                                                                              String.Concat(dataReader.GetValue(x+1)).Replace(" ",
-                                                                                                                  "")));
-                                                        LogFile2.Wrile2Log("Контроль УНП " +
-                                                                           unpCheck(
-                                                                               String.Concat(dataReader.GetValue(x + 1)).
+                                                                          unpCheckValue);
+                                                        //LogFile2.Wrile2Log("Контроль УНП " +
+                                                        //                   unpCheck(
+                                                        //                       String.Concat(dataReader.GetValue(x + 1)).
+                                                        //                           Replace(" ",
+                                                        //                                   "")));
+                                                        if (!unpCheckValue)
+                                                        {
+                                                            LogFile2.Wrile2Log("Неверный контрольный разряд в УНП " +
+                                                                               String.Concat(dataReader.GetValue(x + 1))
+                                                                                   .
                                                                                    Replace(" ",
-                                                                                           "")));
+                                                                                           ""));
+                                                            throw new ArgumentOutOfRangeException(
+                                                                _fieldsDictIP[
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x + 1)),
+                                                                "Неверный контрольный разряд в УНП");
+                                                        }
+
 
                                                         cbd_anketsDataSetTableAdapters.QueriesTableAdapter tmpAdp_cdb =
                                                             new cbd_anketsDataSetTableAdapters.QueriesTableAdapter();
                                                         String tmpR =
                                                             tmpAdp_cdb.count_unp_bd_ip(
-                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ", ""))
+                                                                String.Concat(dataReader.GetValue(x + 1)).Replace(" ",
+                                                                                                                  ""))
                                                                 .
                                                                 ToString();
                                                         if (tmpR != "0")
@@ -556,10 +673,19 @@ namespace Excel2Ankets
                                                             //LogFile.Wrile2Log("Ошибка. В таблице bd_ip такой УНП " +
                                                             //                  dataReader.GetString(x + 1).Replace(" ", "") +
                                                             //                  " уже присутствует.");
+                                                            LogFile2.Wrile2Log(
+                                                                "Анкета индивидуального препринимателя УНП " +
+                                                                String.Concat(dataReader.GetValue(x + 1))
+                                                                    .
+                                                                    Replace(" ",
+                                                                            "") +
+                                                                " уже присутствует в БИАС");
+
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictIP[
-                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
-                                                                    ], String.Concat(dataReader.GetValue(x+1)),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x + 1)),
                                                                 "Дублирование УНП в основной БД");
                                                         }
                                                         testDataSetTableAdapters.QueriesTableAdapter tmpAdp_test =
@@ -567,18 +693,27 @@ namespace Excel2Ankets
 
                                                         tmpR =
                                                             tmpAdp_test.count_unp_bd_ip_t(
-                                                                String.Concat(dataReader.GetValue(x+1)).Replace(" ",
-                                                                                                    "")).
+                                                                String.Concat(dataReader.GetValue(x + 1)).Replace(" ",
+                                                                                                                  "")).
                                                                 ToString();
                                                         if (tmpR != "0")
                                                         {
                                                             //LogFile.Wrile2Log("Ошибка. В таблице bd_ip_t такой УНП " +
                                                             //                  dataReader.GetString(x + 1).Replace(" ", "") +
                                                             //                  " уже присутствует.");
+                                                            LogFile2.Wrile2Log(
+                                                                "Анкета индивидуального препринимателя УНП " +
+                                                                String.Concat(dataReader.GetValue(x + 1))
+                                                                    .
+                                                                    Replace(" ",
+                                                                            "") +
+                                                                " уже присутствует в БИАС");
+
                                                             throw new ArgumentOutOfRangeException(
                                                                 _fieldsDictIP[
-                                                                    String.Concat(dataReader.GetValue(x)).ToLower().Replace(" ", "")
-                                                                    ], String.Concat(dataReader.GetValue(x+1)),
+                                                                    String.Concat(dataReader.GetValue(x)).ToLower().
+                                                                        Replace(" ", "")
+                                                                    ], String.Concat(dataReader.GetValue(x + 1)),
                                                                 "Дублирование УНП в транизитной БД");
 
 
@@ -588,25 +723,47 @@ namespace Excel2Ankets
                                                 catch (ArgumentOutOfRangeException outOfRangeException)
                                                 {
                                                     LogFile.Wrile2Log(outOfRangeException.Message);
-                                                    LogFile2.Wrile2Log(outOfRangeException.Message);
+                                                    //LogFile2.Wrile2Log(outOfRangeException.Message);
                                                     if (outOfRangeException.ParamName == "unp")
+                                                    {
+                                                        //LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " +
+                                                        //                   currentRow["TABLE_NAME"] +
+                                                        //                   " - недопустимый УНП");
+                                                        //LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " + currentRow["TABLE_NAME"] + " - недопустимый УНП");
+
                                                         throw new ArgumentOutOfRangeException("Лист",
                                                                                               currentRow["TABLE_NAME"],
                                                                                               "Невозможно загрузить анкету");
+
+                                                    }
+                                                    if (outOfRangeException.ParamName == "lastname")
+                                                    {
+                                                        LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " +
+                                                                           currentRow["TABLE_NAME"] +
+                                                                           " - недопустимая фамилия ИП");
+
+                                                        throw new ArgumentOutOfRangeException("Лист",
+                                                                                              currentRow["TABLE_NAME"],
+                                                                                              "Невозможно загрузить анкету");
+                                                        //LogFile2.Wrile2Log("Невозможно загрузить анкету из листа " + currentRow["TABLE_NAME"] + " - недопустимый УНП");
+
+                                                    }
+
                                                 }
                                                 catch (ArgumentException argumentException)
                                                 {
                                                     LogFile.Wrile2Log(argumentException.Message);
-                                                    LogFile2.Wrile2Log(argumentException.Message);
+                                                    //LogFile2.Wrile2Log(argumentException.Message);
                                                 }
+
                                                 catch (Exception exp)
                                                 {
                                                     LogFile.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
                                                                       "\t Столбец - " + currentColumnXls);
-                                                    LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
-                                                                      "\t Столбец - " + currentColumnXls);
+                                                    //LogFile2.Wrile2Log(exp.Message + " Строка - " + currentRowXls +
+                                                    //                  "\t Столбец - " + currentColumnXls);
 
-                                                    throw;
+                                                    
                                                 }
 
                                             }
@@ -620,13 +777,23 @@ namespace Excel2Ankets
 
                                     j++;
                                 }
-                                catch(Exception)
+                                catch (ArgumentException)
                                 {
                                     dataReader.Close();
                                     dataReader.Dispose();
                                     selectCmd.Cancel();
                                     selectCmd.Dispose();
                                     throw;
+                                }
+                                catch (Exception e)
+                                {
+
+                                    //dataReader.Close();
+                                    //dataReader.Dispose();
+                                    //selectCmd.Cancel();
+                                    //selectCmd.Dispose();
+                                    //throw;
+                                    
                                 }
 
                             }
@@ -686,10 +853,13 @@ namespace Excel2Ankets
                                                                       "В анкете не найдено наименование организации");
                             }
 
-                            if(typeAnkt==0 || !tableFound)
+                            if (typeAnkt == 0 || !tableFound)
+                            {
+                                LogFile2.Wrile2Log("На листе"+ currentRow["TABLE_NAME"]+" - анкета не найдена");
                                 throw new ArgumentOutOfRangeException("Лист ",
                                                                       currentRow["TABLE_NAME"],
                                                                       "Анкета не найдена ");
+                            }
                             //prBarSheets.PerformStep();
 
                             //tmpMySqlDS.bd_org.Select()
@@ -702,14 +872,14 @@ namespace Excel2Ankets
                             catch(ArgumentOutOfRangeException ofRangeException)
                             {
                                 LogFile.Wrile2Log(ofRangeException.Message);
-                                LogFile2.Wrile2Log(ofRangeException.Message);
+                                //LogFile2.Wrile2Log(ofRangeException.Message);
 
                                 resault = false;
                             }
                         catch(NoNullAllowedException nullAllowedException)
                         {
                                 LogFile.Wrile2Log(nullAllowedException.Message);
-                                LogFile2.Wrile2Log(nullAllowedException.Message);
+                                //LogFile2.Wrile2Log(nullAllowedException.Message);
                                 resault = false;
 
                         }
@@ -721,12 +891,16 @@ namespace Excel2Ankets
                         {
 
 
-                            LogFile.Wrile2Log(ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
+                            LogFile.Wrile2Log("ВНИМАНИЕ!!!\n при разборе листа" + currentRow["TABLE_NAME"].ToString() + " возникла ошибка. Лист будет пропущен\n" + ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
                                               currentColumnXls);
-                            LogFile2.Wrile2Log(ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
-                                               currentColumnXls);
+                            //LogFile2.Wrile2Log(ex.Message + " Строка - " + currentRowXls + "\t Столбец - " +
+                            //                   currentColumnXls);
+                            //if (MessageBox.Show(null, "При разборе листа " + currentRow["TABLE_NAME"].ToString() + " возникло исключение\n" + ex.Message + "\n Продолжить?", "Ошибка разбора анкеты",MessageBoxButtons.YesNo)==DialogResult.No)
+                            //{
+                            //    throw;
+                            //}
 
-                            throw;
+                            
                         }
 
                     }
@@ -736,7 +910,7 @@ namespace Excel2Ankets
                     Console.WriteLine(ex.Message);
                     Console.WriteLine(currentFileName);
                     LogFile.Wrile2Log(ex.Message);
-                    LogFile2.Wrile2Log(ex.Message);
+                    //LogFile2.Wrile2Log(ex.Message);
                     resault = false;
                 }
           

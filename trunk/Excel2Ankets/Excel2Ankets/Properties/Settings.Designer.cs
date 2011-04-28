@@ -59,7 +59,7 @@ namespace Excel2Ankets.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\test\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\test\\in")]
         public string inputDir {
             get {
                 return ((string)(this["inputDir"]));
@@ -71,7 +71,7 @@ namespace Excel2Ankets.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\backup\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("e:\\projects\\.net\\Excel2Ankets\\test\\out")]
         public string outputDir {
             get {
                 return ((string)(this["outputDir"]));
