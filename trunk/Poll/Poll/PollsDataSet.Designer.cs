@@ -32,6 +32,8 @@ namespace Poll {
         
         private RKCDataTable tableRKC;
         
+        private POLL_BANKDataTable tablePOLL_BANK;
+        
         private SexDataTable tableSex;
         
         private QuestionDataTable tableQuestion;
@@ -75,6 +77,9 @@ namespace Poll {
                 }
                 if ((ds.Tables["RKC"] != null)) {
                     base.Tables.Add(new RKCDataTable(ds.Tables["RKC"]));
+                }
+                if ((ds.Tables["POLL_BANK"] != null)) {
+                    base.Tables.Add(new POLL_BANKDataTable(ds.Tables["POLL_BANK"]));
                 }
                 if ((ds.Tables["Sex"] != null)) {
                     base.Tables.Add(new SexDataTable(ds.Tables["Sex"]));
@@ -137,6 +142,16 @@ namespace Poll {
         public RKCDataTable RKC {
             get {
                 return this.tableRKC;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public POLL_BANKDataTable POLL_BANK {
+            get {
+                return this.tablePOLL_BANK;
             }
         }
         
@@ -239,6 +254,9 @@ namespace Poll {
                 if ((ds.Tables["RKC"] != null)) {
                     base.Tables.Add(new RKCDataTable(ds.Tables["RKC"]));
                 }
+                if ((ds.Tables["POLL_BANK"] != null)) {
+                    base.Tables.Add(new POLL_BANKDataTable(ds.Tables["POLL_BANK"]));
+                }
                 if ((ds.Tables["Sex"] != null)) {
                     base.Tables.Add(new SexDataTable(ds.Tables["Sex"]));
                 }
@@ -302,6 +320,12 @@ namespace Poll {
                     this.tableRKC.InitVars();
                 }
             }
+            this.tablePOLL_BANK = ((POLL_BANKDataTable)(base.Tables["POLL_BANK"]));
+            if ((initTable == true)) {
+                if ((this.tablePOLL_BANK != null)) {
+                    this.tablePOLL_BANK.InitVars();
+                }
+            }
             this.tableSex = ((SexDataTable)(base.Tables["Sex"]));
             if ((initTable == true)) {
                 if ((this.tableSex != null)) {
@@ -332,6 +356,8 @@ namespace Poll {
             base.Tables.Add(this.tableSTRUCT_UNIT);
             this.tableRKC = new RKCDataTable();
             base.Tables.Add(this.tableRKC);
+            this.tablePOLL_BANK = new POLL_BANKDataTable();
+            base.Tables.Add(this.tablePOLL_BANK);
             this.tableSex = new SexDataTable();
             base.Tables.Add(this.tableSex);
             this.tableQuestion = new QuestionDataTable();
@@ -359,6 +385,12 @@ namespace Poll {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeRKC() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializePOLL_BANK() {
             return false;
         }
         
@@ -440,6 +472,9 @@ namespace Poll {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void RKCRowChangeEventHandler(object sender, RKCRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void POLL_BANKRowChangeEventHandler(object sender, POLL_BANKRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SexRowChangeEventHandler(object sender, SexRowChangeEvent e);
@@ -1340,6 +1375,8 @@ namespace Poll {
             
             private global::System.Data.DataColumn columnNAME;
             
+            private global::System.Data.DataColumn columnREF_FILIAL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public STRUCT_UNITDataTable() {
@@ -1391,6 +1428,14 @@ namespace Poll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_FILIALColumn {
+                get {
+                    return this.columnREF_FILIAL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1426,11 +1471,12 @@ namespace Poll {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public STRUCT_UNITRow AddSTRUCT_UNITRow(decimal BRANCH, string NAME) {
+            public STRUCT_UNITRow AddSTRUCT_UNITRow(decimal BRANCH, string NAME, decimal REF_FILIAL) {
                 STRUCT_UNITRow rowSTRUCT_UNITRow = ((STRUCT_UNITRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         BRANCH,
-                        NAME};
+                        NAME,
+                        REF_FILIAL};
                 rowSTRUCT_UNITRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSTRUCT_UNITRow);
                 return rowSTRUCT_UNITRow;
@@ -1455,6 +1501,7 @@ namespace Poll {
             internal void InitVars() {
                 this.columnBRANCH = base.Columns["BRANCH"];
                 this.columnNAME = base.Columns["NAME"];
+                this.columnREF_FILIAL = base.Columns["REF_FILIAL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1464,9 +1511,12 @@ namespace Poll {
                 base.Columns.Add(this.columnBRANCH);
                 this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNAME);
+                this.columnREF_FILIAL = new global::System.Data.DataColumn("REF_FILIAL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_FILIAL);
                 this.columnBRANCH.AllowDBNull = false;
                 this.columnNAME.AllowDBNull = false;
                 this.columnNAME.MaxLength = 128;
+                this.columnREF_FILIAL.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1817,6 +1867,716 @@ namespace Poll {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "RKCDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class POLL_BANKDataTable : global::System.Data.TypedTableBase<POLL_BANKRow> {
+            
+            private global::System.Data.DataColumn columnDATE_POLL_BANK;
+            
+            private global::System.Data.DataColumn columnSEX;
+            
+            private global::System.Data.DataColumn columnAGE;
+            
+            private global::System.Data.DataColumn columnNUMBER_POLL_BANK;
+            
+            private global::System.Data.DataColumn columnREF_RKC;
+            
+            private global::System.Data.DataColumn columnREF_OTD;
+            
+            private global::System.Data.DataColumn columnREF_OBL;
+            
+            private global::System.Data.DataColumn columnS_SPEED_SERVICE;
+            
+            private global::System.Data.DataColumn columnS_OFFICE_LOCATION;
+            
+            private global::System.Data.DataColumn columnS_BANK_RELIABITILY;
+            
+            private global::System.Data.DataColumn columnS_MODE;
+            
+            private global::System.Data.DataColumn columnS_STAFF_COMPETENCE;
+            
+            private global::System.Data.DataColumn columnS_SERVICES_CHOICE;
+            
+            private global::System.Data.DataColumn columnI_SPEED_SERVICE;
+            
+            private global::System.Data.DataColumn columnI_OFFICE_LOCATION;
+            
+            private global::System.Data.DataColumn columnI_BANK_RELIABITILY;
+            
+            private global::System.Data.DataColumn columnI_MODE;
+            
+            private global::System.Data.DataColumn columnI_STAFF_COMPETENCE;
+            
+            private global::System.Data.DataColumn columnI_SERVICES_CHOICE;
+            
+            private global::System.Data.DataColumn columnI_ADD_SERVICE;
+            
+            private global::System.Data.DataColumn columnREF_USER;
+            
+            private global::System.Data.DataColumn columnDT_LAST_ACSESS;
+            
+            private global::System.Data.DataColumn columnS_BANK_IMAGE;
+            
+            private global::System.Data.DataColumn columnS_SERVICE_TERMS;
+            
+            private global::System.Data.DataColumn columnS_ADD_SERVICE;
+            
+            private global::System.Data.DataColumn columnI_SERVICE_CULTURE;
+            
+            private global::System.Data.DataColumn columnI_BANK_IMAGE;
+            
+            private global::System.Data.DataColumn columnI_SERVICE_TERMS;
+            
+            private global::System.Data.DataColumn columnS_SERVICE_CULTURE;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKDataTable() {
+                this.TableName = "POLL_BANK";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal POLL_BANKDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected POLL_BANKDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DATE_POLL_BANKColumn {
+                get {
+                    return this.columnDATE_POLL_BANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SEXColumn {
+                get {
+                    return this.columnSEX;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AGEColumn {
+                get {
+                    return this.columnAGE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NUMBER_POLL_BANKColumn {
+                get {
+                    return this.columnNUMBER_POLL_BANK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_RKCColumn {
+                get {
+                    return this.columnREF_RKC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_OTDColumn {
+                get {
+                    return this.columnREF_OTD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_OBLColumn {
+                get {
+                    return this.columnREF_OBL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_SPEED_SERVICEColumn {
+                get {
+                    return this.columnS_SPEED_SERVICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_OFFICE_LOCATIONColumn {
+                get {
+                    return this.columnS_OFFICE_LOCATION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_BANK_RELIABITILYColumn {
+                get {
+                    return this.columnS_BANK_RELIABITILY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_MODEColumn {
+                get {
+                    return this.columnS_MODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_STAFF_COMPETENCEColumn {
+                get {
+                    return this.columnS_STAFF_COMPETENCE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_SERVICES_CHOICEColumn {
+                get {
+                    return this.columnS_SERVICES_CHOICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_SPEED_SERVICEColumn {
+                get {
+                    return this.columnI_SPEED_SERVICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_OFFICE_LOCATIONColumn {
+                get {
+                    return this.columnI_OFFICE_LOCATION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_BANK_RELIABITILYColumn {
+                get {
+                    return this.columnI_BANK_RELIABITILY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_MODEColumn {
+                get {
+                    return this.columnI_MODE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_STAFF_COMPETENCEColumn {
+                get {
+                    return this.columnI_STAFF_COMPETENCE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_SERVICES_CHOICEColumn {
+                get {
+                    return this.columnI_SERVICES_CHOICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_ADD_SERVICEColumn {
+                get {
+                    return this.columnI_ADD_SERVICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn REF_USERColumn {
+                get {
+                    return this.columnREF_USER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DT_LAST_ACSESSColumn {
+                get {
+                    return this.columnDT_LAST_ACSESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_BANK_IMAGEColumn {
+                get {
+                    return this.columnS_BANK_IMAGE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_SERVICE_TERMSColumn {
+                get {
+                    return this.columnS_SERVICE_TERMS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_ADD_SERVICEColumn {
+                get {
+                    return this.columnS_ADD_SERVICE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_SERVICE_CULTUREColumn {
+                get {
+                    return this.columnI_SERVICE_CULTURE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_BANK_IMAGEColumn {
+                get {
+                    return this.columnI_BANK_IMAGE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn I_SERVICE_TERMSColumn {
+                get {
+                    return this.columnI_SERVICE_TERMS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn S_SERVICE_CULTUREColumn {
+                get {
+                    return this.columnS_SERVICE_CULTURE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRow this[int index] {
+                get {
+                    return ((POLL_BANKRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event POLL_BANKRowChangeEventHandler POLL_BANKRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event POLL_BANKRowChangeEventHandler POLL_BANKRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event POLL_BANKRowChangeEventHandler POLL_BANKRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event POLL_BANKRowChangeEventHandler POLL_BANKRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddPOLL_BANKRow(POLL_BANKRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRow AddPOLL_BANKRow(
+                        System.DateTime DATE_POLL_BANK, 
+                        string SEX, 
+                        decimal AGE, 
+                        decimal NUMBER_POLL_BANK, 
+                        decimal REF_RKC, 
+                        decimal REF_OTD, 
+                        decimal REF_OBL, 
+                        decimal S_SPEED_SERVICE, 
+                        decimal S_OFFICE_LOCATION, 
+                        decimal S_BANK_RELIABITILY, 
+                        decimal S_MODE, 
+                        decimal S_STAFF_COMPETENCE, 
+                        decimal S_SERVICES_CHOICE, 
+                        decimal I_SPEED_SERVICE, 
+                        decimal I_OFFICE_LOCATION, 
+                        decimal I_BANK_RELIABITILY, 
+                        decimal I_MODE, 
+                        decimal I_STAFF_COMPETENCE, 
+                        decimal I_SERVICES_CHOICE, 
+                        decimal I_ADD_SERVICE, 
+                        decimal REF_USER, 
+                        System.DateTime DT_LAST_ACSESS, 
+                        decimal S_BANK_IMAGE, 
+                        decimal S_SERVICE_TERMS, 
+                        decimal S_ADD_SERVICE, 
+                        decimal I_SERVICE_CULTURE, 
+                        decimal I_BANK_IMAGE, 
+                        decimal I_SERVICE_TERMS, 
+                        decimal S_SERVICE_CULTURE) {
+                POLL_BANKRow rowPOLL_BANKRow = ((POLL_BANKRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        DATE_POLL_BANK,
+                        SEX,
+                        AGE,
+                        NUMBER_POLL_BANK,
+                        REF_RKC,
+                        REF_OTD,
+                        REF_OBL,
+                        S_SPEED_SERVICE,
+                        S_OFFICE_LOCATION,
+                        S_BANK_RELIABITILY,
+                        S_MODE,
+                        S_STAFF_COMPETENCE,
+                        S_SERVICES_CHOICE,
+                        I_SPEED_SERVICE,
+                        I_OFFICE_LOCATION,
+                        I_BANK_RELIABITILY,
+                        I_MODE,
+                        I_STAFF_COMPETENCE,
+                        I_SERVICES_CHOICE,
+                        I_ADD_SERVICE,
+                        REF_USER,
+                        DT_LAST_ACSESS,
+                        S_BANK_IMAGE,
+                        S_SERVICE_TERMS,
+                        S_ADD_SERVICE,
+                        I_SERVICE_CULTURE,
+                        I_BANK_IMAGE,
+                        I_SERVICE_TERMS,
+                        S_SERVICE_CULTURE};
+                rowPOLL_BANKRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPOLL_BANKRow);
+                return rowPOLL_BANKRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRow FindByDATE_POLL_BANKNUMBER_POLL_BANKREF_OTD(System.DateTime DATE_POLL_BANK, decimal NUMBER_POLL_BANK, decimal REF_OTD) {
+                return ((POLL_BANKRow)(this.Rows.Find(new object[] {
+                            DATE_POLL_BANK,
+                            NUMBER_POLL_BANK,
+                            REF_OTD})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                POLL_BANKDataTable cln = ((POLL_BANKDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new POLL_BANKDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnDATE_POLL_BANK = base.Columns["DATE_POLL_BANK"];
+                this.columnSEX = base.Columns["SEX"];
+                this.columnAGE = base.Columns["AGE"];
+                this.columnNUMBER_POLL_BANK = base.Columns["NUMBER_POLL_BANK"];
+                this.columnREF_RKC = base.Columns["REF_RKC"];
+                this.columnREF_OTD = base.Columns["REF_OTD"];
+                this.columnREF_OBL = base.Columns["REF_OBL"];
+                this.columnS_SPEED_SERVICE = base.Columns["S_SPEED_SERVICE"];
+                this.columnS_OFFICE_LOCATION = base.Columns["S_OFFICE_LOCATION"];
+                this.columnS_BANK_RELIABITILY = base.Columns["S_BANK_RELIABITILY"];
+                this.columnS_MODE = base.Columns["S_MODE"];
+                this.columnS_STAFF_COMPETENCE = base.Columns["S_STAFF_COMPETENCE"];
+                this.columnS_SERVICES_CHOICE = base.Columns["S_SERVICES_CHOICE"];
+                this.columnI_SPEED_SERVICE = base.Columns["I_SPEED_SERVICE"];
+                this.columnI_OFFICE_LOCATION = base.Columns["I_OFFICE_LOCATION"];
+                this.columnI_BANK_RELIABITILY = base.Columns["I_BANK_RELIABITILY"];
+                this.columnI_MODE = base.Columns["I_MODE"];
+                this.columnI_STAFF_COMPETENCE = base.Columns["I_STAFF_COMPETENCE"];
+                this.columnI_SERVICES_CHOICE = base.Columns["I_SERVICES_CHOICE"];
+                this.columnI_ADD_SERVICE = base.Columns["I_ADD_SERVICE"];
+                this.columnREF_USER = base.Columns["REF_USER"];
+                this.columnDT_LAST_ACSESS = base.Columns["DT_LAST_ACSESS"];
+                this.columnS_BANK_IMAGE = base.Columns["S_BANK_IMAGE"];
+                this.columnS_SERVICE_TERMS = base.Columns["S_SERVICE_TERMS"];
+                this.columnS_ADD_SERVICE = base.Columns["S_ADD_SERVICE"];
+                this.columnI_SERVICE_CULTURE = base.Columns["I_SERVICE_CULTURE"];
+                this.columnI_BANK_IMAGE = base.Columns["I_BANK_IMAGE"];
+                this.columnI_SERVICE_TERMS = base.Columns["I_SERVICE_TERMS"];
+                this.columnS_SERVICE_CULTURE = base.Columns["S_SERVICE_CULTURE"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnDATE_POLL_BANK = new global::System.Data.DataColumn("DATE_POLL_BANK", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE_POLL_BANK);
+                this.columnSEX = new global::System.Data.DataColumn("SEX", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSEX);
+                this.columnAGE = new global::System.Data.DataColumn("AGE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAGE);
+                this.columnNUMBER_POLL_BANK = new global::System.Data.DataColumn("NUMBER_POLL_BANK", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNUMBER_POLL_BANK);
+                this.columnREF_RKC = new global::System.Data.DataColumn("REF_RKC", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_RKC);
+                this.columnREF_OTD = new global::System.Data.DataColumn("REF_OTD", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_OTD);
+                this.columnREF_OBL = new global::System.Data.DataColumn("REF_OBL", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_OBL);
+                this.columnS_SPEED_SERVICE = new global::System.Data.DataColumn("S_SPEED_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_SPEED_SERVICE);
+                this.columnS_OFFICE_LOCATION = new global::System.Data.DataColumn("S_OFFICE_LOCATION", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_OFFICE_LOCATION);
+                this.columnS_BANK_RELIABITILY = new global::System.Data.DataColumn("S_BANK_RELIABITILY", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_BANK_RELIABITILY);
+                this.columnS_MODE = new global::System.Data.DataColumn("S_MODE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_MODE);
+                this.columnS_STAFF_COMPETENCE = new global::System.Data.DataColumn("S_STAFF_COMPETENCE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_STAFF_COMPETENCE);
+                this.columnS_SERVICES_CHOICE = new global::System.Data.DataColumn("S_SERVICES_CHOICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_SERVICES_CHOICE);
+                this.columnI_SPEED_SERVICE = new global::System.Data.DataColumn("I_SPEED_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_SPEED_SERVICE);
+                this.columnI_OFFICE_LOCATION = new global::System.Data.DataColumn("I_OFFICE_LOCATION", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_OFFICE_LOCATION);
+                this.columnI_BANK_RELIABITILY = new global::System.Data.DataColumn("I_BANK_RELIABITILY", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_BANK_RELIABITILY);
+                this.columnI_MODE = new global::System.Data.DataColumn("I_MODE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_MODE);
+                this.columnI_STAFF_COMPETENCE = new global::System.Data.DataColumn("I_STAFF_COMPETENCE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_STAFF_COMPETENCE);
+                this.columnI_SERVICES_CHOICE = new global::System.Data.DataColumn("I_SERVICES_CHOICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_SERVICES_CHOICE);
+                this.columnI_ADD_SERVICE = new global::System.Data.DataColumn("I_ADD_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_ADD_SERVICE);
+                this.columnREF_USER = new global::System.Data.DataColumn("REF_USER", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREF_USER);
+                this.columnDT_LAST_ACSESS = new global::System.Data.DataColumn("DT_LAST_ACSESS", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDT_LAST_ACSESS);
+                this.columnS_BANK_IMAGE = new global::System.Data.DataColumn("S_BANK_IMAGE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_BANK_IMAGE);
+                this.columnS_SERVICE_TERMS = new global::System.Data.DataColumn("S_SERVICE_TERMS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_SERVICE_TERMS);
+                this.columnS_ADD_SERVICE = new global::System.Data.DataColumn("S_ADD_SERVICE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_ADD_SERVICE);
+                this.columnI_SERVICE_CULTURE = new global::System.Data.DataColumn("I_SERVICE_CULTURE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_SERVICE_CULTURE);
+                this.columnI_BANK_IMAGE = new global::System.Data.DataColumn("I_BANK_IMAGE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_BANK_IMAGE);
+                this.columnI_SERVICE_TERMS = new global::System.Data.DataColumn("I_SERVICE_TERMS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnI_SERVICE_TERMS);
+                this.columnS_SERVICE_CULTURE = new global::System.Data.DataColumn("S_SERVICE_CULTURE", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS_SERVICE_CULTURE);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnDATE_POLL_BANK,
+                                this.columnNUMBER_POLL_BANK,
+                                this.columnREF_OTD}, true));
+                this.columnDATE_POLL_BANK.AllowDBNull = false;
+                this.columnSEX.AllowDBNull = false;
+                this.columnSEX.MaxLength = 1;
+                this.columnAGE.AllowDBNull = false;
+                this.columnNUMBER_POLL_BANK.AllowDBNull = false;
+                this.columnREF_OTD.AllowDBNull = false;
+                this.columnREF_OBL.AllowDBNull = false;
+                this.columnS_SPEED_SERVICE.AllowDBNull = false;
+                this.columnS_OFFICE_LOCATION.AllowDBNull = false;
+                this.columnS_BANK_RELIABITILY.AllowDBNull = false;
+                this.columnS_MODE.AllowDBNull = false;
+                this.columnS_STAFF_COMPETENCE.AllowDBNull = false;
+                this.columnS_SERVICES_CHOICE.AllowDBNull = false;
+                this.columnI_SPEED_SERVICE.AllowDBNull = false;
+                this.columnI_OFFICE_LOCATION.AllowDBNull = false;
+                this.columnI_BANK_RELIABITILY.AllowDBNull = false;
+                this.columnI_MODE.AllowDBNull = false;
+                this.columnI_STAFF_COMPETENCE.AllowDBNull = false;
+                this.columnI_SERVICES_CHOICE.AllowDBNull = false;
+                this.columnI_ADD_SERVICE.AllowDBNull = false;
+                this.columnREF_USER.AllowDBNull = false;
+                this.columnDT_LAST_ACSESS.AllowDBNull = false;
+                this.columnS_BANK_IMAGE.AllowDBNull = false;
+                this.columnS_SERVICE_TERMS.AllowDBNull = false;
+                this.columnS_ADD_SERVICE.AllowDBNull = false;
+                this.columnI_SERVICE_CULTURE.AllowDBNull = false;
+                this.columnI_BANK_IMAGE.AllowDBNull = false;
+                this.columnI_SERVICE_TERMS.AllowDBNull = false;
+                this.columnS_SERVICE_CULTURE.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRow NewPOLL_BANKRow() {
+                return ((POLL_BANKRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new POLL_BANKRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(POLL_BANKRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.POLL_BANKRowChanged != null)) {
+                    this.POLL_BANKRowChanged(this, new POLL_BANKRowChangeEvent(((POLL_BANKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.POLL_BANKRowChanging != null)) {
+                    this.POLL_BANKRowChanging(this, new POLL_BANKRowChangeEvent(((POLL_BANKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.POLL_BANKRowDeleted != null)) {
+                    this.POLL_BANKRowDeleted(this, new POLL_BANKRowChangeEvent(((POLL_BANKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.POLL_BANKRowDeleting != null)) {
+                    this.POLL_BANKRowDeleting(this, new POLL_BANKRowChangeEvent(((POLL_BANKRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovePOLL_BANKRow(POLL_BANKRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                PollsDataSet ds = new PollsDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "POLL_BANKDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2753,6 +3513,17 @@ namespace Poll {
                     this[this.tableSTRUCT_UNIT.NAMEColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_FILIAL {
+                get {
+                    return ((decimal)(this[this.tableSTRUCT_UNIT.REF_FILIALColumn]));
+                }
+                set {
+                    this[this.tableSTRUCT_UNIT.REF_FILIALColumn] = value;
+                }
+            }
         }
         
         /// <summary>
@@ -2789,6 +3560,357 @@ namespace Poll {
                 set {
                     this[this.tableRKC.CODE_RKCColumn] = value;
                 }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class POLL_BANKRow : global::System.Data.DataRow {
+            
+            private POLL_BANKDataTable tablePOLL_BANK;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal POLL_BANKRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePOLL_BANK = ((POLL_BANKDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DATE_POLL_BANK {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePOLL_BANK.DATE_POLL_BANKColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.DATE_POLL_BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SEX {
+                get {
+                    return ((string)(this[this.tablePOLL_BANK.SEXColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.SEXColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal AGE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.AGEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.AGEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal NUMBER_POLL_BANK {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.NUMBER_POLL_BANKColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.NUMBER_POLL_BANKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_RKC {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePOLL_BANK.REF_RKCColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'REF_RKC\' in table \'POLL_BANK\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePOLL_BANK.REF_RKCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_OTD {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.REF_OTDColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.REF_OTDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_OBL {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.REF_OBLColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.REF_OBLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_SPEED_SERVICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_SPEED_SERVICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_SPEED_SERVICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_OFFICE_LOCATION {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_OFFICE_LOCATIONColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_OFFICE_LOCATIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_BANK_RELIABITILY {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_BANK_RELIABITILYColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_BANK_RELIABITILYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_MODE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_MODEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_MODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_STAFF_COMPETENCE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_STAFF_COMPETENCEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_STAFF_COMPETENCEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_SERVICES_CHOICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_SERVICES_CHOICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_SERVICES_CHOICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_SPEED_SERVICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_SPEED_SERVICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_SPEED_SERVICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_OFFICE_LOCATION {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_OFFICE_LOCATIONColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_OFFICE_LOCATIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_BANK_RELIABITILY {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_BANK_RELIABITILYColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_BANK_RELIABITILYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_MODE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_MODEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_MODEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_STAFF_COMPETENCE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_STAFF_COMPETENCEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_STAFF_COMPETENCEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_SERVICES_CHOICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_SERVICES_CHOICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_SERVICES_CHOICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_ADD_SERVICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_ADD_SERVICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_ADD_SERVICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal REF_USER {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.REF_USERColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.REF_USERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DT_LAST_ACSESS {
+                get {
+                    return ((global::System.DateTime)(this[this.tablePOLL_BANK.DT_LAST_ACSESSColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.DT_LAST_ACSESSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_BANK_IMAGE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_BANK_IMAGEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_BANK_IMAGEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_SERVICE_TERMS {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_SERVICE_TERMSColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_SERVICE_TERMSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_ADD_SERVICE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_ADD_SERVICEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_ADD_SERVICEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_SERVICE_CULTURE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_SERVICE_CULTUREColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_SERVICE_CULTUREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_BANK_IMAGE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_BANK_IMAGEColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_BANK_IMAGEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal I_SERVICE_TERMS {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.I_SERVICE_TERMSColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.I_SERVICE_TERMSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal S_SERVICE_CULTURE {
+                get {
+                    return ((decimal)(this[this.tablePOLL_BANK.S_SERVICE_CULTUREColumn]));
+                }
+                set {
+                    this[this.tablePOLL_BANK.S_SERVICE_CULTUREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsREF_RKCNull() {
+                return this.IsNull(this.tablePOLL_BANK.REF_RKCColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetREF_RKCNull() {
+                this[this.tablePOLL_BANK.REF_RKCColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3084,6 +4206,40 @@ namespace Poll {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RKCRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class POLL_BANKRowChangeEvent : global::System.EventArgs {
+            
+            private POLL_BANKRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRowChangeEvent(POLL_BANKRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public POLL_BANKRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4118,7 +5274,7 @@ WHERE        (REF_OBL = :filial)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[2];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        NAME, COD_FIL\r\nFROM            \"DIRECTORY\".FILIAL\r\nWHERE        (BE" +
@@ -4126,6 +5282,14 @@ WHERE        (REF_OBL = :filial)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        NAME, COD_FIL\r\nFROM            \"DIRECTORY\".FILIAL\r\nWHERE        (BE" +
+                "G_EXP <= :d_beg) AND (END_EXP >= :d_end) AND COD_FIL=:filial";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "COD_FIL", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4151,6 +5315,36 @@ WHERE        (REF_OBL = :filial)";
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            PollsDataSet.FILIALDataTable dataTable = new PollsDataSet.FILIALDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByFil(PollsDataSet.FILIALDataTable dataTable, System.DateTime d_beg, System.DateTime d_end, decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(filial));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.FILIALDataTable GetDataByFil(System.DateTime d_beg, System.DateTime d_end, decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(filial));
             PollsDataSet.FILIALDataTable dataTable = new PollsDataSet.FILIALDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -4280,6 +5474,7 @@ WHERE        (REF_OBL = :filial)";
             tableMapping.DataSetTable = "STRUCT_UNIT";
             tableMapping.ColumnMappings.Add("BRANCH", "BRANCH");
             tableMapping.ColumnMappings.Add("NAME", "NAME");
+            tableMapping.ColumnMappings.Add("REF_FILIAL", "REF_FILIAL");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -4293,15 +5488,23 @@ WHERE        (REF_OBL = :filial)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[2];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        BRANCH, NAME\r\nFROM            \"DIRECTORY\".STRUCT_UNIT\r\nWHERE       " +
-                " (BEG_EXP <= :d_beg) AND (END_EXP >= :d_end) AND (REF_FILIAL = :filial)";
+            this._commandCollection[0].CommandText = "SELECT        BRANCH, NAME, REF_FILIAL\r\nFROM            \"DIRECTORY\".STRUCT_UNIT\r\n" +
+                "WHERE        (BEG_EXP <= :d_beg) AND (END_EXP >= :d_end) AND (REF_FILIAL = :fili" +
+                "al)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_FILIAL", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT BRANCH, NAME, REF_FILIAL FROM \"DIRECTORY\".STRUCT_UNIT WHERE (BEG_EXP <= :d" +
+                "_beg) AND (END_EXP >= :d_end)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4329,6 +5532,34 @@ WHERE        (REF_OBL = :filial)";
             this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
             this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(filial));
+            PollsDataSet.STRUCT_UNITDataTable dataTable = new PollsDataSet.STRUCT_UNITDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillFull(PollsDataSet.STRUCT_UNITDataTable dataTable, System.DateTime d_beg, System.DateTime d_end) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.STRUCT_UNITDataTable GetDataFull(System.DateTime d_beg, System.DateTime d_end) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
             PollsDataSet.STRUCT_UNITDataTable dataTable = new PollsDataSet.STRUCT_UNITDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -4471,7 +5702,7 @@ WHERE        (REF_OBL = :filial)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[1];
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[2];
             this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        NAME, CODE_RKC\r\nFROM            \"DIRECTORY\".RKC\r\nWHERE        (BEG_" +
@@ -4480,6 +5711,18 @@ WHERE        (REF_OBL = :filial)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[0].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("otd", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        ""DIRECTORY"".RKC.NAME, ""DIRECTORY"".RKC.CODE_RKC, ""DIRECTORY"".RKC.REF_OTD
+FROM            ""DIRECTORY"".RKC, ""DIRECTORY"".STRUCT_UNIT
+WHERE         (""DIRECTORY"".RKC.BEG_EXP <= :d_beg) AND (""DIRECTORY"".RKC.END_EXP >= :d_end) 
+	AND (""DIRECTORY"".RKC.REF_OTD = ""DIRECTORY"".STRUCT_UNIT.BRANCH) 
+	AND (""DIRECTORY"".STRUCT_UNIT.BEG_EXP <= :d_beg) AND (""DIRECTORY"".STRUCT_UNIT.END_EXP >= :d_end) 
+	AND (""DIRECTORY"".STRUCT_UNIT.REF_FILIAL = :filial)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_beg", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "BEG_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("d_end", global::System.Data.OracleClient.OracleType.DateTime, 7, global::System.Data.ParameterDirection.Input, "END_EXP", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_FILIAL", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4511,6 +5754,862 @@ WHERE        (REF_OBL = :filial)";
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByFilial(PollsDataSet.RKCDataTable dataTable, System.DateTime d_beg, System.DateTime d_end, decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(filial));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.RKCDataTable GetDataByFilial(System.DateTime d_beg, System.DateTime d_end, decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(d_beg));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(d_end));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((decimal)(filial));
+            PollsDataSet.RKCDataTable dataTable = new PollsDataSet.RKCDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class POLL_BANKTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.OracleClient.OracleDataAdapter _adapter;
+        
+        private global::System.Data.OracleClient.OracleConnection _connection;
+        
+        private global::System.Data.OracleClient.OracleTransaction _transaction;
+        
+        private global::System.Data.OracleClient.OracleCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public POLL_BANKTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.OracleClient.OracleDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.OracleClient.OracleConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.OracleClient.OracleCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.OracleClient.OracleTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.OracleClient.OracleCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.OracleClient.OracleDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "POLL_BANK";
+            tableMapping.ColumnMappings.Add("DATE_POLL_BANK", "DATE_POLL_BANK");
+            tableMapping.ColumnMappings.Add("SEX", "SEX");
+            tableMapping.ColumnMappings.Add("AGE", "AGE");
+            tableMapping.ColumnMappings.Add("NUMBER_POLL_BANK", "NUMBER_POLL_BANK");
+            tableMapping.ColumnMappings.Add("REF_RKC", "REF_RKC");
+            tableMapping.ColumnMappings.Add("REF_OTD", "REF_OTD");
+            tableMapping.ColumnMappings.Add("REF_OBL", "REF_OBL");
+            tableMapping.ColumnMappings.Add("S_SPEED_SERVICE", "S_SPEED_SERVICE");
+            tableMapping.ColumnMappings.Add("S_OFFICE_LOCATION", "S_OFFICE_LOCATION");
+            tableMapping.ColumnMappings.Add("S_BANK_RELIABITILY", "S_BANK_RELIABITILY");
+            tableMapping.ColumnMappings.Add("S_MODE", "S_MODE");
+            tableMapping.ColumnMappings.Add("S_STAFF_COMPETENCE", "S_STAFF_COMPETENCE");
+            tableMapping.ColumnMappings.Add("S_SERVICES_CHOICE", "S_SERVICES_CHOICE");
+            tableMapping.ColumnMappings.Add("I_SPEED_SERVICE", "I_SPEED_SERVICE");
+            tableMapping.ColumnMappings.Add("I_OFFICE_LOCATION", "I_OFFICE_LOCATION");
+            tableMapping.ColumnMappings.Add("I_BANK_RELIABITILY", "I_BANK_RELIABITILY");
+            tableMapping.ColumnMappings.Add("I_MODE", "I_MODE");
+            tableMapping.ColumnMappings.Add("I_STAFF_COMPETENCE", "I_STAFF_COMPETENCE");
+            tableMapping.ColumnMappings.Add("I_SERVICES_CHOICE", "I_SERVICES_CHOICE");
+            tableMapping.ColumnMappings.Add("I_ADD_SERVICE", "I_ADD_SERVICE");
+            tableMapping.ColumnMappings.Add("REF_USER", "REF_USER");
+            tableMapping.ColumnMappings.Add("DT_LAST_ACSESS", "DT_LAST_ACSESS");
+            tableMapping.ColumnMappings.Add("S_BANK_IMAGE", "S_BANK_IMAGE");
+            tableMapping.ColumnMappings.Add("S_SERVICE_TERMS", "S_SERVICE_TERMS");
+            tableMapping.ColumnMappings.Add("S_ADD_SERVICE", "S_ADD_SERVICE");
+            tableMapping.ColumnMappings.Add("I_SERVICE_CULTURE", "I_SERVICE_CULTURE");
+            tableMapping.ColumnMappings.Add("I_BANK_IMAGE", "I_BANK_IMAGE");
+            tableMapping.ColumnMappings.Add("I_SERVICE_TERMS", "I_SERVICE_TERMS");
+            tableMapping.ColumnMappings.Add("S_SERVICE_CULTURE", "S_SERVICE_CULTURE");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""POLL_BANK"" WHERE ((""DATE_POLL_BANK"" = :Original_DATE_POLL_BANK) AND (""SEX"" = :Original_SEX) AND (""AGE"" = :Original_AGE) AND (""NUMBER_POLL_BANK"" = :Original_NUMBER_POLL_BANK) AND ((:IsNull_REF_RKC = 1 AND ""REF_RKC"" IS NULL) OR (""REF_RKC"" = :Original_REF_RKC)) AND (""REF_OTD"" = :Original_REF_OTD) AND (""REF_OBL"" = :Original_REF_OBL) AND (""S_SPEED_SERVICE"" = :Original_S_SPEED_SERVICE) AND (""S_OFFICE_LOCATION"" = :Original_S_OFFICE_LOCATION) AND (""S_BANK_RELIABITILY"" = :Original_S_BANK_RELIABITILY) AND (""S_MODE"" = :Original_S_MODE) AND (""S_STAFF_COMPETENCE"" = :Original_S_STAFF_COMPETENCE) AND (""S_SERVICES_CHOICE"" = :Original_S_SERVICES_CHOICE) AND (""I_SPEED_SERVICE"" = :Original_I_SPEED_SERVICE) AND (""I_OFFICE_LOCATION"" = :Original_I_OFFICE_LOCATION) AND (""I_BANK_RELIABITILY"" = :Original_I_BANK_RELIABITILY) AND (""I_MODE"" = :Original_I_MODE) AND (""I_STAFF_COMPETENCE"" = :Original_I_STAFF_COMPETENCE) AND (""I_SERVICES_CHOICE"" = :Original_I_SERVICES_CHOICE) AND (""I_ADD_SERVICE"" = :Original_I_ADD_SERVICE) AND (""REF_USER"" = :Original_REF_USER) AND (""DT_LAST_ACSESS"" = :Original_DT_LAST_ACSESS) AND (""S_BANK_IMAGE"" = :Original_S_BANK_IMAGE) AND (""S_SERVICE_TERMS"" = :Original_S_SERVICE_TERMS) AND (""S_ADD_SERVICE"" = :Original_S_ADD_SERVICE) AND (""I_SERVICE_CULTURE"" = :Original_I_SERVICE_CULTURE) AND (""I_BANK_IMAGE"" = :Original_I_BANK_IMAGE) AND (""I_SERVICE_TERMS"" = :Original_I_SERVICE_TERMS) AND (""S_SERVICE_CULTURE"" = :Original_S_SERVICE_CULTURE))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DATE_POLL_BANK", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_BANK", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUMBER_POLL_BANK", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_BANK", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IsNull_REF_RKC", global::System.Data.OracleClient.OracleType.Int32, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SPEED_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_OFFICE_LOCATION", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_RELIABITILY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_MODE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICES_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SPEED_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_OFFICE_LOCATION", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_RELIABITILY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_MODE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICES_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_IMAGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_TERMS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_CULTURE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_IMAGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_TERMS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_CULTURE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.InsertCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""POLL_BANK"" (""DATE_POLL_BANK"", ""SEX"", ""AGE"", ""NUMBER_POLL_BANK"", ""REF_RKC"", ""REF_OTD"", ""REF_OBL"", ""S_SPEED_SERVICE"", ""S_OFFICE_LOCATION"", ""S_BANK_RELIABITILY"", ""S_MODE"", ""S_STAFF_COMPETENCE"", ""S_SERVICES_CHOICE"", ""I_SPEED_SERVICE"", ""I_OFFICE_LOCATION"", ""I_BANK_RELIABITILY"", ""I_MODE"", ""I_STAFF_COMPETENCE"", ""I_SERVICES_CHOICE"", ""I_ADD_SERVICE"", ""REF_USER"", ""DT_LAST_ACSESS"", ""S_BANK_IMAGE"", ""S_SERVICE_TERMS"", ""S_ADD_SERVICE"", ""I_SERVICE_CULTURE"", ""I_BANK_IMAGE"", ""I_SERVICE_TERMS"", ""S_SERVICE_CULTURE"") VALUES (:DATE_POLL_BANK, :SEX, :AGE, :NUMBER_POLL_BANK, :REF_RKC, :REF_OTD, :REF_OBL, :S_SPEED_SERVICE, :S_OFFICE_LOCATION, :S_BANK_RELIABITILY, :S_MODE, :S_STAFF_COMPETENCE, :S_SERVICES_CHOICE, :I_SPEED_SERVICE, :I_OFFICE_LOCATION, :I_BANK_RELIABITILY, :I_MODE, :I_STAFF_COMPETENCE, :I_SERVICES_CHOICE, :I_ADD_SERVICE, :REF_USER, :DT_LAST_ACSESS, :S_BANK_IMAGE, :S_SERVICE_TERMS, :S_ADD_SERVICE, :I_SERVICE_CULTURE, :I_BANK_IMAGE, :I_SERVICE_TERMS, :S_SERVICE_CULTURE)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATE_POLL_BANK", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_BANK", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("NUMBER_POLL_BANK", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_BANK", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SPEED_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_OFFICE_LOCATION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_RELIABITILY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_MODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICES_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SPEED_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_OFFICE_LOCATION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_RELIABITILY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_MODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICES_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_IMAGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_TERMS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_CULTURE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_IMAGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_TERMS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_CULTURE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand = new global::System.Data.OracleClient.OracleCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE \"POLL_BANK\" SET \"DATE_POLL_BANK\" = :DATE_POLL_BANK, \"SEX\" = :SEX, \"AGE\" = " +
+                ":AGE, \"NUMBER_POLL_BANK\" = :NUMBER_POLL_BANK, \"REF_RKC\" = :REF_RKC, \"REF_OTD\" = " +
+                ":REF_OTD, \"REF_OBL\" = :REF_OBL, \"S_SPEED_SERVICE\" = :S_SPEED_SERVICE, \"S_OFFICE_" +
+                "LOCATION\" = :S_OFFICE_LOCATION, \"S_BANK_RELIABITILY\" = :S_BANK_RELIABITILY, \"S_M" +
+                "ODE\" = :S_MODE, \"S_STAFF_COMPETENCE\" = :S_STAFF_COMPETENCE, \"S_SERVICES_CHOICE\" " +
+                "= :S_SERVICES_CHOICE, \"I_SPEED_SERVICE\" = :I_SPEED_SERVICE, \"I_OFFICE_LOCATION\" " +
+                "= :I_OFFICE_LOCATION, \"I_BANK_RELIABITILY\" = :I_BANK_RELIABITILY, \"I_MODE\" = :I_" +
+                "MODE, \"I_STAFF_COMPETENCE\" = :I_STAFF_COMPETENCE, \"I_SERVICES_CHOICE\" = :I_SERVI" +
+                "CES_CHOICE, \"I_ADD_SERVICE\" = :I_ADD_SERVICE, \"REF_USER\" = :REF_USER, \"DT_LAST_A" +
+                "CSESS\" = :DT_LAST_ACSESS, \"S_BANK_IMAGE\" = :S_BANK_IMAGE, \"S_SERVICE_TERMS\" = :S" +
+                "_SERVICE_TERMS, \"S_ADD_SERVICE\" = :S_ADD_SERVICE, \"I_SERVICE_CULTURE\" = :I_SERVI" +
+                "CE_CULTURE, \"I_BANK_IMAGE\" = :I_BANK_IMAGE, \"I_SERVICE_TERMS\" = :I_SERVICE_TERMS" +
+                ", \"S_SERVICE_CULTURE\" = :S_SERVICE_CULTURE WHERE ((\"DATE_POLL_BANK\" = :Original_" +
+                "DATE_POLL_BANK) AND (\"SEX\" = :Original_SEX) AND (\"AGE\" = :Original_AGE) AND (\"NU" +
+                "MBER_POLL_BANK\" = :Original_NUMBER_POLL_BANK) AND ((:IsNull_REF_RKC = 1 AND \"REF" +
+                "_RKC\" IS NULL) OR (\"REF_RKC\" = :Original_REF_RKC)) AND (\"REF_OTD\" = :Original_RE" +
+                "F_OTD) AND (\"REF_OBL\" = :Original_REF_OBL) AND (\"S_SPEED_SERVICE\" = :Original_S_" +
+                "SPEED_SERVICE) AND (\"S_OFFICE_LOCATION\" = :Original_S_OFFICE_LOCATION) AND (\"S_B" +
+                "ANK_RELIABITILY\" = :Original_S_BANK_RELIABITILY) AND (\"S_MODE\" = :Original_S_MOD" +
+                "E) AND (\"S_STAFF_COMPETENCE\" = :Original_S_STAFF_COMPETENCE) AND (\"S_SERVICES_CH" +
+                "OICE\" = :Original_S_SERVICES_CHOICE) AND (\"I_SPEED_SERVICE\" = :Original_I_SPEED_" +
+                "SERVICE) AND (\"I_OFFICE_LOCATION\" = :Original_I_OFFICE_LOCATION) AND (\"I_BANK_RE" +
+                "LIABITILY\" = :Original_I_BANK_RELIABITILY) AND (\"I_MODE\" = :Original_I_MODE) AND" +
+                " (\"I_STAFF_COMPETENCE\" = :Original_I_STAFF_COMPETENCE) AND (\"I_SERVICES_CHOICE\" " +
+                "= :Original_I_SERVICES_CHOICE) AND (\"I_ADD_SERVICE\" = :Original_I_ADD_SERVICE) A" +
+                "ND (\"REF_USER\" = :Original_REF_USER) AND (\"DT_LAST_ACSESS\" = :Original_DT_LAST_A" +
+                "CSESS) AND (\"S_BANK_IMAGE\" = :Original_S_BANK_IMAGE) AND (\"S_SERVICE_TERMS\" = :O" +
+                "riginal_S_SERVICE_TERMS) AND (\"S_ADD_SERVICE\" = :Original_S_ADD_SERVICE) AND (\"I" +
+                "_SERVICE_CULTURE\" = :Original_I_SERVICE_CULTURE) AND (\"I_BANK_IMAGE\" = :Original" +
+                "_I_BANK_IMAGE) AND (\"I_SERVICE_TERMS\" = :Original_I_SERVICE_TERMS) AND (\"S_SERVI" +
+                "CE_CULTURE\" = :Original_S_SERVICE_CULTURE))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DATE_POLL_BANK", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_BANK", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("NUMBER_POLL_BANK", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_BANK", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SPEED_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_OFFICE_LOCATION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_RELIABITILY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_MODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICES_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SPEED_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_OFFICE_LOCATION", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_RELIABITILY", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_MODE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICES_CHOICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_IMAGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_TERMS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_CULTURE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_IMAGE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("I_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_TERMS", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("S_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_CULTURE", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DATE_POLL_BANK", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DATE_POLL_BANK", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_SEX", global::System.Data.OracleClient.OracleType.Char, 0, global::System.Data.ParameterDirection.Input, "SEX", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_AGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "AGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_NUMBER_POLL_BANK", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "NUMBER_POLL_BANK", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("IsNull_REF_RKC", global::System.Data.OracleClient.OracleType.Int32, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_RKC", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_RKC", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OTD", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OTD", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_OBL", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SPEED_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_OFFICE_LOCATION", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_RELIABITILY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_MODE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICES_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SPEED_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SPEED_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_OFFICE_LOCATION", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_OFFICE_LOCATION", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_BANK_RELIABITILY", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_RELIABITILY", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_MODE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_MODE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_STAFF_COMPETENCE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_STAFF_COMPETENCE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICES_CHOICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICES_CHOICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_REF_USER", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "REF_USER", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_DT_LAST_ACSESS", global::System.Data.OracleClient.OracleType.DateTime, 0, global::System.Data.ParameterDirection.Input, "DT_LAST_ACSESS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_BANK_IMAGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_TERMS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_ADD_SERVICE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_ADD_SERVICE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_CULTURE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_BANK_IMAGE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_BANK_IMAGE", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_I_SERVICE_TERMS", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "I_SERVICE_TERMS", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OracleClient.OracleParameter("Original_S_SERVICE_CULTURE", global::System.Data.OracleClient.OracleType.Number, 0, global::System.Data.ParameterDirection.Input, "S_SERVICE_CULTURE", global::System.Data.DataRowVersion.Original, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.OracleClient.OracleConnection();
+            this._connection.ConnectionString = global::Poll.Properties.Settings.Default.PollConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.OracleClient.OracleCommand[2];
+            this._commandCollection[0] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        DATE_POLL_BANK, SEX, AGE, NUMBER_POLL_BANK, REF_RKC, REF_OTD, REF_OBL, S_SPEED_SERVICE, S_OFFICE_LOCATION, S_BANK_RELIABITILY, S_MODE,
+                          S_STAFF_COMPETENCE, S_SERVICES_CHOICE, I_SPEED_SERVICE, I_OFFICE_LOCATION, I_BANK_RELIABITILY, I_MODE, I_STAFF_COMPETENCE, 
+                         I_SERVICES_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS, S_BANK_IMAGE, S_SERVICE_TERMS, S_ADD_SERVICE, I_SERVICE_CULTURE, 
+                         I_BANK_IMAGE, I_SERVICE_TERMS, S_SERVICE_CULTURE
+FROM            POLL_BANK";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.OracleClient.OracleCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        DATE_POLL_BANK, SEX, AGE, NUMBER_POLL_BANK, REF_RKC, REF_OTD, REF_OBL, S_SPEED_SERVICE, S_OFFICE_LOCATION, S_BANK_RELIABITILY, S_MODE,
+                          S_STAFF_COMPETENCE, S_SERVICES_CHOICE, I_SPEED_SERVICE, I_OFFICE_LOCATION, I_BANK_RELIABITILY, I_MODE, I_STAFF_COMPETENCE, 
+                         I_SERVICES_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS, S_BANK_IMAGE, S_SERVICE_TERMS, S_ADD_SERVICE, I_SERVICE_CULTURE, 
+                         I_BANK_IMAGE, I_SERVICE_TERMS, S_SERVICE_CULTURE
+FROM            POLL_BANK
+WHERE        (REF_OBL = :filial)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OracleClient.OracleParameter("filial", global::System.Data.OracleClient.OracleType.Number, 22, global::System.Data.ParameterDirection.Input, "REF_OBL", global::System.Data.DataRowVersion.Current, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(PollsDataSet.POLL_BANKDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual PollsDataSet.POLL_BANKDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            PollsDataSet.POLL_BANKDataTable dataTable = new PollsDataSet.POLL_BANKDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByFil(PollsDataSet.POLL_BANKDataTable dataTable, decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(filial));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PollsDataSet.POLL_BANKDataTable GetDataByFil(decimal filial) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((decimal)(filial));
+            PollsDataSet.POLL_BANKDataTable dataTable = new PollsDataSet.POLL_BANKDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PollsDataSet.POLL_BANKDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PollsDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "POLL_BANK");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    System.DateTime Original_DATE_POLL_BANK, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_BANK, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_SPEED_SERVICE, 
+                    decimal Original_S_OFFICE_LOCATION, 
+                    decimal Original_S_BANK_RELIABITILY, 
+                    decimal Original_S_MODE, 
+                    decimal Original_S_STAFF_COMPETENCE, 
+                    decimal Original_S_SERVICES_CHOICE, 
+                    decimal Original_I_SPEED_SERVICE, 
+                    decimal Original_I_OFFICE_LOCATION, 
+                    decimal Original_I_BANK_RELIABITILY, 
+                    decimal Original_I_MODE, 
+                    decimal Original_I_STAFF_COMPETENCE, 
+                    decimal Original_I_SERVICES_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS, 
+                    decimal Original_S_BANK_IMAGE, 
+                    decimal Original_S_SERVICE_TERMS, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_SERVICE_CULTURE, 
+                    decimal Original_I_BANK_IMAGE, 
+                    decimal Original_I_SERVICE_TERMS, 
+                    decimal Original_S_SERVICE_CULTURE) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((System.DateTime)(Original_DATE_POLL_BANK));
+            if ((Original_SEX == null)) {
+                throw new global::System.ArgumentNullException("Original_SEX");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_SEX));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((decimal)(Original_AGE));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_NUMBER_POLL_BANK));
+            if ((Original_REF_RKC.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_REF_RKC.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((decimal)(Original_REF_OTD));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_REF_OBL));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((decimal)(Original_S_SPEED_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((decimal)(Original_S_OFFICE_LOCATION));
+            this.Adapter.DeleteCommand.Parameters[10].Value = ((decimal)(Original_S_BANK_RELIABITILY));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((decimal)(Original_S_MODE));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((decimal)(Original_S_STAFF_COMPETENCE));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_S_SERVICES_CHOICE));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((decimal)(Original_I_SPEED_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((decimal)(Original_I_OFFICE_LOCATION));
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((decimal)(Original_I_BANK_RELIABITILY));
+            this.Adapter.DeleteCommand.Parameters[17].Value = ((decimal)(Original_I_MODE));
+            this.Adapter.DeleteCommand.Parameters[18].Value = ((decimal)(Original_I_STAFF_COMPETENCE));
+            this.Adapter.DeleteCommand.Parameters[19].Value = ((decimal)(Original_I_SERVICES_CHOICE));
+            this.Adapter.DeleteCommand.Parameters[20].Value = ((decimal)(Original_I_ADD_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[21].Value = ((decimal)(Original_REF_USER));
+            this.Adapter.DeleteCommand.Parameters[22].Value = ((System.DateTime)(Original_DT_LAST_ACSESS));
+            this.Adapter.DeleteCommand.Parameters[23].Value = ((decimal)(Original_S_BANK_IMAGE));
+            this.Adapter.DeleteCommand.Parameters[24].Value = ((decimal)(Original_S_SERVICE_TERMS));
+            this.Adapter.DeleteCommand.Parameters[25].Value = ((decimal)(Original_S_ADD_SERVICE));
+            this.Adapter.DeleteCommand.Parameters[26].Value = ((decimal)(Original_I_SERVICE_CULTURE));
+            this.Adapter.DeleteCommand.Parameters[27].Value = ((decimal)(Original_I_BANK_IMAGE));
+            this.Adapter.DeleteCommand.Parameters[28].Value = ((decimal)(Original_I_SERVICE_TERMS));
+            this.Adapter.DeleteCommand.Parameters[29].Value = ((decimal)(Original_S_SERVICE_CULTURE));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(
+                    System.DateTime DATE_POLL_BANK, 
+                    string SEX, 
+                    decimal AGE, 
+                    decimal NUMBER_POLL_BANK, 
+                    global::System.Nullable<decimal> REF_RKC, 
+                    decimal REF_OTD, 
+                    decimal REF_OBL, 
+                    decimal S_SPEED_SERVICE, 
+                    decimal S_OFFICE_LOCATION, 
+                    decimal S_BANK_RELIABITILY, 
+                    decimal S_MODE, 
+                    decimal S_STAFF_COMPETENCE, 
+                    decimal S_SERVICES_CHOICE, 
+                    decimal I_SPEED_SERVICE, 
+                    decimal I_OFFICE_LOCATION, 
+                    decimal I_BANK_RELIABITILY, 
+                    decimal I_MODE, 
+                    decimal I_STAFF_COMPETENCE, 
+                    decimal I_SERVICES_CHOICE, 
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS, 
+                    decimal S_BANK_IMAGE, 
+                    decimal S_SERVICE_TERMS, 
+                    decimal S_ADD_SERVICE, 
+                    decimal I_SERVICE_CULTURE, 
+                    decimal I_BANK_IMAGE, 
+                    decimal I_SERVICE_TERMS, 
+                    decimal S_SERVICE_CULTURE) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(DATE_POLL_BANK));
+            if ((SEX == null)) {
+                throw new global::System.ArgumentNullException("SEX");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(SEX));
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(AGE));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(NUMBER_POLL_BANK));
+            if ((REF_RKC.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(REF_RKC.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(REF_OTD));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(REF_OBL));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(S_SPEED_SERVICE));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(S_OFFICE_LOCATION));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(S_BANK_RELIABITILY));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(S_MODE));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(S_STAFF_COMPETENCE));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(S_SERVICES_CHOICE));
+            this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(I_SPEED_SERVICE));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(I_OFFICE_LOCATION));
+            this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(I_BANK_RELIABITILY));
+            this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(I_MODE));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((decimal)(I_STAFF_COMPETENCE));
+            this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(I_SERVICES_CHOICE));
+            this.Adapter.InsertCommand.Parameters[19].Value = ((decimal)(I_ADD_SERVICE));
+            this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(REF_USER));
+            this.Adapter.InsertCommand.Parameters[21].Value = ((System.DateTime)(DT_LAST_ACSESS));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((decimal)(S_BANK_IMAGE));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((decimal)(S_SERVICE_TERMS));
+            this.Adapter.InsertCommand.Parameters[24].Value = ((decimal)(S_ADD_SERVICE));
+            this.Adapter.InsertCommand.Parameters[25].Value = ((decimal)(I_SERVICE_CULTURE));
+            this.Adapter.InsertCommand.Parameters[26].Value = ((decimal)(I_BANK_IMAGE));
+            this.Adapter.InsertCommand.Parameters[27].Value = ((decimal)(I_SERVICE_TERMS));
+            this.Adapter.InsertCommand.Parameters[28].Value = ((decimal)(S_SERVICE_CULTURE));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    System.DateTime DATE_POLL_BANK, 
+                    string SEX, 
+                    decimal AGE, 
+                    decimal NUMBER_POLL_BANK, 
+                    global::System.Nullable<decimal> REF_RKC, 
+                    decimal REF_OTD, 
+                    decimal REF_OBL, 
+                    decimal S_SPEED_SERVICE, 
+                    decimal S_OFFICE_LOCATION, 
+                    decimal S_BANK_RELIABITILY, 
+                    decimal S_MODE, 
+                    decimal S_STAFF_COMPETENCE, 
+                    decimal S_SERVICES_CHOICE, 
+                    decimal I_SPEED_SERVICE, 
+                    decimal I_OFFICE_LOCATION, 
+                    decimal I_BANK_RELIABITILY, 
+                    decimal I_MODE, 
+                    decimal I_STAFF_COMPETENCE, 
+                    decimal I_SERVICES_CHOICE, 
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS, 
+                    decimal S_BANK_IMAGE, 
+                    decimal S_SERVICE_TERMS, 
+                    decimal S_ADD_SERVICE, 
+                    decimal I_SERVICE_CULTURE, 
+                    decimal I_BANK_IMAGE, 
+                    decimal I_SERVICE_TERMS, 
+                    decimal S_SERVICE_CULTURE, 
+                    System.DateTime Original_DATE_POLL_BANK, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_BANK, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_SPEED_SERVICE, 
+                    decimal Original_S_OFFICE_LOCATION, 
+                    decimal Original_S_BANK_RELIABITILY, 
+                    decimal Original_S_MODE, 
+                    decimal Original_S_STAFF_COMPETENCE, 
+                    decimal Original_S_SERVICES_CHOICE, 
+                    decimal Original_I_SPEED_SERVICE, 
+                    decimal Original_I_OFFICE_LOCATION, 
+                    decimal Original_I_BANK_RELIABITILY, 
+                    decimal Original_I_MODE, 
+                    decimal Original_I_STAFF_COMPETENCE, 
+                    decimal Original_I_SERVICES_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS, 
+                    decimal Original_S_BANK_IMAGE, 
+                    decimal Original_S_SERVICE_TERMS, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_SERVICE_CULTURE, 
+                    decimal Original_I_BANK_IMAGE, 
+                    decimal Original_I_SERVICE_TERMS, 
+                    decimal Original_S_SERVICE_CULTURE) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(DATE_POLL_BANK));
+            if ((SEX == null)) {
+                throw new global::System.ArgumentNullException("SEX");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(SEX));
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(AGE));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(NUMBER_POLL_BANK));
+            if ((REF_RKC.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(REF_RKC.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(REF_OTD));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(REF_OBL));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(S_SPEED_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(S_OFFICE_LOCATION));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(S_BANK_RELIABITILY));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(S_MODE));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(S_STAFF_COMPETENCE));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(S_SERVICES_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(I_SPEED_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(I_OFFICE_LOCATION));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(I_BANK_RELIABITILY));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(I_MODE));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((decimal)(I_STAFF_COMPETENCE));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(I_SERVICES_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((decimal)(I_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(REF_USER));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(DT_LAST_ACSESS));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((decimal)(S_BANK_IMAGE));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((decimal)(S_SERVICE_TERMS));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((decimal)(S_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(I_SERVICE_CULTURE));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(I_BANK_IMAGE));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((decimal)(I_SERVICE_TERMS));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((decimal)(S_SERVICE_CULTURE));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(Original_DATE_POLL_BANK));
+            if ((Original_SEX == null)) {
+                throw new global::System.ArgumentNullException("Original_SEX");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_SEX));
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((decimal)(Original_AGE));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((decimal)(Original_NUMBER_POLL_BANK));
+            if ((Original_REF_RKC.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((decimal)(Original_REF_RKC.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((decimal)(Original_REF_OTD));
+            this.Adapter.UpdateCommand.Parameters[36].Value = ((decimal)(Original_REF_OBL));
+            this.Adapter.UpdateCommand.Parameters[37].Value = ((decimal)(Original_S_SPEED_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[38].Value = ((decimal)(Original_S_OFFICE_LOCATION));
+            this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(Original_S_BANK_RELIABITILY));
+            this.Adapter.UpdateCommand.Parameters[40].Value = ((decimal)(Original_S_MODE));
+            this.Adapter.UpdateCommand.Parameters[41].Value = ((decimal)(Original_S_STAFF_COMPETENCE));
+            this.Adapter.UpdateCommand.Parameters[42].Value = ((decimal)(Original_S_SERVICES_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[43].Value = ((decimal)(Original_I_SPEED_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[44].Value = ((decimal)(Original_I_OFFICE_LOCATION));
+            this.Adapter.UpdateCommand.Parameters[45].Value = ((decimal)(Original_I_BANK_RELIABITILY));
+            this.Adapter.UpdateCommand.Parameters[46].Value = ((decimal)(Original_I_MODE));
+            this.Adapter.UpdateCommand.Parameters[47].Value = ((decimal)(Original_I_STAFF_COMPETENCE));
+            this.Adapter.UpdateCommand.Parameters[48].Value = ((decimal)(Original_I_SERVICES_CHOICE));
+            this.Adapter.UpdateCommand.Parameters[49].Value = ((decimal)(Original_I_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[50].Value = ((decimal)(Original_REF_USER));
+            this.Adapter.UpdateCommand.Parameters[51].Value = ((System.DateTime)(Original_DT_LAST_ACSESS));
+            this.Adapter.UpdateCommand.Parameters[52].Value = ((decimal)(Original_S_BANK_IMAGE));
+            this.Adapter.UpdateCommand.Parameters[53].Value = ((decimal)(Original_S_SERVICE_TERMS));
+            this.Adapter.UpdateCommand.Parameters[54].Value = ((decimal)(Original_S_ADD_SERVICE));
+            this.Adapter.UpdateCommand.Parameters[55].Value = ((decimal)(Original_I_SERVICE_CULTURE));
+            this.Adapter.UpdateCommand.Parameters[56].Value = ((decimal)(Original_I_BANK_IMAGE));
+            this.Adapter.UpdateCommand.Parameters[57].Value = ((decimal)(Original_I_SERVICE_TERMS));
+            this.Adapter.UpdateCommand.Parameters[58].Value = ((decimal)(Original_S_SERVICE_CULTURE));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string SEX, 
+                    decimal AGE, 
+                    global::System.Nullable<decimal> REF_RKC, 
+                    decimal REF_OBL, 
+                    decimal S_SPEED_SERVICE, 
+                    decimal S_OFFICE_LOCATION, 
+                    decimal S_BANK_RELIABITILY, 
+                    decimal S_MODE, 
+                    decimal S_STAFF_COMPETENCE, 
+                    decimal S_SERVICES_CHOICE, 
+                    decimal I_SPEED_SERVICE, 
+                    decimal I_OFFICE_LOCATION, 
+                    decimal I_BANK_RELIABITILY, 
+                    decimal I_MODE, 
+                    decimal I_STAFF_COMPETENCE, 
+                    decimal I_SERVICES_CHOICE, 
+                    decimal I_ADD_SERVICE, 
+                    decimal REF_USER, 
+                    System.DateTime DT_LAST_ACSESS, 
+                    decimal S_BANK_IMAGE, 
+                    decimal S_SERVICE_TERMS, 
+                    decimal S_ADD_SERVICE, 
+                    decimal I_SERVICE_CULTURE, 
+                    decimal I_BANK_IMAGE, 
+                    decimal I_SERVICE_TERMS, 
+                    decimal S_SERVICE_CULTURE, 
+                    System.DateTime Original_DATE_POLL_BANK, 
+                    string Original_SEX, 
+                    decimal Original_AGE, 
+                    decimal Original_NUMBER_POLL_BANK, 
+                    global::System.Nullable<decimal> Original_REF_RKC, 
+                    decimal Original_REF_OTD, 
+                    decimal Original_REF_OBL, 
+                    decimal Original_S_SPEED_SERVICE, 
+                    decimal Original_S_OFFICE_LOCATION, 
+                    decimal Original_S_BANK_RELIABITILY, 
+                    decimal Original_S_MODE, 
+                    decimal Original_S_STAFF_COMPETENCE, 
+                    decimal Original_S_SERVICES_CHOICE, 
+                    decimal Original_I_SPEED_SERVICE, 
+                    decimal Original_I_OFFICE_LOCATION, 
+                    decimal Original_I_BANK_RELIABITILY, 
+                    decimal Original_I_MODE, 
+                    decimal Original_I_STAFF_COMPETENCE, 
+                    decimal Original_I_SERVICES_CHOICE, 
+                    decimal Original_I_ADD_SERVICE, 
+                    decimal Original_REF_USER, 
+                    System.DateTime Original_DT_LAST_ACSESS, 
+                    decimal Original_S_BANK_IMAGE, 
+                    decimal Original_S_SERVICE_TERMS, 
+                    decimal Original_S_ADD_SERVICE, 
+                    decimal Original_I_SERVICE_CULTURE, 
+                    decimal Original_I_BANK_IMAGE, 
+                    decimal Original_I_SERVICE_TERMS, 
+                    decimal Original_S_SERVICE_CULTURE) {
+            return this.Update(Original_DATE_POLL_BANK, SEX, AGE, Original_NUMBER_POLL_BANK, REF_RKC, Original_REF_OTD, REF_OBL, S_SPEED_SERVICE, S_OFFICE_LOCATION, S_BANK_RELIABITILY, S_MODE, S_STAFF_COMPETENCE, S_SERVICES_CHOICE, I_SPEED_SERVICE, I_OFFICE_LOCATION, I_BANK_RELIABITILY, I_MODE, I_STAFF_COMPETENCE, I_SERVICES_CHOICE, I_ADD_SERVICE, REF_USER, DT_LAST_ACSESS, S_BANK_IMAGE, S_SERVICE_TERMS, S_ADD_SERVICE, I_SERVICE_CULTURE, I_BANK_IMAGE, I_SERVICE_TERMS, S_SERVICE_CULTURE, Original_DATE_POLL_BANK, Original_SEX, Original_AGE, Original_NUMBER_POLL_BANK, Original_REF_RKC, Original_REF_OTD, Original_REF_OBL, Original_S_SPEED_SERVICE, Original_S_OFFICE_LOCATION, Original_S_BANK_RELIABITILY, Original_S_MODE, Original_S_STAFF_COMPETENCE, Original_S_SERVICES_CHOICE, Original_I_SPEED_SERVICE, Original_I_OFFICE_LOCATION, Original_I_BANK_RELIABITILY, Original_I_MODE, Original_I_STAFF_COMPETENCE, Original_I_SERVICES_CHOICE, Original_I_ADD_SERVICE, Original_REF_USER, Original_DT_LAST_ACSESS, Original_S_BANK_IMAGE, Original_S_SERVICE_TERMS, Original_S_ADD_SERVICE, Original_I_SERVICE_CULTURE, Original_I_BANK_IMAGE, Original_I_SERVICE_TERMS, Original_S_SERVICE_CULTURE);
+        }
     }
     
     /// <summary>
@@ -4526,6 +6625,8 @@ WHERE        (REF_OBL = :filial)";
         private UpdateOrderOption _updateOrder;
         
         private POLL_DEPOSTableAdapter _pOLL_DEPOSTableAdapter;
+        
+        private POLL_BANKTableAdapter _pOLL_BANKTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4558,6 +6659,20 @@ WHERE        (REF_OBL = :filial)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public POLL_BANKTableAdapter POLL_BANKTableAdapter {
+            get {
+                return this._pOLL_BANKTableAdapter;
+            }
+            set {
+                this._pOLL_BANKTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -4579,6 +6694,10 @@ WHERE        (REF_OBL = :filial)";
                             && (this._pOLL_DEPOSTableAdapter.Connection != null))) {
                     return this._pOLL_DEPOSTableAdapter.Connection;
                 }
+                if (((this._pOLL_BANKTableAdapter != null) 
+                            && (this._pOLL_BANKTableAdapter.Connection != null))) {
+                    return this._pOLL_BANKTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -4595,6 +6714,9 @@ WHERE        (REF_OBL = :filial)";
                 if ((this._pOLL_DEPOSTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._pOLL_BANKTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -4606,6 +6728,15 @@ WHERE        (REF_OBL = :filial)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(PollsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._pOLL_BANKTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.POLL_BANK.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._pOLL_BANKTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._pOLL_DEPOSTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.POLL_DEPOS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -4625,6 +6756,14 @@ WHERE        (REF_OBL = :filial)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(PollsDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._pOLL_BANKTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.POLL_BANK.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._pOLL_BANKTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._pOLL_DEPOSTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.POLL_DEPOS.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -4648,6 +6787,14 @@ WHERE        (REF_OBL = :filial)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._pOLL_DEPOSTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._pOLL_BANKTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.POLL_BANK.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._pOLL_BANKTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -4695,6 +6842,11 @@ WHERE        (REF_OBL = :filial)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._pOLL_BANKTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._pOLL_BANKTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -4734,6 +6886,15 @@ WHERE        (REF_OBL = :filial)";
                     if (this._pOLL_DEPOSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._pOLL_DEPOSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._pOLL_DEPOSTableAdapter.Adapter);
+                    }
+                }
+                if ((this._pOLL_BANKTableAdapter != null)) {
+                    revertConnections.Add(this._pOLL_BANKTableAdapter, this._pOLL_BANKTableAdapter.Connection);
+                    this._pOLL_BANKTableAdapter.Connection = ((global::System.Data.OracleClient.OracleConnection)(workConnection));
+                    this._pOLL_BANKTableAdapter.Transaction = ((global::System.Data.OracleClient.OracleTransaction)(workTransaction));
+                    if (this._pOLL_BANKTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._pOLL_BANKTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._pOLL_BANKTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -4797,6 +6958,10 @@ WHERE        (REF_OBL = :filial)";
                 if ((this._pOLL_DEPOSTableAdapter != null)) {
                     this._pOLL_DEPOSTableAdapter.Connection = ((global::System.Data.OracleClient.OracleConnection)(revertConnections[this._pOLL_DEPOSTableAdapter]));
                     this._pOLL_DEPOSTableAdapter.Transaction = null;
+                }
+                if ((this._pOLL_BANKTableAdapter != null)) {
+                    this._pOLL_BANKTableAdapter.Connection = ((global::System.Data.OracleClient.OracleConnection)(revertConnections[this._pOLL_BANKTableAdapter]));
+                    this._pOLL_BANKTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

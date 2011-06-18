@@ -56,9 +56,7 @@
             this.numberTextBox = new System.Windows.Forms.TextBox();
             this.numberLabel = new System.Windows.Forms.Label();
             this.questionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.addPollButton = new System.Windows.Forms.Button();
             this.pollsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.closeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fILIALBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -191,7 +189,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.ageUpDown);
+            this.groupBox2.Controls.Add(this.numberTextBox);
             this.groupBox2.Controls.Add(this.ageLabel);
+            this.groupBox2.Controls.Add(this.numberLabel);
             this.groupBox2.Controls.Add(this.sexСomboBox);
             this.groupBox2.Controls.Add(this.sexLabel);
             this.groupBox2.Location = new System.Drawing.Point(339, 13);
@@ -261,11 +261,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pollsTabControl);
-            this.groupBox3.Controls.Add(this.numberTextBox);
-            this.groupBox3.Controls.Add(this.numberLabel);
             this.groupBox3.Location = new System.Drawing.Point(12, 126);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(534, 377);
+            this.groupBox3.Size = new System.Drawing.Size(534, 470);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Анкета по вкладам:";
@@ -274,10 +272,10 @@
             // 
             this.pollsTabControl.Controls.Add(this.tabPage1);
             this.pollsTabControl.Controls.Add(this.tabPage2);
-            this.pollsTabControl.Location = new System.Drawing.Point(10, 42);
+            this.pollsTabControl.Location = new System.Drawing.Point(10, 19);
             this.pollsTabControl.Name = "pollsTabControl";
             this.pollsTabControl.SelectedIndex = 0;
-            this.pollsTabControl.Size = new System.Drawing.Size(513, 329);
+            this.pollsTabControl.Size = new System.Drawing.Size(513, 445);
             this.pollsTabControl.TabIndex = 2;
             // 
             // tabPage1
@@ -285,7 +283,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(505, 303);
+            this.tabPage1.Size = new System.Drawing.Size(505, 419);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -302,9 +300,9 @@
             // 
             // numberTextBox
             // 
-            this.numberTextBox.Location = new System.Drawing.Point(97, 16);
+            this.numberTextBox.Location = new System.Drawing.Point(100, 80);
             this.numberTextBox.Name = "numberTextBox";
-            this.numberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.numberTextBox.Size = new System.Drawing.Size(96, 20);
             this.numberTextBox.TabIndex = 1;
             this.numberTextBox.TextChanged += new System.EventHandler(this.numberTextBox_TextChanged);
             this.numberTextBox.Validated += new System.EventHandler(this.numberTextBox_Validated);
@@ -312,9 +310,10 @@
             // numberLabel
             // 
             this.numberLabel.AutoSize = true;
-            this.numberLabel.Location = new System.Drawing.Point(7, 19);
+            this.numberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numberLabel.Location = new System.Drawing.Point(6, 83);
             this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(84, 13);
+            this.numberLabel.Size = new System.Drawing.Size(97, 13);
             this.numberLabel.TabIndex = 0;
             this.numberLabel.Text = "Номер анкеты:";
             // 
@@ -323,40 +322,20 @@
             this.questionBindingSource.DataMember = "Question";
             this.questionBindingSource.DataSource = this.pollsDataSet;
             // 
-            // addPollButton
-            // 
-            this.addPollButton.Location = new System.Drawing.Point(379, 509);
-            this.addPollButton.Name = "addPollButton";
-            this.addPollButton.Size = new System.Drawing.Size(75, 23);
-            this.addPollButton.TabIndex = 5;
-            this.addPollButton.Text = "Добавить";
-            this.addPollButton.UseVisualStyleBackColor = true;
-            this.addPollButton.Click += new System.EventHandler(this.addPollButton_Click);
-            // 
-            // closeButton
-            // 
-            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(471, 509);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 6;
-            this.closeButton.Text = "Закрыть";
-            this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
-            // 
             // DeposAnketAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 537);
-            this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.addPollButton);
+            this.ClientSize = new System.Drawing.Size(554, 630);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "DeposAnketAddForm";
             this.Text = "Новая анкета";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeposAnketAddForm_FormClosing);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.groupBox2, 0);
+            this.Controls.SetChildIndex(this.groupBox3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.fILIALBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -368,7 +347,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ageUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sexBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.pollsTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.questionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pollsBindingSource)).EndInit();
@@ -405,8 +383,6 @@
         private System.Windows.Forms.TabControl pollsTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button addPollButton;
         private System.Windows.Forms.BindingSource pollsBindingSource;
-        private System.Windows.Forms.Button closeButton;
     }
 }

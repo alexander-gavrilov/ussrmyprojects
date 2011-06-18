@@ -7,3 +7,10 @@
         }
     }
 }
+
+namespace Poll.PollsDataSetTableAdapters {
+    
+    
+    public partial class POLL_DEPOSTableAdapter {
+    }
+}
