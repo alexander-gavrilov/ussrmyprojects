@@ -90,6 +90,7 @@
             this.Name = "BAPBFormsMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Задачи";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
