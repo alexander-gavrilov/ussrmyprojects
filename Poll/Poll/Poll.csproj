@@ -58,6 +58,18 @@
     <Compile Include="DeposPollsTableForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FiltrControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FiltrControl.Designer.cs">
+      <DependentUpon>FiltrControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollMainForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PollMainForms.Designer.cs">
+      <DependentUpon>PollMainForms.cs</DependentUpon>
+    </Compile>
     <Compile Include="PollsDataSet.cs">
       <DependentUpon>PollsDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -69,6 +81,12 @@
       <DependentUpon>QuestControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="FiltrControl.resx">
+      <DependentUpon>FiltrControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PollMainForms.resx">
+      <DependentUpon>PollMainForms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestControl.resx">
       <DependentUpon>QuestControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +132,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="PollsDataSet.xsc">
