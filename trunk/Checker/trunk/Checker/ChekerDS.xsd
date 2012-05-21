@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ChekerDS" targetNamespace="http://tempuri.org/ChekerDS.xsd" xmlns:mstns="http://tempuri.org/ChekerDS.xsd" xmlns="http://tempuri.org/ChekerDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ChekerDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ChekerDS" msprop:Generator_UserDSName="ChekerDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DirsDT" msprop:Generator_TableClassName="DirsDTDataTable" msprop:Generator_TableVarName="tableDirsDT" msprop:Generator_TablePropName="DirsDT" msprop:Generator_RowDeletingName="DirsDTRowDeleting" msprop:Generator_UserTableName="DirsDT" msprop:Generator_RowChangingName="DirsDTRowChanging" msprop:Generator_RowEvHandlerName="DirsDTRowChangeEventHandler" msprop:Generator_RowDeletedName="DirsDTRowDeleted" msprop:Generator_RowEvArgName="DirsDTRowChangeEvent" msprop:Generator_RowChangedName="DirsDTRowChanged" msprop:Generator_RowClassName="DirsDTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="path" msprop:Generator_ColumnVarNameInTable="columnpath" msprop:Generator_ColumnPropNameInRow="path" msprop:Generator_ColumnPropNameInTable="pathColumn" msprop:Generator_UserColumnName="path" type="xs:string" default="" />
+              <xs:element name="execute" msprop:Generator_ColumnVarNameInTable="columnexecute" msprop:Generator_ColumnPropNameInRow="execute" msprop:Generator_ColumnPropNameInTable="executeColumn" msprop:Generator_UserColumnName="execute" type="xs:string" default="" />
+              <xs:element name="process" msprop:Generator_ColumnVarNameInTable="columnprocess" msprop:Generator_ColumnPropNameInRow="process" msprop:Generator_ColumnPropNameInTable="processColumn" msprop:Generator_UserColumnName="process" type="xs:string" default="" />
+              <xs:element name="comment" msprop:Generator_ColumnVarNameInTable="columncomment" msprop:Generator_ColumnPropNameInRow="comment" msprop:Generator_ColumnPropNameInTable="commentColumn" msprop:Generator_UserColumnName="comment" type="xs:string" minOccurs="0" />
+              <xs:element name="section" msprop:Generator_ColumnVarNameInTable="columnsection" msprop:Generator_ColumnPropNameInRow="section" msprop:Generator_ColumnPropNameInTable="sectionColumn" msprop:Generator_UserColumnName="section" type="xs:string" default="" />
+              <xs:element name="treatment" msprop:Generator_ColumnVarNameInTable="columntreatment" msprop:Generator_ColumnPropNameInRow="treatment" msprop:Generator_ColumnPropNameInTable="treatmentColumn" msprop:Generator_UserColumnName="treatment" type="xs:boolean" default="true" />
+              <xs:element name="mask" msprop:Generator_ColumnVarNameInTable="columnmask" msprop:Generator_ColumnPropNameInRow="mask" msprop:Generator_ColumnPropNameInTable="maskColumn" msprop:Generator_UserColumnName="mask" type="xs:string" default="*.*" />
+              <xs:element name="runprocess" msprop:Generator_ColumnVarNameInTable="columnrunprocess" msprop:Generator_ColumnPropNameInRow="runprocess" msprop:Generator_ColumnPropNameInTable="runprocessColumn" msprop:Generator_UserColumnName="runprocess" type="xs:boolean" default="false" />
+              <xs:element name="avalible" msprop:Generator_ColumnVarNameInTable="columnavalible" msprop:Generator_ColumnPropNameInRow="avalible" msprop:Generator_ColumnPropNameInTable="avalibleColumn" msprop:Generator_UserColumnName="avalible" type="xs:boolean" default="false" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DirsDT" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
