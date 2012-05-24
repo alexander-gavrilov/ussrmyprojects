@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReminderForm));
             this.runButton = new System.Windows.Forms.Button();
             this.holdButton = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -213,13 +214,14 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.holdButton);
             this.Controls.Add(this.runButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(692, 389);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(692, 389);
             this.Name = "ReminderForm";
-            this.Text = "ReminderForm";
+            this.Text = "Обнаружены необработанные файлы";
             this.Load += new System.EventHandler(this.ReminderForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

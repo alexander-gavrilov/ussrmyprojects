@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Checker
@@ -14,7 +15,13 @@ namespace Checker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CheckerProfile.Init();
+           // CheckerProfile.checkerTray.Icon = ;
+            
+            if (CheckerProfile.RunOnStart)
+            {
+                CheckerProfile.StartTreat();
+            }
+            Application.Run();
         }
     }
 }
