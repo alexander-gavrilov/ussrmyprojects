@@ -45,6 +45,10 @@ namespace Checker
             {
                 Hide();
             }
+            if (CheckerProfile.RunOnStart)
+            {
+                button1_Click_1(this,new EventArgs());
+            }
             //Settings.Default.SettingsKey = "form";
             ////Settings.Default["form"] = this;
             //ini.SetValue("Main","ReloadTime",10);
@@ -96,14 +100,12 @@ namespace Checker
         private void button1_Click_1(object sender, EventArgs e)
         {
             CheckerProfile.StartTreat();
-            runButton.Text = "Стоп";
-            runButton.BackColor = Color.Red;
+            
         }
         private void button1_Click_2(object sender, EventArgs e)
         {
             CheckerProfile.StopTreat();
-            runButton.Text = "Старт";
-            runButton.BackColor = Color.LightGreen;
+
         }
 
         private void MainWindowMenuItem_Click(object sender, EventArgs e)
@@ -123,19 +125,32 @@ namespace Checker
         private void TimerEvent(Object myObject,
                                         CheckerProfileEventArgs e)
         {
-            if(e.IsChecerRunning)
+            if (!this.IsDisposed)
             {
-                trayContextMenu.Items["StartMenuItem"].Enabled = false;
-                trayContextMenu.Items["StopMenuItem"].Enabled = true;
-                runButton.Click -= button1_Click_1;
-                runButton.Click += button1_Click_2;
-            }
-            else
-            {
-                trayContextMenu.Items["StartMenuItem"].Enabled = true;
-                trayContextMenu.Items["StopMenuItem"].Enabled = false;
-                runButton.Click -= button1_Click_2;
-                runButton.Click += button1_Click_1;
+                if (e.IsChecerRunning)
+                {
+                    trayContextMenu.Items["StartMenuItem"].Enabled = false;
+                    trayContextMenu.Items["StopMenuItem"].Enabled = true;
+                    runButton.Click -= button1_Click_1;
+                    runButton.Click += button1_Click_2;
+                    runButton.Text = "Стоп";
+                    runButton.BackColor = Color.Red;
+                    checkerTray.BalloonTipText = "Наблюдатель активен";
+                    checkerTray.Text = "Наблюдатель активен";
+                    checkerTray.ShowBalloonTip(10);
+                }
+                else
+                {
+                    trayContextMenu.Items["StartMenuItem"].Enabled = true;
+                    trayContextMenu.Items["StopMenuItem"].Enabled = false;
+                    runButton.Click -= button1_Click_2;
+                    runButton.Click += button1_Click_1;
+                    runButton.Text = "Старт";
+                    runButton.BackColor = Color.LightGreen;
+                    checkerTray.BalloonTipText = "Наблюдатель не активен";
+                    checkerTray.Text = "Наблюдатель не активен";
+                    checkerTray.ShowBalloonTip(10);
+                } 
             }
         }
         
@@ -151,6 +166,7 @@ namespace Checker
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
         {
+            CheckerProfile.StopTreat();
             Application.Exit();
         }
 
@@ -179,20 +195,25 @@ namespace Checker
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Hide();
+            Application.Exit();
         }
 
-        private void button1_Click_3(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
-                textBox1.Text = folderBrowserDialog1.SelectedPath;
+            Application.Exit();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                textBox2.Text = openFileDialog1.FileName;
-        }
+        //private void button1_Click_3(object sender, EventArgs e)
+        //{
+        //    if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+        //        textBox1.Text = folderBrowserDialog1.SelectedPath;
+        //}
+
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+        //        textBox2.Text = openFileDialog1.FileName;
+        //}
 
 
     }

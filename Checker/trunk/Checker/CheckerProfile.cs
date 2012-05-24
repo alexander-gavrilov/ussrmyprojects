@@ -2,31 +2,42 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using AMS.Profile;
+using Checker.Properties;
 
 namespace Checker
 {
+   
     public static class CheckerProfile
     {
-        
+       
         public static ChekerDS chekerDS=new ChekerDS();
         private static Profile ini = new Ini(Application.StartupPath + "\\checker.ini");
         private static Byte updateInterval=10;
         public static bool RunOnStart = false;
         public static bool MinimazeOnStart = false;
         private static DateTime NextUpdateTime = DateTime.Now;
-        public static System.Windows.Forms.Timer UpdateTimer = new System.Windows.Forms.Timer();
+        public static Timer UpdateTimer = new System.Windows.Forms.Timer();
         private static Dictionary<String, FileSystemWatcher> Watchers = new Dictionary<string, FileSystemWatcher>();
         private static Dictionary<String,List<FileSystemInfo>> FileSystemInfoses = new Dictionary<string, List<FileSystemInfo>>();
         private static Dictionary<String,List<String>> FilesHashesDic = new Dictionary<string, List<string>>();
+        private static ToolStripMenuItem StartMenuItem = new ToolStripMenuItem("Старт") { Name = "StartMenuItem" };
+        private static ToolStripMenuItem StopMenuItem = new ToolStripMenuItem("Стоп") { Name = "StopMenuItem" };
+        private static ToolStripMenuItem ExitMenuItem = new ToolStripMenuItem("Выход") { Name = "ExitMenuItem" };
+        private static ContextMenuStrip trayMenu = new ContextMenuStrip();
+        public static NotifyIcon checkerTray = new NotifyIcon(){};
+        //private static Resources _resources = new Resources();
         public static event EventHandler<CheckerProfileEventArgs> ChangeState;
-        private static Form1 _form1=new Form1();
+        
+        //private static Form1 _form1=new Form1();
         static CheckerProfile()
         {
-            
+            InitializeComponent();
             chekerDS.DirsDT.Clear();
             UpdateInterval = (Byte) ini.GetValue("Main", "UpdateInterval", 60);
             RunOnStart = ini.GetValue("Main", "RunOnStart", false);
@@ -45,16 +56,25 @@ namespace Checker
                 }
 
             }
+
+        }
+        private static void InitializeComponent()
+        {
+            trayMenu.Items.AddRange(new ToolStripItem[]{StartMenuItem,StopMenuItem,ExitMenuItem});
+            checkerTray.ContextMenuStrip = trayMenu;
+            StopMenuItem.Click += StopMenuItem_Click;
+            StartMenuItem.Click += StartMenuItem_Click;
+            ExitMenuItem.Click += ExitMenuItem_Click;
+            checkerTray.Icon = (Icon)Resources.ResourceManager.GetObject("checker");
+            checkerTray.Visible = true;
+            ChangeState += TimerEvent;
         }
         public static void Init()
         {
             
-           Application.Run(_form1);
            
-           if (CheckerProfile.RunOnStart)
-           {
-               CheckerProfile.StartTreat();
-           }
+           //_form1.L
+           
           
 
         }
@@ -209,6 +229,43 @@ namespace Checker
                 // Use the () operator to raise the event.
                 handler(UpdateTimer,e);
             }
+        }
+        private static void StartMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckerProfile.StartTreat();
+        }
+
+        private static void StopMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckerProfile.StopTreat();
+        }
+
+        private static void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            CheckerProfile.StopTreat();
+            Application.Exit();
+        }
+        private static void TimerEvent(Object myObject,
+                                CheckerProfileEventArgs e)
+        {
+           
+                if (e.IsChecerRunning)
+                {
+                    trayMenu.Items["StartMenuItem"].Enabled = false;
+                    trayMenu.Items["StopMenuItem"].Enabled = true;
+                    checkerTray.BalloonTipText = "Наблюдатель активен";
+                    checkerTray.Text = "Наблюдатель активен";
+                    checkerTray.ShowBalloonTip(10);
+                }
+                else
+                {
+                    trayMenu.Items["StartMenuItem"].Enabled = true;
+                    trayMenu.Items["StopMenuItem"].Enabled = false;
+                    checkerTray.BalloonTipText = "Наблюдатель не активен";
+                    checkerTray.Text = "Наблюдатель не активен";
+                    checkerTray.ShowBalloonTip(10);
+                }
+            
         }
         //private static bool Compare
     }
